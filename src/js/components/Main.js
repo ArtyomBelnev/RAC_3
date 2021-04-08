@@ -1,10 +1,11 @@
 import PowerUP from './PowerUP'
 import Tumblers from './Tumblers'
-import Canals from './Canals'
+import Memo from './Memo'
 
 export default class Main {
   setActions() {
     const tumBTN = document.getElementById('tumblers'),
+      mem = document.getElementById('memo'),
       switch1 = document.getElementById('switch_1'),
       switch2 = document.getElementById('switch_2'),
       switch3 = document.getElementById('switch_3'),
@@ -56,6 +57,9 @@ export default class Main {
 
     const tumblers = new Tumblers(tumImg1, tumImg2, tumImg3, tumImg4, tumImg5, tumImg6, tumImg7, vpns, vpnu, vmr01, vmr02, vmr03, vmr04, PmBC, PmTK, PgDG, PmCT, Pg13, PgN, PgpN, PMC, dPkonf, OSleft, OSright, modeWrap, TCwrapR, ZwrapR)
 
+    const memo = new Memo(mem)
+
+    mem.addEventListener('click', memo.getCranes.bind(memo))
     powers.addEventListener('click', powerUP.getPowers.bind(powerUP))
     tumBTN.addEventListener('click', tumblers.getTumblers.bind(tumblers))
   }

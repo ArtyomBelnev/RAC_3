@@ -1,9 +1,13 @@
 import Btn from './Btn'
 import Journal from './Journal'
+import Arrow from './Arrow'
 
 import { PowerOk } from './PowerUP'
 
 export let SignalOk = false
+export let loadDIST = false
+export let ModeHP = false
+export let ModeAU = false
 
 export default class Tumblers {
   constructor(tumImg1, tumImg2, tumImg3, tumImg4, tumImg5, tumImg6, tumImg7, vpns, vpnu, vmr01, vmr02, vmr03, vmr04, PmBC, PmTK, PgDG, PmCT, Pg13, PgN, PgpN, PMC, dPkonf, OSleft, OSright, modeWrap, TCwrapR, ZwrapR) {
@@ -24,6 +28,7 @@ export default class Tumblers {
 
     this.btn = new Btn(vpns, vpnu, vmr01, vmr02, vmr03, vmr04, PmBC, PmTK, PgDG, PmCT, Pg13, PgN, PgpN, PMC, dPkonf, OSleft, OSright)
     this.journal = new Journal()
+    this.arrow = new Arrow(TCwrapR, ZwrapR)
   }
   getTumblers(e) {
     switch (e.target.value) {
@@ -43,16 +48,16 @@ export default class Tumblers {
       case '3':
         this.tumImg2.style.transform = 'rotate(-45deg)'
         setTimeout(() => (this.tumImg2.style.transform = 'rotate(0deg)'), 400)
-        // if (PowerOk == true) {
-        //   arrowUp()
-        // }
+        if (PowerOk == true) {
+          this.arrow.arrowUP()
+        }
         break
       case '4':
         this.tumImg2.style.transform = 'rotate(45deg)'
         setTimeout(() => (this.tumImg2.style.transform = 'rotate(0deg)'), 400)
-        // if (PowerOk == true) {
-        //   arrowDn()
-        // }
+        if (PowerOk == true) {
+          this.arrow.arrowDN()
+        }
         break
       case '5':
         this.tumImg3.style.transform = 'rotate(-45deg)'
@@ -74,28 +79,28 @@ export default class Tumblers {
         break
       case '10':
         this.tumImg5.style.transform = 'rotate(-45deg)'
-        // if (PowerOk == true) {
-        //   loadDIST = false
-        // }
+        if (PowerOk == true) {
+          loadDIST = false
+        }
         break
       case '11':
         this.tumImg5.style.transform = 'rotate(0deg)'
-        // if (PowerOk == true) {
-        //   loadDIST = true
-        // }
+        if (PowerOk == true) {
+          loadDIST = true
+        }
         break
       case '12':
         this.tumImg5.style.transform = 'rotate(45deg)'
-        // if (PowerOk == true) {
-        //   loadDIST = false
-        // }
+        if (PowerOk == true) {
+          loadDIST = false
+        }
         break
       case '13':
         this.tumImg6.style.transform = 'rotate(-45deg)'
-        // if (PowerOk == true) {
-        //   ModeHP = true
-        //   ModeAU = false
-        // }
+        if (PowerOk == true) {
+          ModeHP = true
+          ModeAU = false
+        }
         // if (
         //   +mbs.innerHTML > 15 &&
         //   +mbu.innerHTML > 15 &&
@@ -110,10 +115,10 @@ export default class Tumblers {
         break
       case '14':
         this.tumImg6.style.transform = 'rotate(0deg)'
-        // if (PowerOk == true) {
-        //   ModeAU = true
-        //   ModeHP = false
-        // }
+        if (PowerOk == true) {
+          ModeAU = true
+          ModeHP = false
+        }
         break
       case '15':
         this.tumImg6.style.transform = 'rotate(45deg)'
