@@ -1,0 +1,12 @@
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-width: 320px;
+  user-select: none;
+  background: url(../../images/fon.jpg) 50% 50% no-repeat;
+}
+
+* {
+  font-family: 'Linux', sans-serif;
+}

@@ -1,0 +1,263 @@
+#number {
+  width: 2em;
+  // height: 5em;
+  font-size: 20px;
+}
+
+.displays {
+  display: flex;
+  flex-direction: column;
+}
+
+// .display-t2 {
+//   input::-webkit-inner-spin-button {
+//     opacity: 1;
+//   }
+// }
+
+.display-t1,
+.display-t2 {
+  margin-bottom: 10px;
+  border: 2px solid;
+  width: 300px;
+  height: 250px;
+  background-color: #c0c0c0;
+  position: relative;
+
+  .inNam__1,
+  .inNam__2,
+  .inNam__3,
+  .inNam__4,
+  .inNam__5,
+  .inNam__6,
+  .inNam__7,
+  .inNam__8,
+  .inNam__9 {
+    position: absolute;
+    font-size: 13px;
+    z-index: 100;
+    color: #fff;
+  }
+
+  .inNam__1 {
+    top: 14px;
+    left: 14px;
+  }
+  .inNam__2 {
+    top: 14px;
+    left: 105px;
+  }
+  .inNam__3 {
+    top: 14px;
+    left: 199px;
+  }
+  .inNam__4 {
+    top: 81px;
+    left: 14px;
+  }
+  .inNam__5 {
+    top: 81px;
+    left: 105px;
+  }
+  .inNam__6 {
+    top: 81px;
+    left: 199px;
+  }
+  .inNam__7 {
+    top: 147px;
+    left: 14px;
+  }
+  .inNam__8 {
+    top: 147px;
+    left: 105px;
+  }
+  .inNam__9 {
+    top: 147px;
+    left: 199px;
+  }
+
+  .inNam__on {
+    color: #fff;
+    transition: 1.2s linear;
+  }
+
+  &__style {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    width: 277px;
+    height: 200px;
+    top: 12px;
+    left: 9px;
+
+    .display-all {
+      text-align: center;
+      border: 1px solid;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 33.33%;
+      font-size: 34px;
+      background-color: rgb(66, 70, 64);
+      color: rgb(66, 70, 64);
+      position: relative;
+      // transition: 2.2s linear;
+    }
+
+    .display-off2 {
+      position: absolute;
+      z-index: 100;
+      left: 0.5px;
+      width: 278px;
+      height: 200px;
+      background-color: rgb(66, 70, 64);
+      // transition: 2.2s linear;
+    }
+
+    .display-off1 {
+      position: absolute;
+      z-index: 100;
+      left: 0.5px;
+      width: 278px;
+      height: 200px;
+      background-color: rgb(66, 70, 64);
+      // transition: 2.2s linear;
+    }
+
+    .display-on {
+      background-color: rgb(39, 111, 11);
+      transition: 2.2s linear;
+      color: #fff;
+    }
+  }
+
+  &__name {
+    background-color: #000;
+    color: #fff;
+    padding: 2px 5px;
+    position: absolute;
+    top: 220px;
+    left: 9px;
+    font-size: 18px;
+    span {
+      font-size: 13px;
+    }
+  }
+}
+
+.display-t3 {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid;
+  width: 300px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 3px;
+  background-color: #424640;
+  transition: 1.5s linear;
+
+  &__name {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 0;
+    margin-bottom: 5.5px;
+  }
+
+  &__v1,
+  &__v2,
+  &__v3,
+  &__v4,
+  &__v5,
+  &__v6,
+  &__v7,
+  &__v8,
+  &__v9,
+  &__v10,
+  &__v11,
+  &__v12,
+  &__v13 {
+    display: flex;
+    margin-top: 2px;
+    font-size: 18px;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+
+    &__wrap {
+      width: 40px;
+      height: 20px;
+      background-color: #fff;
+      font-size: 17px;
+      font-size: 18px;
+      color: #000;
+      text-align: center;
+    }
+
+    // input {
+    //   width: 50px;
+    //   font-size: 17px;
+    // }
+
+    // input:disabled {
+    //   background-color: #fff;
+    //   border: 1px solid;
+    // }
+  }
+}
+
+.display-t4 {
+  background-color: #c0c0c0;
+  border: 2px solid rgb(10, 10, 10);
+  width: 300px;
+  height: 845.5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  overflow-y: scroll;
+
+  &__name {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 0;
+    margin-bottom: 5px;
+  }
+
+  p {
+    font-size: 16px;
+    margin-bottom: 1px;
+  }
+
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}
+
+.secContainer,
+.minContainer {
+  color: #000;
+  font-size: 20px;
+}
+
+.stTimer {
+  margin: 0 2px;
+  padding: 0 1px;
+  border: 1px solid;
+  background-color: yellow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

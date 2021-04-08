@@ -1,0 +1,321 @@
+.memo {
+  width: 716px;
+  height: 530px;
+  background: url(../../images/Memo.png) no-repeat;
+  border: 2px solid;
+  position: relative;
+  margin-bottom: 10px;
+  transition: 1s linear;
+
+  #mft {
+    opacity: 0;
+    width: 29px;
+    height: 40px;
+    position: absolute;
+    top: 272px;
+    left: 108px;
+    // background: url(../../images/MFT_ON2.png) no-repeat;
+    transition: 1s linear;
+    animation: 0.01s ease alternate infinite MFT;
+
+    @keyframes MFT {
+      0% {
+        background: url(../../images/MFT_ON3.png) no-repeat;
+      }
+      100% {
+        background: url(../../images/MFT_ON33.png) no-repeat;
+      }
+    }
+  }
+
+  .r1,
+  .r2,
+  .r3,
+  .r4,
+  .r5,
+  .r6,
+  .r7,
+  .r8,
+  .r9,
+  .r10,
+  .r11,
+  .r12,
+  .r13,
+  .r14,
+  .r15 {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    animation: blink 0.7s infinite;
+    transition: 0.5s;
+    cursor: pointer;
+  }
+
+  .b1,
+  .b3,
+  .b6,
+  .b7,
+  .b8 {
+    cursor: pointer;
+  }
+
+  .b1,
+  .b2,
+  .b3,
+  .b4,
+  .b5,
+  .b6,
+  .b7,
+  .b8,
+  .b9,
+  .b10,
+  .b11,
+  .b12,
+  .b13,
+  .b14 {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    transition: 0.5s;
+  }
+
+  .d7,
+  .d8 {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    transition: 0.5s;
+    cursor: pointer;
+  }
+
+  .g1,
+  .g2,
+  .g3,
+  .g4,
+  .g5,
+  .g6,
+  .g7,
+  .g8,
+  .g9,
+  .g10,
+  .g11,
+  .g12,
+  .g13,
+  .g14,
+  .g15,
+  .g16,
+  .g17,
+  .g18,
+  .g19,
+  .g20,
+  .g21,
+  .g22,
+  .g23,
+  .g24,
+  .g25,
+  .g26,
+  .g27,
+  .g28,
+  .g29 {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    transition: 0.5s;
+    animation: blink2 0.7s infinite;
+    cursor: pointer;
+  }
+
+  .color-red {
+    background-color: red;
+  }
+
+  .color-green {
+    background-color: green;
+  }
+
+  .btn__style-green {
+    background: green;
+  }
+  .b1 {
+    top: 79.5px;
+    left: 131px;
+  }
+  .b2 {
+    top: 68px;
+    left: 268px;
+  }
+  .b3 {
+    top: 118px;
+    left: 327px;
+  }
+  .b4 {
+    top: 123px;
+    left: 233.5px;
+  }
+  .b5 {
+    top: 117.5px;
+    left: 436px;
+  }
+  .b6 {
+    top: 182px;
+    left: 208px;
+  }
+  .d7 {
+    top: 192px;
+    left: 327px;
+  }
+  .d8 {
+    top: 191px;
+    left: 369px;
+  }
+  .b7 {
+    top: 473px;
+    left: 241.5px;
+  }
+  .b8 {
+    top: 474px;
+    left: 436.5px;
+  }
+  .b9 {
+    top: 424px;
+    left: 581.5px;
+  }
+  .b10 {
+    top: 424px;
+    left: 655.5px;
+  }
+  .b11 {
+    top: 469px;
+    left: 580.5px;
+  }
+  .b12 {
+    top: 470px;
+    left: 654.5px;
+  }
+
+  .g1 {
+    top: 97.5px;
+    left: 49px;
+  }
+  .g2 {
+    top: 97px;
+    left: 83px;
+  }
+  .g3 {
+    top: 83.5px;
+    left: 326px;
+  }
+  .g4 {
+    top: 83.5px;
+    left: 361px;
+  }
+  .g5 {
+    top: 135px;
+    left: 464px;
+  }
+  .g6 {
+    top: 135px;
+    left: 498px;
+  }
+  .g7 {
+    top: 135px;
+    left: 610px;
+  }
+  .g8 {
+    top: 135px;
+    left: 644px;
+  }
+  .g9 {
+    top: 135px;
+    left: 678px;
+  }
+  .g10 {
+    top: 158px;
+    left: 49.5px;
+  }
+  .g11 {
+    top: 250px;
+    left: 170px;
+  }
+  .g12 {
+    top: 250.5px;
+    left: 196.5px;
+  }
+  .g13 {
+    top: 251px;
+    left: 219px;
+  }
+  .g14 {
+    top: 251px;
+    left: 242px;
+  }
+  .g15 {
+    top: 251px;
+    left: 264.5px;
+  }
+
+  .r1 {
+    top: 63px;
+    left: 49.2px;
+  }
+  .r2 {
+    top: 63px;
+    left: 83.5px;
+  }
+  .r3 {
+    top: 49px;
+    left: 326.738px;
+  }
+  .r4 {
+    top: 49px;
+    left: 360.738px;
+  }
+  .r5 {
+    top: 100px;
+    left: 464.738px;
+  }
+  .r6 {
+    top: 100px;
+    left: 498.738px;
+  }
+  .r7 {
+    top: 100px;
+    left: 609.738px;
+  }
+  .r8 {
+    top: 100px;
+    left: 643.738px;
+  }
+  .r9 {
+    top: 100px;
+    left: 677.738px;
+  }
+  .r10 {
+    top: 124px;
+    left: 49.73px;
+  }
+  .r11 {
+    top: 216px;
+    left: 170.73px;
+  }
+  .r12 {
+    top: 216px;
+    left: 197.4px;
+  }
+  .r13 {
+    top: 216px;
+    left: 219.4px;
+  }
+  .r14 {
+    top: 216px;
+    left: 242.4px;
+  }
+  .r15 {
+    top: 216px;
+    left: 264.4px;
+  }
+}

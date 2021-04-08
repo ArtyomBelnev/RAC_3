@@ -1,0 +1,23 @@
+.main {
+  display: flex;
+  
+
+  .main__left {
+    margin-left: 10px;
+  }
+  .main__right {
+    margin-left: 10px;
+    display: flex;
+
+    &-middle {
+      display: flex;
+      flex-direction: column;
+      margin-left: 10px;
+    }
+    &-right {
+      display: flex;
+      flex-direction: column;
+      margin-left: 10px;
+    }
+  }
+}

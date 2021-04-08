@@ -1,0 +1,58 @@
+.mode {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid;
+  width: 300px;
+  height: 300px;
+  padding: 2px;
+  background-color: #fff;
+
+  &__name {
+    margin: 0 auto;
+    text-align: center;
+    width: 70px;
+    background: black;
+    color: #fff;
+    font-size: 20px;
+  }
+
+  &__wrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2px;
+    width: 100%;
+    height: 100%;
+    transition: 0.2s linear;
+    background: rgb(230, 232, 226);
+
+    &-1,
+    &-2,
+    &-3,
+    &-4,
+    &-5,
+    &-6,
+    &-7,
+    &-8,
+    &-9 {
+      display: flex;
+      flex-direction: column;
+      width: 33.33%;
+      height: 33.33%;
+      border: 3px solid #000;
+
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 13px;
+        width: 100%;
+        height: 50%;
+        transition: 0.2s linear;
+      }
+      span + span {
+        border-top: 2px solid;
+      }
+    }
+  }
+}
