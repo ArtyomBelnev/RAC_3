@@ -1,28 +1,19 @@
+import { elements } from './Elements'
+
 export default class PowerST {
-  constructor(TCwrapR, ZwrapR, powers, disT3, disOFF1, disOFF2, displayALL, inNamALL) {
-    this.TCwrapR = TCwrapR
-    this.ZwrapR = ZwrapR
-    this.powers = powers
-    this.disT3 = disT3
-    this.disOFF1 = disOFF1
-    this.disOFF2 = disOFF2
-    this.displayALL = displayALL
-    this.inNamALL = inNamALL
-  }
-
   getON() {
-    this.TCwrapR.classList.add('color-red')
-    this.ZwrapR.classList.add('color-red')
-    this.disT3.style.background = 'rgb(87, 7, 7)'
+    elements.TCwrapR.classList.add('color-red')
+    elements.ZwrapR.classList.add('color-red')
+    elements.disT3.style.background = 'rgb(87, 7, 7)'
 
-    this.disOFF1.style.opacity = '0'
-    this.disOFF1.style.height = '0'
-    this.disOFF1.style.opacity = '0'
-    this.disOFF2.style.height = '0'
+    elements.disOFF1.style.opacity = '0'
+    elements.disOFF1.style.height = '0'
+    elements.disOFF1.style.opacity = '0'
+    elements.disOFF2.style.height = '0'
 
-    for (let i = 0; i < this.displayALL.length; i++) {
-      this.displayALL[i].classList.add('display-on')
-      this.inNamALL[i].classList.add('inNam__on')
+    for (let i = 0; i < elements.displayALL.length; i++) {
+      elements.displayALL[i].classList.add('display-on')
+      elements.inNamALL[i].classList.add('inNam__on')
     }
 
     for (let i = 1; i < 16; i++) {
@@ -45,20 +36,20 @@ export default class PowerST {
   }
 
   getOFF() {
-    this.TCwrapR.classList.remove('color-red')
-    this.ZwrapR.classList.remove('color-red')
-    this.TCwrapR.style.background = null
-    this.ZwrapR.style.background = null
-    this.disT3.style.background = null
+    elements.TCwrapR.classList.remove('color-red')
+    elements.ZwrapR.classList.remove('color-red')
+    elements.TCwrapR.style.background = null
+    elements.ZwrapR.style.background = null
+    elements.disT3.style.background = null
 
-    this.disOFF1.style.opacity = null
-    this.disOFF1.style.height = null
-    this.disOFF1.style.opacity = null
-    this.disOFF2.style.height = null
+    elements.disOFF1.style.opacity = null
+    elements.disOFF1.style.height = null
+    elements.disOFF1.style.opacity = null
+    elements.disOFF2.style.height = null
 
-    for (let i = 0; i < this.displayALL.length; i++) {
-      this.displayALL[i].classList.remove('display-on')
-      this.inNamALL[i].classList.remove('inNam__on')
+    for (let i = 0; i < elements.displayALL.length; i++) {
+      elements.displayALL[i].classList.remove('display-on')
+      elements.inNamALL[i].classList.remove('inNam__on')
     }
 
     for (let i = 1; i < 13; i++) {

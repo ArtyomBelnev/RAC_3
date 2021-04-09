@@ -1,8 +1,9 @@
+import { elements } from './Elements'
+
 export default class Journal {
   getStatus(x, y, w, z, s) {
     let date = new Date()
     let times = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-    let disT4 = document.querySelector('.display-t4')
     let NumStatus = 1
 
     let min = z
@@ -10,14 +11,14 @@ export default class Journal {
     let ms = 100
 
     if (y == 'yellow') {
-      disT4.innerHTML += `<div style="color: yellow;">${NumStatus}) ${x} ${times}</div>`
+      elements.disT4.innerHTML += `<div style="color: yellow;">${NumStatus}) ${x} ${times}</div>`
     } else if (y == 'green') {
-      disT4.innerHTML += `<div style="color: green;">${NumStatus}) ${x} ${times}</div>`
+      elements.disT4.innerHTML += `<div style="color: green;">${NumStatus}) ${x} ${times}</div>`
     } else if (y == 'red') {
-      disT4.innerHTML += `<div style="color: yellow;">${NumStatus}) ${x} ${times}</div>`
+      elements.disT4.innerHTML += `<div style="color: yellow;">${NumStatus}) ${x} ${times}</div>`
     } else if (w == true) {
       return new Promise((resolve, reject) => {
-        disT4.innerHTML += `<div>${NumStatus})${x}<div class="stTimer"><span class="minContainer">${z}</span><span>мин : </span>
+        elements.disT4.innerHTML += `<div>${NumStatus})${x}<div class="stTimer"><span class="minContainer">${z}</span><span>мин : </span>
       <span class="secContainer">${s}</span><span> сек</span></div></div>`
 
         timer = setInterval(() => {
@@ -46,10 +47,10 @@ export default class Journal {
         }, 10)
       })
     } else {
-      disT4.innerHTML += `<p>${NumStatus}) ${x} ${times}</p>`
+      elements.disT4.innerHTML += `<p>${NumStatus}) ${x} ${times}</p>`
     }
     NumStatus++
-    let maxScroll = disT4.scrollHeight
-    disT4.scrollTop = maxScroll
+    let maxScroll = elements.disT4.scrollHeight
+    elements.disT4.scrollTop = maxScroll
   }
 }

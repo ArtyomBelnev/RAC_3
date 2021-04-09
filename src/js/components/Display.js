@@ -1,24 +1,29 @@
 import Journal from './Journal'
+import Mode from './Mode'
+
+import { elements } from './Elements'
 
 export default class Display {
-  constructor(mbs, mbu) {
-    this.mbs = mbs
-    this.mbu = mbu
-
+  constructor() {
     this.tmbs = ''
     this.tmbu = ''
     this.mTMax = false
 
     this.journal = new Journal()
+    this.mode = new Mode()
   }
 
   startMBS(i) {
-    let x = +this.mbs.innerHTML
+    let x = +elements.mbs.innerHTML
     this.tmbs = setInterval(() => {
       x += Math.random(0.1 - 0.39)
-      this.mbs.innerHTML = x.toFixed(2)
+      elements.mbs.innerHTML = x.toFixed(2)
 
-      if (+this.mbs.innerHTML > 30 && +this.mbu.innerHTML > 30 && this.mTMax == false) {
+      if (+elements.mbs.innerHTML > 15 && +elements.mbu.innerHTML > 15) {
+        this.mode.readyAPHP
+      }
+
+      if (+elements.mbs.innerHTML > 30 && +elements.mbu.innerHTML > 30 && this.mTMax == false) {
         this.journal.getStatus('Темпер. в масла баках > 15℃', 'yellow')
         this.mTMax = true
       }
@@ -26,11 +31,16 @@ export default class Display {
   }
 
   startMBU() {
-    let x = +this.mbu.innerHTML
+    let x = +elements.mbu.innerHTML
     this.tmbu = setInterval(() => {
       x += Math.random(0.1 - 0.39)
-      this.mbu.innerHTML = x.toFixed(2)
-      if (+this.mbs.innerHTML > 30 && +this.mbu.innerHTML > 30 && this.mTMax == false) {
+      elements.mbu.innerHTML = x.toFixed(2)
+
+      if (+elements.mbs.innerHTML > 15 && +elements.mbu.innerHTML > 15) {
+        this.mode.readyAPHP
+      }
+
+      if (+elements.mbs.innerHTML > 30 && +elements.mbu.innerHTML > 30 && this.mTMax == false) {
         this.journal.getStatus('Темпер. в масла баках > 15℃', 'yellow')
         this.mTMax = true
       }
