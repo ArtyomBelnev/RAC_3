@@ -1,6 +1,9 @@
 import { elements } from './Elements'
 
 export default class Journal {
+  constructor() {
+    this.timer = ''
+  }
   getStatus(x, y, w, z, s) {
     let date = new Date()
     let times = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
@@ -21,7 +24,7 @@ export default class Journal {
         elements.disT4.innerHTML += `<div>${NumStatus})${x}<div class="stTimer"><span class="minContainer">${z}</span><span>мин : </span>
       <span class="secContainer">${s}</span><span> сек</span></div></div>`
 
-        timer = setInterval(() => {
+        this.timer = setInterval(() => {
           ms--
           if (ms == 0) {
             ms = 100
@@ -40,8 +43,8 @@ export default class Journal {
               document.querySelector('.secContainer').innerText = 0
               document.querySelector('.minContainer').classList.remove('minContainer')
               document.querySelector('.secContainer').classList.remove('secContainer')
-              clearTimeout(timer)
-              resolve(timer)
+              clearTimeout(this.timer)
+              resolve(this.timer)
             }
           }
         }, 10)

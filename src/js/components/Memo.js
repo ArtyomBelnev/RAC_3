@@ -29,12 +29,10 @@ export default class Memo {
     }
 
     this.journal = new Journal()
-    this.mode = new Mode()
+    // this.mode = new Mode()
   }
 
   getCranes(e) {
-    console.log(111)
-
     if (PowerOk == true && KranOK == false) {
       let x = e.target.classList.value.slice(1, 3).trim()
       let y = e.target.classList.value.slice(0, 1)

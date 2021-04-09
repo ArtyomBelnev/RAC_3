@@ -21,6 +21,5 @@ export default class Main {
 }
 
 export function removeCliked() {
-  console.log('нажал')
   elements.mem.removeEventListener('click', cliked)
 }

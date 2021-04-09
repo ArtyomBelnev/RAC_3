@@ -1,6 +1,7 @@
 export const elements = {
   tumBTN: document.getElementById('tumblers'),
   mem: document.getElementById('memo'),
+  MFT: document.getElementById('mft'),
   switch1: document.getElementById('switch_1'),
   switch2: document.getElementById('switch_2'),
   switch3: document.getElementById('switch_3'),

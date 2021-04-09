@@ -16,4 +16,14 @@ export default class Mode {
       gAPHP = true
     }
   }
+
+  readyHOLOPROK() {
+    elements.apXp.style.background = null
+    elements.holPro.style.background = 'yellow'
+  }
+
+  readyAPHPholoPROK() {
+    elements.holPro.style.background = null
+    elements.apXp.style.background = 'yellow'
+  }
 }

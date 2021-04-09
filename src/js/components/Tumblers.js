@@ -29,6 +29,8 @@ export default class Tumblers {
     this.arrow = new Arrow()
     this.mode = new Mode()
     this.holoprok = new HoloProk()
+
+    this.cliked = this.holoprok.getHOLPRO.bind(this.holoprok)
   }
 
   getTumblers(e) {
@@ -151,12 +153,13 @@ export default class Tumblers {
         setTimeout(() => (elements.tumImg7.style.transform = 'rotate(0deg)'), 400)
         break
       case 'enter':
-        if (gAPHP == true && elements.PMC.innerHTML > 0.1 && elements.vpns.classList.contains('btn__style-green') && elements.vpnu.classList.contains('btn__style-green') && holProk == false) {
+        if (gAPHP == true && elements.PMC.innerHTML > 0.1 && elements.vpns.classList.contains('btn__style-green') && elements.vpnu.classList.contains('btn__style-green') && ModeHP == true && holProk == false) {
           this.journal.getStatus('Нажата испол. команда')
           holProk = true
           removeCliked()
 
-          elements.mem.addEventListener('click', this.holoprok.getHOLPRO.bind(this.holoprok))
+          elements.mem.addEventListener('click', this.cliked)
+          // elements.mem.removeEventListener('click', this.cliked)
         }
         break
     }
@@ -195,7 +198,7 @@ export default class Tumblers {
       for (let i = 7; i < 9; i++) {
         let name = 'd' + i
         let getName = document.querySelector(`.${name}`)
-        getName.classList.add('color-green')
+        getName.style.background = 'green'
       }
 
       this.SignalR = true
@@ -229,7 +232,7 @@ export default class Tumblers {
       for (let i = 7; i < 9; i++) {
         let name = 'd' + i
         let getName = document.querySelector(`.${name}`)
-        getName.classList.remove('color-green')
+        getName.style.background = null
       }
 
       this.SignalL = true
@@ -244,5 +247,9 @@ export default class Tumblers {
       this.journal.getStatus('Сигнализация проверена')
       this.mode.readyAPHP()
     }
+  }
+
+  delHoloholProk() {
+    holProk = false
   }
 }
