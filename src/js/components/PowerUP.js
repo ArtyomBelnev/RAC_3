@@ -35,12 +35,12 @@ export default class PowerUP {
   }
 
   getPowers(e) {
-    if (this.clickNumber == 1) {
-      this.clickNumber++
-      return
-    } else {
-      this.clickNumber--
-    }
+    // if (this.clickNumber == 1) {
+    //   this.clickNumber++
+    //   return
+    // } else {
+    //   this.clickNumber--
+    // }
 
     switch (e.target.id) {
       case 'switch_1':

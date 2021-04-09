@@ -4,16 +4,23 @@ import Memo from './Memo'
 
 import { elements } from './Elements'
 
+const memo = new Memo()
+let cliked = memo.getCranes.bind(memo)
+
+elements.mem.addEventListener('click', cliked)
+
 export default class Main {
   setActions() {
     const powerUP = new PowerUP()
 
     const tumblers = new Tumblers()
 
-    const memo = new Memo()
-
-    elements.mem.addEventListener('click', memo.getCranes.bind(memo))
     elements.powers.addEventListener('click', powerUP.getPowers.bind(powerUP))
     elements.tumBTN.addEventListener('click', tumblers.getTumblers.bind(tumblers))
   }
+}
+
+export function removeCliked() {
+  console.log('нажал')
+  elements.mem.removeEventListener('click', cliked)
 }

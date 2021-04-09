@@ -1,16 +1,21 @@
 import Btn from './Btn'
 import Journal from './Journal'
 import Arrow from './Arrow'
+import HoloProk from './HoloProk'
 
 import Mode from './Mode'
 
 import { PowerOk } from './PowerUP'
 import { elements } from './Elements'
+import { gAPHP } from './Mode'
+
+import { removeCliked } from './Main'
 
 export let SignalOk = false
 export let loadDIST = false
 export let ModeHP = false
 export let ModeAU = false
+export let holProk = false
 
 export default class Tumblers {
   constructor() {
@@ -22,9 +27,10 @@ export default class Tumblers {
     this.btn = new Btn()
     this.journal = new Journal()
     this.arrow = new Arrow()
-
     this.mode = new Mode()
+    this.holoprok = new HoloProk()
   }
+
   getTumblers(e) {
     switch (e.target.value) {
       case '0':
@@ -143,6 +149,15 @@ export default class Tumblers {
       case '16':
         elements.tumImg7.style.transform = 'rotate(45deg)'
         setTimeout(() => (elements.tumImg7.style.transform = 'rotate(0deg)'), 400)
+        break
+      case 'enter':
+        if (gAPHP == true && elements.PMC.innerHTML > 0.1 && elements.vpns.classList.contains('btn__style-green') && elements.vpnu.classList.contains('btn__style-green') && holProk == false) {
+          this.journal.getStatus('Нажата испол. команда')
+          holProk = true
+          removeCliked()
+
+          elements.mem.addEventListener('click', this.holoprok.getHOLPRO.bind(this.holoprok))
+        }
         break
     }
     if (this.START == true && PowerOk == true) {

@@ -8,6 +8,7 @@ export let KranOK = false
 
 export default class Memo {
   constructor() {
+    this.etarget = ''
     this.g = {
       b1: false,
       g1: false,
@@ -32,6 +33,8 @@ export default class Memo {
   }
 
   getCranes(e) {
+    console.log(111)
+
     if (PowerOk == true && KranOK == false) {
       let x = e.target.classList.value.slice(1, 3).trim()
       let y = e.target.classList.value.slice(0, 1)

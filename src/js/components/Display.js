@@ -11,6 +11,7 @@ export default class Display {
 
     this.journal = new Journal()
     this.mode = new Mode()
+    this.rtn = false
   }
 
   startMBS(i) {
@@ -19,8 +20,9 @@ export default class Display {
       x += Math.random(0.1 - 0.39)
       elements.mbs.innerHTML = x.toFixed(2)
 
-      if (+elements.mbs.innerHTML > 15 && +elements.mbu.innerHTML > 15) {
-        this.mode.readyAPHP
+      if (+elements.mbs.innerHTML > 15 && +elements.mbu.innerHTML > 15 && this.rtn == false) {
+        this.mode.readyAPHP()
+        this.rtn = true
       }
 
       if (+elements.mbs.innerHTML > 30 && +elements.mbu.innerHTML > 30 && this.mTMax == false) {
@@ -36,8 +38,9 @@ export default class Display {
       x += Math.random(0.1 - 0.39)
       elements.mbu.innerHTML = x.toFixed(2)
 
-      if (+elements.mbs.innerHTML > 15 && +elements.mbu.innerHTML > 15) {
-        this.mode.readyAPHP
+      if (+elements.mbs.innerHTML > 15 && +elements.mbu.innerHTML > 15 && this.rtn == false) {
+        this.mode.readyAPHP()
+        this.rtn = true
       }
 
       if (+elements.mbs.innerHTML > 30 && +elements.mbu.innerHTML > 30 && this.mTMax == false) {
