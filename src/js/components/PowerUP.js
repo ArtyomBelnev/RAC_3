@@ -1,8 +1,8 @@
 import PowerST from './PowerST'
-import Display from './Display'
 
 import { elements } from './Elements'
 import { getStatus } from './Journal'
+import { startMBS, startMBU, stopMBS, stopMBU } from './Display'
 
 export let PowerOk = false
 
@@ -31,17 +31,9 @@ export default class PowerUP {
     this.clickNumber = 1
 
     this.powerST = new PowerST()
-    this.display = new Display()
   }
 
   getPowers(e) {
-    // if (this.clickNumber == 1) {
-    //   this.clickNumber++
-    //   return
-    // } else {
-    //   this.clickNumber--
-    // }
-
     switch (e.target.id) {
       case 'switch_1':
         if (elements.switch1.checked == true) {
@@ -147,27 +139,26 @@ export default class PowerUP {
     if (this.power_1Off == true && this.power_2Off == true && this.TanOK == true && PowerOk == true) {
       getStatus(`Тэны отключены`)
       this.TanOK = false
-      this.display.mTMax = false
     }
 
     if (this.power_1On == true && this.power_1o2o == false && PowerOk == true) {
       this.power_1o2o = true
-      this.display.startMBS()
+      startMBS()
     }
 
     if (this.power_2On == true && this.power_2o1o == false && PowerOk == true) {
       this.power_2o1o = true
-      this.display.startMBU()
+      startMBU()
     }
 
     if (this.power_1Off == true && this.power_1o2o == true && PowerOk == true) {
       this.power_1o2o = false
-      this.display.stopMBS()
+      stopMBS()
     }
 
     if (this.power_2Off == true && this.power_2o1o == true && PowerOk == true) {
       this.power_2o1o = false
-      this.display.stopMBU()
+      stopMBU()
     }
   }
 }

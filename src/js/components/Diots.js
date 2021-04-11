@@ -1,8 +1,7 @@
-import Mode from './Mode'
-
 import { elements } from './Elements'
 import { PowerOk } from './PowerUP'
 import { getStatus } from './Journal'
+import { readyAPHP } from './Mode'
 
 export let SignalOk = false
 
@@ -78,12 +77,11 @@ export function diotsOFF() {
 }
 
 export function diotsOK() {
-  let mode = new Mode()
   if (PowerOk == true && SignalR == true && SignalL == true) {
     SignalOk = true
     SignalL = false
     SignalR = false
     getStatus('Сигнализация проверена')
-    mode.readyAPHP()
+    readyAPHP()
   }
 }

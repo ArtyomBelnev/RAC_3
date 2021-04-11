@@ -9,14 +9,13 @@ let cliked = memo.getCranes.bind(memo)
 
 elements.mem.addEventListener('click', cliked)
 
-elements.tumBTN.addEventListener('click', getTumblers.bind(getTumblers))
-
 export default class Main {
   setActions() {
     const powerUP = new PowerUP()
 
     elements.mem.addEventListener('click', cliked)
 
+    elements.tumBTN.addEventListener('click', getTumblers.bind(getTumblers))
     elements.powers.addEventListener('click', powerUP.getPowers.bind(powerUP))
   }
 }

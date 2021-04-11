@@ -1,8 +1,6 @@
-import Mode from './Mode'
-
-import { elements } from './Elements'
 import { getStatus } from './Journal'
 import { PowerOk } from './PowerUP'
+import { readyAPHP } from './Mode'
 
 export let KranOK = false
 
@@ -27,8 +25,6 @@ export default class Memo {
       g14: false,
       g15: false,
     }
-
-    this.mode = new Mode()
   }
 
   getCranes(e) {
@@ -73,7 +69,7 @@ export default class Memo {
         getStatus(`Краны готовы`)
         KranOK = true
 
-        this.mode.readyAPHP()
+        readyAPHP()
       }
     }
   }

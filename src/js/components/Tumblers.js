@@ -1,6 +1,3 @@
-import Btn from './Btn'
-import Mode from './Mode'
-
 import { PowerOk } from './PowerUP'
 import { elements } from './Elements'
 import { gAPHP } from './Mode'
@@ -9,6 +6,8 @@ import { getStatus } from './Journal'
 import { diotsON, diotsOFF, diotsOK } from './Diots'
 import { removeCliked } from './Main'
 import { getHOLPRO } from './HoloProk'
+import { getBtn, delBtn } from './Btn'
+import { readyAPHP } from './Mode'
 
 export let loadDIST = false
 export let ModeHP = false
@@ -21,9 +20,6 @@ let STOP = false
 let cliked = getHOLPRO.bind(getHOLPRO)
 
 export function getTumblers(e) {
-  let btn = new Btn()
-  let mode = new Mode()
-
   switch (e.target.value) {
     case '0':
       elements.tumImg1.style.transform = 'rotate(-45deg)'
@@ -93,7 +89,7 @@ export function getTumblers(e) {
       if (PowerOk == true) {
         ModeHP = true
         ModeAU = false
-        mode.readyAPHP()
+        readyAPHP()
       }
       // if (
       //   +elements.mbs.innerHTML > 15 &&
@@ -153,10 +149,10 @@ export function getTumblers(e) {
       break
   }
   if (START == true && PowerOk == true) {
-    btn.getBtn(e)
+    getBtn(e)
   }
   if (STOP == true && PowerOk == true) {
-    btn.delBtn(e)
+    delBtn(e)
   }
 }
 
