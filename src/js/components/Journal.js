@@ -1,4 +1,4 @@
-import { elements } from './Elements'
+import { elements } from '../elements/Elements'
 
 let timer = ''
 let NumStatus = 1

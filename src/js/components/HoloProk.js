@@ -1,4 +1,4 @@
-import { elements } from './Elements'
+import { elements } from '../elements/Elements'
 import { d7_8 } from './Canals'
 import { getStatus } from './Journal'
 import { delGotholProk } from './Tumblers'

@@ -1,10 +1,9 @@
+import { elements } from '../elements/Elements'
 import { PowerOk } from './PowerUP'
-import { elements } from './Elements'
 import { gAPHP } from './Mode'
 import { arrowUP, arrowDN } from './Arrow'
 import { getStatus } from './Journal'
 import { diotsON, diotsOFF, diotsOK } from './Diots'
-import { removeCliked } from './Main'
 import { getHOLPRO } from './HoloProk'
 import { getBtn, delBtn } from './Btn'
 import { readyAPHP } from './Mode'
@@ -142,7 +141,6 @@ export function getTumblers(e) {
       if (gAPHP == true && elements.PMC.innerHTML > 0.1 && elements.vpns.classList.contains('btn__style-green') && elements.vpnu.classList.contains('btn__style-green') && ModeHP == true && holProk == false) {
         getStatus('Нажата испол. команда')
         holProk = true
-        removeCliked()
 
         elements.mem.addEventListener('click', cliked)
       }

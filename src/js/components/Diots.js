@@ -1,4 +1,4 @@
-import { elements } from './Elements'
+import { elements } from '../elements/Elements'
 import { PowerOk } from './PowerUP'
 import { getStatus } from './Journal'
 import { readyAPHP } from './Mode'

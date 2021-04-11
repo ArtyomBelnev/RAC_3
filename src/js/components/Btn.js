@@ -1,4 +1,4 @@
-import { elements } from './Elements'
+import { elements } from '../elements/Elements'
 import { getStatus } from './Journal'
 import { getPMC, stopPMC, delPMC } from './Canals'
 
