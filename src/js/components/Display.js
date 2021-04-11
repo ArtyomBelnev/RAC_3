@@ -1,7 +1,7 @@
-import Journal from './Journal'
 import Mode from './Mode'
 
 import { elements } from './Elements'
+import { getStatus } from './Journal'
 
 export default class Display {
   constructor() {
@@ -9,7 +9,6 @@ export default class Display {
     this.tmbu = ''
     this.mTMax = false
 
-    this.journal = new Journal()
     this.mode = new Mode()
     this.rtn = false
   }
@@ -26,7 +25,7 @@ export default class Display {
       }
 
       if (+elements.mbs.innerHTML > 30 && +elements.mbu.innerHTML > 30 && this.mTMax == false) {
-        this.journal.getStatus('Темпер. в масла баках > 15℃', 'yellow')
+        getStatus('Темпер. в масла баках > 15℃', 'yellow')
         this.mTMax = true
       }
     }, 500)
@@ -44,7 +43,7 @@ export default class Display {
       }
 
       if (+elements.mbs.innerHTML > 30 && +elements.mbu.innerHTML > 30 && this.mTMax == false) {
-        this.journal.getStatus('Темпер. в масла баках > 15℃', 'yellow')
+        getStatus('Темпер. в масла баках > 15℃', 'yellow')
         this.mTMax = true
       }
     }, 500)

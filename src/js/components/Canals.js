@@ -1,5 +1,5 @@
 import { elements } from './Elements'
-import Journal from './Journal'
+import { getStatus } from './Journal'
 
 export let d7_8 = false
 
@@ -11,8 +11,6 @@ export default class Canals {
     this.vPmTK = ''
     this.vPmCT = ''
     this.vPg13 = ''
-
-    this.journal = new Journal()
   }
 
   getPMC() {
@@ -49,7 +47,7 @@ export default class Canals {
         clearInterval(this.vPgDG)
         document.querySelector('.b2').classList.add('color-green')
         d7_8 = true
-        this.journal.getStatus('Ввод защиты по ССК')
+        getStatus('Ввод защиты по ССК')
       }
     }, 450)
   }

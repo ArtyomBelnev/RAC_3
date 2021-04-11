@@ -1,7 +1,7 @@
-import Journal from './Journal'
 import Mode from './Mode'
 
 import { elements } from './Elements'
+import { getStatus } from './Journal'
 import { PowerOk } from './PowerUP'
 
 export let KranOK = false
@@ -28,8 +28,7 @@ export default class Memo {
       g15: false,
     }
 
-    this.journal = new Journal()
-    // this.mode = new Mode()
+    this.mode = new Mode()
   }
 
   getCranes(e) {
@@ -71,7 +70,7 @@ export default class Memo {
       }
 
       if (this.g.b1 == true && this.g.g1 == false && this.g.g2 == true && this.g.g3 == false && this.g.g4 == true && this.g.g5 == false && this.g.g6 == false && this.g.g7 == false && this.g.g8 == true && this.g.g9 == false && KranOK == false) {
-        this.journal.getStatus(`Краны готовы`)
+        getStatus(`Краны готовы`)
         KranOK = true
 
         this.mode.readyAPHP()

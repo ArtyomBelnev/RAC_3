@@ -1,7 +1,8 @@
-import Journal from './Journal'
 import PowerST from './PowerST'
 import Display from './Display'
+
 import { elements } from './Elements'
+import { getStatus } from './Journal'
 
 export let PowerOk = false
 
@@ -29,7 +30,6 @@ export default class PowerUP {
     this.TanOK = false
     this.clickNumber = 1
 
-    this.journal = new Journal()
     this.powerST = new PowerST()
     this.display = new Display()
   }
@@ -128,24 +128,24 @@ export default class PowerUP {
 
   isPowers() {
     if (this.power_3On == true && this.power_4On == true && this.power_5On == true && this.power_6On == true && this.power_7On == true && this.power_8On == true && PowerOk == false) {
-      this.journal.getStatus('Питание включено')
+      getStatus('Питание включено')
       PowerOk = true
       this.powerST.getON()
     }
 
     if ((this.power_3On == false || this.power_4On == false || this.power_5On == false || this.power_6On == false || this.power_7On == false || this.power_8On == false) && PowerOk == true) {
-      this.journal.getStatus('Питание отключено')
+      getStatus('Питание отключено')
       PowerOk = false
       this.powerST.getOFF()
     }
 
     if (this.power_1On == true && this.power_2On == true && this.TanOK == false && PowerOk == true) {
-      this.journal.getStatus(`Тэны включены`)
+      getStatus(`Тэны включены`)
       this.TanOK = true
     }
 
     if (this.power_1Off == true && this.power_2Off == true && this.TanOK == true && PowerOk == true) {
-      this.journal.getStatus(`Тэны отключены`)
+      getStatus(`Тэны отключены`)
       this.TanOK = false
       this.display.mTMax = false
     }

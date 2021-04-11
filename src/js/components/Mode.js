@@ -2,7 +2,7 @@ import { elements } from './Elements'
 
 import { PowerOk } from './PowerUP'
 import { KranOK } from './Memo'
-import { SignalOk } from './Tumblers'
+import { SignalOk } from './Diots'
 import { ModeHP } from './Tumblers'
 
 export let gAPHP = false
