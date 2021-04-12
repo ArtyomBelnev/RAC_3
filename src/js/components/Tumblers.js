@@ -138,7 +138,7 @@ export function getTumblers(e) {
       setTimeout(() => (elements.tumImg7.style.transform = 'rotate(0deg)'), 400)
       break
     case 'enter':
-      if (gAPHP == true && elements.PMC.innerHTML > 0.1 && elements.vpns.classList.contains('btn__style-green') && elements.vpnu.classList.contains('btn__style-green') && ModeHP == true && holProk == false) {
+      if (gAPHP == true && elements.PMC.innerHTML.replace(/[,]/g, '.') > 0.1 && elements.vpns.classList.contains('btn__style-green') && elements.vpnu.classList.contains('btn__style-green') && ModeHP == true && holProk == false) {
         getStatus('Нажата испол. команда')
         holProk = true
 

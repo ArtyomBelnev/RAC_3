@@ -5,6 +5,7 @@ import { delGotholProk } from './Tumblers'
 import { arrowUP, arrowDN, arrowTK } from './Arrow'
 import { getPgDG, delPgDG, getPmBC, delPmBC, getPmTK, delPmTK, getPmCT, delPmCT, getPg13, delPg13 } from './Canals'
 import { readyHOLOPROK, readyAPHPholoPROK } from './Mode'
+import { startVibTK, startVibCT, stopVibTK, stopVibCT } from './Display'
 
 let holProOk = false,
   HpObort = '',
@@ -84,6 +85,8 @@ export function getHOLPRO(e) {
     getPmTK(0.1)
     getPmCT(0.05)
     getPg13(0.35)
+    startVibTK()
+    startVibCT()
 
     g10 = true
 
@@ -146,6 +149,8 @@ export function getHOLPRO(e) {
     delPmTK()
     delPmCT()
     delPg13()
+    stopVibTK()
+    stopVibCT()
   }
 
   if (y == 'r1' && holProOk == true && g10 == false && g1 == true) {

@@ -119,6 +119,7 @@ function isPowers() {
     PowerOk = true
     elements.mem.addEventListener('click', cliked)
     getON()
+    getRandomTemp()
   }
 
   if ((power_3On == false || power_4On == false || power_5On == false || power_6On == false || power_7On == false || power_8On == false) && PowerOk == true) {
@@ -161,4 +162,90 @@ function isPowers() {
 
 export function removeCliked() {
   elements.mem.removeEventListener('click', cliked)
+}
+
+function getRandomTemp() {
+  let rand = -20 + Math.random() * (25 + 1 - -20)
+  let T = Math.floor(rand)
+  elements.disRandomTemp.innerHTML = T
+  elements.info.style.display = 'block'
+  elements.info.title = 'Таблица допустимых температур'
+  elements.disRandomWT.style.background = 'rgb(37, 100, 16)'
+  getTemp(T)
+}
+
+function getTemp(t) {
+  if (0 < t && t < 10) {
+    elements.UP.innerHTML = (t - 4.3).toFixed(1).replace(/[.]/g, ',')
+    elements.OP1.innerHTML = t - 4
+    elements.OP2.innerHTML = t - 4
+    elements.VHOD.innerHTML = t - 4
+    elements.VIHOD.innerHTML = (t - 4.2).toFixed(1).replace(/[.]/g, ',')
+    elements.mbs.innerHTML = 3
+    elements.mbu.innerHTML = '2,8'
+    elements.HLSM.innerHTML = (t - 4.7).toFixed(1).replace(/[.]/g, ',')
+    elements.HLOP.innerHTML = t - 4
+
+    elements.Vib1T.value = (t - 4.3).toFixed(1)
+    elements.Vib2T.value = t - 4
+    elements.Vib3T.value = (t - 4.1).toFixed(1)
+    elements.Vib4T.value = t - 4
+    elements.Vib5T.value = t - 4
+    elements.Vib6T.value = t - 4
+    elements.VibSred.value = (t - 4.1).toFixed(1)
+  } else if (t >= 10) {
+    elements.UP.innerHTML = (t - 3.3).toFixed(1).replace(/[.]/g, ',')
+    elements.OP1.innerHTML = t - 3
+    elements.OP2.innerHTML = t - 3
+    elements.VHOD.innerHTML = t - 3
+    elements.VIHOD.innerHTML = (t - 3.2).toFixed(1).replace(/[.]/g, ',')
+    elements.mbs.innerHTML = '5,8'
+    elements.mbu.innerHTML = 6
+    elements.HLSM.innerHTML = (t - 3.7).toFixed(1).replace(/[.]/g, ',')
+    elements.HLOP.innerHTML = (t - 3.2).toFixed(1).replace(/[.]/g, ',')
+
+    elements.Vib1T.value = (t - 3.3).toFixed(1)
+    elements.Vib2T.value = t - 3
+    elements.Vib3T.value = (t - 3.1).toFixed(1)
+    elements.Vib4T.value = t - 3
+    elements.Vib5T.value = t - 3
+    elements.Vib6T.value = t - 3
+    elements.VibSred.value = (t - 3.1).toFixed(1)
+  } else if (-10 < t && t < 0) {
+    elements.UP.innerHTML = (t + 4.3).toFixed(1).replace(/[.]/g, ',')
+    elements.OP1.innerHTML = t + 4
+    elements.OP2.innerHTML = t + 4
+    elements.VHOD.innerHTML = t + 4
+    elements.VIHOD.innerHTML = t + 4
+    elements.mbs.innerHTML = '3,2'
+    elements.mbu.innerHTML = '3,1'
+    elements.HLSM.innerHTML = (t + 4.7).toFixed(1).replace(/[.]/g, ',')
+    elements.HLOP.innerHTML = (t + 4).toFixed(0).replace(/[.]/g, ',')
+
+    elements.Vib1T.value = (t + 4.3).toFixed(1)
+    elements.Vib2T.value = t + 4
+    elements.Vib3T.value = (t + 4.1).toFixed(1)
+    elements.Vib4T.value = t + 4
+    elements.Vib5T.value = t + 4
+    elements.Vib6T.value = t + 4
+    elements.VibSred.value = (t + 4.1).toFixed(1)
+  } else if (-10 > t) {
+    elements.UP.innerHTML = (t + 3.3).toFixed(1).replace(/[.]/g, ',')
+    elements.OP1.innerHTML = t + 3
+    elements.OP2.innerHTML = t + 3
+    elements.VHOD.innerHTML = t + 3
+    elements.VIHOD.innerHTML = t + 3
+    elements.mbs.innerHTML = '0,2'
+    elements.mbu.innerHTML = '0,3'
+    elements.HLSM.innerHTML = (t + 3.7).toFixed(0).replace(/[.]/g, ',')
+    elements.HLOP.innerHTML = t + 3
+
+    elements.Vib1T.value = (t + 3.3).toFixed(1)
+    elements.Vib2T.value = t + 3
+    elements.Vib3T.value = (t + 3.1).toFixed(1)
+    elements.Vib4T.value = t + 3
+    elements.Vib5T.value = t + 3
+    elements.Vib6T.value = t + 3
+    elements.VibSred.value = (t + 3.1).toFixed(1)
+  }
 }
