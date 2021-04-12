@@ -8,7 +8,9 @@ import { ModeHP } from './Tumblers'
 export let gAPHP = false
 
 export function readyAPHP() {
+  console.log('красный')
   if (+elements.mbs.innerHTML.replace(/[,]/g, '.') >= 15 && +elements.mbu.innerHTML.replace(/[,]/g, '.') >= 15 && PowerOk == true && SignalOk == true && KranOK == true && ModeHP == true && gAPHP == false) {
+    console.log('желтый')
     elements.apXp.style.background = 'yellow'
     gAPHP = true
   }

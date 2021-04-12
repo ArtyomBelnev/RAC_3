@@ -17,7 +17,6 @@ export function startMBS(i) {
     x += Math.random(0.1 - 0.39)
 
     if (x >= 15 && y >= 15 && rtn == false) {
-      console.log(22222)
       readyAPHP()
       rtn = true
     }

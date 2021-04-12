@@ -175,7 +175,7 @@ function getRandomTemp() {
 }
 
 function getTemp(t) {
-  if (0 < t && t < 10) {
+  if (0 <= t && t <= 10) {
     elements.UP.innerHTML = (t - 4.3).toFixed(1).replace(/[.]/g, ',')
     elements.OP1.innerHTML = t - 4
     elements.OP2.innerHTML = t - 4
@@ -211,7 +211,7 @@ function getTemp(t) {
     elements.Vib5T.value = t - 3
     elements.Vib6T.value = t - 3
     elements.VibSred.value = (t - 3.1).toFixed(1)
-  } else if (-10 < t && t < 0) {
+  } else if (-10 <= t && t <= 0) {
     elements.UP.innerHTML = (t + 4.3).toFixed(1).replace(/[.]/g, ',')
     elements.OP1.innerHTML = t + 4
     elements.OP2.innerHTML = t + 4

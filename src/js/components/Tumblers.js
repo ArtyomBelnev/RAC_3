@@ -5,6 +5,7 @@ import { arrowUP, arrowDN } from './Arrow'
 import { getStatus } from './Journal'
 import { diotsON, diotsOFF, diotsOK } from './Diots'
 import { getHOLPRO } from './HoloProk'
+import { getHOTPRO } from './HotProk'
 import { getBtn, delBtn } from './Btn'
 import { readyAPHP } from './Mode'
 
@@ -12,11 +13,13 @@ export let loadDIST = false
 export let ModeHP = false
 export let ModeAU = false
 export let holProk = false
+export let hotProk = false
 
 let START = false
 let STOP = false
 
-let cliked = getHOLPRO.bind(getHOLPRO)
+let clikedHOL = getHOLPRO.bind(getHOLPRO)
+let clikedHOT = getHOTPRO.bind(getHOTPRO)
 
 export function getTumblers(e) {
   switch (e.target.value) {
@@ -142,7 +145,14 @@ export function getTumblers(e) {
         getStatus('Нажата испол. команда')
         holProk = true
 
-        elements.mem.addEventListener('click', cliked)
+        elements.mem.addEventListener('click', clikedHOL)
+      }
+
+      if (gAPHP == true && elements.PMC.innerHTML.replace(/[,]/g, '.') > 0.1 && elements.vpns.classList.contains('btn__style-green') && elements.vpnu.classList.contains('btn__style-green') && loadDIST == true && ModeHP == false && hotProk == false) {
+        getStatus('Нажата испол. команда')
+        hotProk = true
+
+        elements.mem.addEventListener('click', clikedHOT)
       }
       break
   }
@@ -156,5 +166,5 @@ export function getTumblers(e) {
 
 export function delGotholProk() {
   holProk = false
-  elements.mem.removeEventListener('click', cliked)
+  elements.mem.removeEventListener('click', clikedHOL)
 }
