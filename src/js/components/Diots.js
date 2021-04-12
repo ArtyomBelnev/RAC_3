@@ -6,7 +6,7 @@ import { readyAPHP } from './Mode'
 export let SignalOk = false
 
 let SignalR = false
-let SignalL = true
+let SignalL = false
 
 export function diotsON() {
   if (PowerOk == true && SignalR == false) {
