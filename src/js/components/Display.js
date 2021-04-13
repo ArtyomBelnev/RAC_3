@@ -20,7 +20,8 @@ export function startMBS() {
   tmbs = setInterval(() => {
     let x = +elements.mbs.innerHTML.replace(/[,]/g, '.')
     let y = +elements.mbu.innerHTML.replace(/[,]/g, '.')
-    x += Math.random(0.1 - 0.39)
+    // x += Math.random(0.15)
+    x += 0.12
 
     if (x >= 15 && y >= 15 && tmMBS == false) {
       tmMBS = true
@@ -29,7 +30,7 @@ export function startMBS() {
       }, 200)
     }
 
-    if (x >= 70 && y >= 70 && mTMax == false) {
+    if (x >= 30 && y >= 30 && mTMax == false) {
       getStatus('Темпер. превышена в масла баках', 'yellow')
       mTMax = true
       clearTimeout(tmbs)
@@ -39,7 +40,7 @@ export function startMBS() {
     }
 
     elements.mbs.innerHTML = x.toFixed(1).replace(/[.]/g, ',')
-  }, 500)
+  }, 100)
 }
 
 export function startMBU() {
@@ -48,7 +49,8 @@ export function startMBU() {
   tmbu = setInterval(() => {
     let x = +elements.mbs.innerHTML.replace(/[,]/g, '.')
     let y = +elements.mbu.innerHTML.replace(/[,]/g, '.')
-    y += Math.random(0.1 - 0.39)
+    // y += Math.random(0.15)
+    y += 0.12
 
     if (x >= 15 && y >= 15 && tmMBU == false) {
       tmMBU = true
@@ -57,7 +59,7 @@ export function startMBU() {
       }, 200)
     }
 
-    if (x >= 70 && y >= 70 && mTMax == false) {
+    if (x >= 30 && y >= 30 && mTMax == false) {
       getStatus('Темпер. превышена в масла баках', 'yellow')
       mTMax = true
       clearTimeout(tmbs)
@@ -65,7 +67,7 @@ export function startMBU() {
       removeTAN()
     }
     elements.mbu.innerHTML = y.toFixed(1).replace(/[.]/g, ',')
-  }, 500)
+  }, 100)
 }
 
 export function stopMBS() {

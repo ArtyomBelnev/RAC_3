@@ -2,6 +2,7 @@ import { getStatus } from './Journal'
 import { PowerOk } from './PowerUP'
 import { readyAPHP } from './Mode'
 import { removeCliked } from './PowerUP'
+import { elements } from '../elements/Elements'
 
 export let KranOK = false
 
@@ -26,42 +27,116 @@ let g = {
   g15: false,
 }
 
+let g2 = false
+
 export function getCranes(e) {
   if (PowerOk == true && KranOK == false) {
-    let x = e.target.classList.value.slice(1, 3).trim()
-    let y = e.target.classList.value.slice(0, 1)
-
-    if (y == 'r') {
-      if (e.target.classList.value.length <= 2) {
-        let u = 'g' + x
-        let w = document.querySelector(`.${u}`)
-        let q = document.querySelector(`.${e.target.classList.value}`)
-
-        g[`${u}`] = false
-
-        q.classList.add('color-red')
-        w.classList.remove('color-green')
-      }
-    }
-
-    if (y == 'g') {
-      if (e.target.classList.value.length <= 2) {
-        let u = 'r' + x
-        let w = document.querySelector(`.${u}`)
-        let q = document.querySelector(`.${e.target.classList.value}`)
-
-        g[`${e.target.classList.value.slice(0, 3).split(' ').join('')}`] = true
-
-        w.classList.remove('color-red')
-        q.classList.add('color-green')
-      }
-    }
-
-    if (y == 'b') {
-      if (e.target.classList.value.slice(0, 2).trim() == 'b1') {
-        e.target.classList.toggle('color-green')
-        g[`${e.target.classList.value.slice(0, 3).split(' ').join('')}`] = g.b1 == false ? true : false
-      }
+    switch (e.target.classList.value.slice(0, 2).split(' ').join('')) {
+      case 'g1':
+        elements.G1.classList.add('color-green')
+        elements.R1.classList.remove('color-red')
+        getStatus('Кран открыт в неправ. послед.', 'yellow')
+        g.g1 = true
+        break
+      case 'r1':
+        elements.G1.classList.remove('color-green')
+        elements.R1.classList.add('color-red')
+        g.g1 = false
+        break
+      case 'g2':
+        elements.G2.classList.add('color-green')
+        elements.R2.classList.remove('color-red')
+        g.g2 = true
+        break
+      case 'r2':
+        elements.G1.classList.remove('color-green')
+        elements.R1.classList.add('color-red')
+        g.g2 = false
+        break
+      case 'g3':
+        elements.G3.classList.add('color-green')
+        elements.R3.classList.remove('color-red')
+        getStatus('Кран открыт в неправ. послед.', 'yellow')
+        g.g3 = true
+        break
+      case 'r3':
+        elements.G3.classList.remove('color-green')
+        elements.R3.classList.add('color-red')
+        g.g3 = false
+        break
+      case 'g4':
+        elements.G4.classList.add('color-green')
+        elements.R4.classList.remove('color-red')
+        g.g4 = true
+        break
+      case 'r4':
+        elements.G4.classList.remove('color-green')
+        elements.R4.classList.add('color-red')
+        g.g4 = false
+        break
+      case 'g5':
+        elements.G5.classList.add('color-green')
+        elements.R5.classList.remove('color-red')
+        getStatus('Кран открыт в неправ. послед.', 'yellow')
+        g.g5 = true
+        break
+      case 'r5':
+        elements.G5.classList.remove('color-green')
+        elements.R5.classList.add('color-red')
+        g.g5 = false
+        break
+      case 'g6':
+        elements.G6.classList.add('color-green')
+        elements.R6.classList.remove('color-red')
+        getStatus('Кран открыт в неправ. послед.', 'yellow')
+        g.g6 = true
+        break
+      case 'r6':
+        elements.G6.classList.remove('color-green')
+        elements.R6.classList.add('color-red')
+        g.g6 = false
+        break
+      case 'g7':
+        elements.G7.classList.add('color-green')
+        elements.R7.classList.remove('color-red')
+        getStatus('Кран открыт в неправ. послед.', 'yellow')
+        g.g7 = true
+        break
+      case 'r7':
+        elements.G7.classList.remove('color-green')
+        elements.R7.classList.add('color-red')
+        g.g7 = false
+        break
+      case 'g8':
+        elements.G8.classList.add('color-green')
+        elements.R8.classList.remove('color-red')
+        g.g8 = true
+        break
+      case 'r8':
+        elements.G8.classList.remove('color-green')
+        elements.R8.classList.add('color-red')
+        g.g8 = false
+        break
+      case 'g9':
+        elements.G9.classList.add('color-green')
+        elements.R9.classList.remove('color-red')
+        getStatus('Кран открыт в неправ. послед.', 'yellow')
+        g.g9 = true
+        break
+      case 'r9':
+        elements.G9.classList.remove('color-green')
+        elements.R9.classList.add('color-red')
+        g.g9 = false
+        break
+      case 'b1':
+        if (g.b1 == false) {
+          elements.B1.classList.add('color-green')
+          g.b1 = true
+        } else {
+          elements.B1.classList.remove('color-green')
+          g.b1 = false
+        }
+        break
     }
 
     if (g.b1 == true && g.g1 == false && g.g2 == true && g.g3 == false && g.g4 == true && g.g5 == false && g.g6 == false && g.g7 == false && g.g8 == true && g.g9 == false && KranOK == false) {
