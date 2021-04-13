@@ -10,6 +10,20 @@ export function getON() {
   elements.disOFF1.style.opacity = '0'
   elements.disOFF2.style.height = '0'
 
+  elements.ObTK.innerHTML = 0
+  elements.ObCT.innerHTML = 0
+  elements.PmBC.innerHTML = 0
+  elements.PmTK.innerHTML = 0
+  elements.PgDG.innerHTML = 0
+  elements.PmCT.innerHTML = 0
+  elements.Pg13.innerHTML = 0
+  elements.PgN.innerHTML = 0
+  elements.PgpN.innerHTML = 0
+  elements.PMC.innerHTML = 0
+  elements.dPkonf.innerHTML = 0
+  elements.OSleft.innerHTML = 0
+  elements.OSright.innerHTML = 0
+
   for (let i = 0; i < elements.displayALL.length; i++) {
     elements.displayALL[i].classList.add('display-on')
     elements.inNamALL[i].classList.add('inNam__on')

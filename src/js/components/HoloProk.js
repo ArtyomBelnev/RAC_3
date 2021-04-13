@@ -3,9 +3,10 @@ import { d7_8 } from './Canals'
 import { getStatus } from './Journal'
 import { delGotholProk } from './Tumblers'
 import { arrowUP, arrowDN, arrowTK } from './Arrow'
+import { T } from './PowerUP'
 import { getPgDG, delPgDG, getPmBC, delPmBC, getPmTK, delPmTK, getPmCT, delPmCT, getPg13, delPg13 } from './Canals'
 import { readyHOLOPROK, readyAPHPholoPROK } from './Mode'
-import { startVibTK, startVibCT, stopVibTK, stopVibCT } from './Display'
+import { startVibTK, startVibCT, stopVibTK, stopVibCT, checkHOLOPROK, runMBS, runMBU } from './Display'
 
 let holProOk = false,
   HpObort = '',
@@ -79,8 +80,19 @@ export function getHOLPRO(e) {
 
     elements.MFT.style.opacity = '1'
 
+    if (runMBS == true && runMBU == true) {
+      getStatus('Тэны не выключены', 'yellow')
+      checkHOLOPROK()
+    }
+
+    if (0 <= T && T <= 10) plusTemp(0.1, 2)
+    else if (T > 10) plusTemp(0.1, 1)
+    else if (-10 <= T && T <= 0) plusTemp(0.2, 4)
+    else if (-10 > T) plusTemp(0.2, 6)
+
     getStatus('Время окончания ХП', false, true, 0, 25).then(() => isStatusHolPRo())
 
+    minusMBSMBU()
     getPmBC(0.3)
     getPmTK(0.1)
     getPmCT(0.05)
@@ -240,4 +252,47 @@ export function isStatusHolPRo() {
   }
   getStatus('Снятия питания АУП-10')
   holProOk = true
+}
+
+function plusTemp(i, w) {
+  let count = i
+  let x = setInterval(() => {
+    elements.UP.innerHTML = (+elements.UP.innerHTML.replace(/[,]/g, '.') + i).toFixed(1).replace(/[.]/g, ',')
+    elements.OP1.innerHTML = (+elements.OP1.innerHTML.replace(/[,]/g, '.') + i).toFixed(1).replace(/[.]/g, ',')
+    elements.OP2.innerHTML = (+elements.OP2.innerHTML.replace(/[,]/g, '.') + i).toFixed(1).replace(/[.]/g, ',')
+    elements.VHOD.innerHTML = (+elements.VHOD.innerHTML.replace(/[,]/g, '.') + i).toFixed(1).replace(/[.]/g, ',')
+    elements.VIHOD.innerHTML = (+elements.VIHOD.innerHTML.replace(/[,]/g, '.') + i).toFixed(1).replace(/[.]/g, ',')
+    elements.HLSM.innerHTML = (+elements.HLSM.innerHTML.replace(/[,]/g, '.') + i).toFixed(1).replace(/[.]/g, ',')
+    elements.HLOP.innerHTML = (+elements.HLOP.innerHTML.replace(/[,]/g, '.') + i).toFixed(1).replace(/[.]/g, ',')
+
+    elements.Vib1T.value = (+elements.Vib1T.value + i).toFixed(1)
+    elements.Vib2T.value = (+elements.Vib2T.value + i).toFixed(1)
+    elements.Vib3T.value = (+elements.Vib3T.value + i).toFixed(1)
+    elements.Vib4T.value = (+elements.Vib4T.value + i).toFixed(1)
+    elements.Vib5T.value = (+elements.Vib5T.value + i).toFixed(1)
+    elements.Vib6T.value = (+elements.Vib6T.value + i).toFixed(1)
+    elements.VibSred.value = (+elements.VibSred.value + i).toFixed(1)
+    count += i
+    if (count >= w) {
+      clearInterval(x)
+    }
+  }, 650)
+}
+
+function minusMBSMBU() {
+  let w = (+elements.mbs.innerHTML.replace(/[,]/g, '.') / 2).toFixed(0)
+  let tt = setInterval(() => {
+    let x = +elements.mbs.innerHTML.replace(/[,]/g, '.')
+    let y = +elements.mbu.innerHTML.replace(/[,]/g, '.')
+
+    x -= Math.random(0.1 - 0.39)
+    y -= Math.random(0.1 - 0.39)
+
+    elements.mbs.innerHTML = x.toFixed(1).replace(/[.]/g, ',')
+    elements.mbu.innerHTML = y.toFixed(1).replace(/[.]/g, ',')
+
+    if (x <= w) {
+      clearInterval(tt)
+    }
+  }, 800)
 }

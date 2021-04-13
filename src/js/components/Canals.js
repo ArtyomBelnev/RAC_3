@@ -47,7 +47,9 @@ export function getPgDG(i) {
       elements.B2.classList.add('color-green')
       d7_8 = true
       getStatus('Ввод защиты по ССК')
-      // elements.PgDG.innerHTML = i
+      if (Number.isInteger) {
+        elements.PgDG.innerHTML = i
+      }
     }
   }, 450)
 }
@@ -70,10 +72,12 @@ export function getPmBC(i) {
   vPmBC = setInterval(() => {
     let x = +elements.PmBC.innerHTML.replace(/[,]/g, '.')
     x += 0.05
-    elements.PmBC.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
+    elements.PmBC.innerHTML = x.toFixed(1).replace(/[.]/g, ',')
     if (x >= i) {
       clearInterval(vPmBC)
-      // elements.PmBC.innerHTML = i
+      if (Number.isInteger) {
+        elements.PgDG.innerHTML = i
+      }
     }
   }, 200)
 }
@@ -97,7 +101,9 @@ export function getPmTK(i) {
     elements.PmTK.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
     if (x >= i) {
       clearInterval(vPmTK)
-      // elements.PmTK.innerHTML = i.replace(/[.]/g, ',')
+      if (Number.isInteger) {
+        elements.PgDG.innerHTML = i
+      }
     }
   }, 900)
 }
@@ -121,7 +127,9 @@ export function getPmCT(i) {
     elements.PmCT.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
     if (x >= i) {
       clearInterval(vPmCT)
-      // elements.PmCT.innerHTML = i.replace(/[.]/g, ',')
+      if (Number.isInteger) {
+        elements.PgDG.innerHTML = i
+      }
     }
   }, 1400)
 }
@@ -145,7 +153,9 @@ export function getPg13(i) {
     elements.Pg13.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
     if (x >= i) {
       clearInterval(vPg13)
-      // elements.Pg13.innerHTML = i.replace(/[.]/g, ',')
+      if (Number.isInteger) {
+        elements.PgDG.innerHTML = i
+      }
     }
   }, 300)
 }

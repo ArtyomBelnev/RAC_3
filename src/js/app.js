@@ -18,8 +18,3 @@ document.body.onload = function () {
     elements.preloader.style.transition = '1s all'
   }, 1500)
 }
-
-// window.onbeforeunload = () => {
-//   elements.preloader.style.opacity = '1'
-//   elements.preloader.style.visibility = 'visible'
-// }

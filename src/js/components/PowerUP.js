@@ -5,6 +5,7 @@ import { getON, getOFF } from './PowerST'
 import { getCranes } from './Memo'
 
 export let PowerOk = false
+export let T = ''
 
 let power_1On = false,
   power_1Off = true,
@@ -164,9 +165,23 @@ export function removeCliked() {
   elements.mem.removeEventListener('click', cliked)
 }
 
+export function removeTAN() {
+  elements.switch1.checked = false
+  elements.switch2.checked = false
+  power_1On = false
+  power_1Off = true
+  power_2On = false
+  power_2Off = true
+  power_1o2o = false
+  power_2o1o = false
+  getStatus(`Тэны отключены`)
+  TanOK = false
+}
+
 function getRandomTemp() {
   let rand = -20 + Math.random() * (25 + 1 - -20)
-  let T = Math.floor(rand)
+  T = Math.floor(rand)
+
   elements.disRandomTemp.innerHTML = T
   elements.info.style.display = 'block'
   elements.info.title = 'Таблица допустимых температур'
@@ -193,7 +208,7 @@ function getTemp(t) {
     elements.Vib5T.value = t - 4
     elements.Vib6T.value = t - 4
     elements.VibSred.value = (t - 4.1).toFixed(1)
-  } else if (t >= 10) {
+  } else if (t > 10) {
     elements.UP.innerHTML = (t - 3.3).toFixed(1).replace(/[.]/g, ',')
     elements.OP1.innerHTML = t - 3
     elements.OP2.innerHTML = t - 3
