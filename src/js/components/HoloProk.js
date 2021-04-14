@@ -5,10 +5,13 @@ import { delGotholProk } from './Tumblers'
 import { arrowUP, arrowDN, arrowTK } from './Arrow'
 import { getPgDG, delPgDG, getPmBC, delPmBC, getPmTK, delPmTK, getPmCT, delPmCT, getPg13, delPg13 } from './Canals'
 import { readyHOLOPROK, readyAPHPholoPROK } from './Mode'
-import { startVibTK, startVibCT, stopVibTK, stopVibCT } from './Display'
+import { startVibTK, startVibCT, stopVibTK, stopVibCT, runMBS, runMBU, stopMBSMBU, startMBS, startMBU } from './Display'
+
+export let mMBSMBU = false
 
 let holProOk = false,
   HpObort = '',
+  tt = '',
   g1 = false,
   g3 = false,
   g10 = false,
@@ -95,7 +98,22 @@ export function getHOLPRO(e) {
           g10 = true
 
           getStatus('Удержание КПВ 1,5 в откр. полож.')
-          getStatus('Время окончания ХП', false, true, 0, 35).then(() => isStatusHolPRo())
+
+          if (runMBS == true || runMBU == true) {
+            stopMBSMBU()
+          }
+
+          getStatus('Время окончания ХП', false, true, 0, 10)
+            .then(() => isStatusHolPRo())
+            .then(() => {
+              if (runMBS == true || elements.switch1.checked == true) {
+                startMBS()
+              }
+              if (runMBU == true || elements.switch2.checked == true) {
+                startMBU()
+              }
+            })
+            .then(() => clearInterval(tt))
 
           minusMBSMBU()
           getPmBC(0.3)
@@ -332,8 +350,9 @@ export function isStatusHolPRo() {
 }
 
 function minusMBSMBU() {
+  mMBSMBU = true
   let w = (+elements.mbs.innerHTML.replace(/[,]/g, '.') / 2).toFixed(0)
-  let tt = setInterval(() => {
+  tt = setInterval(() => {
     let x = +elements.mbs.innerHTML.replace(/[,]/g, '.')
     let y = +elements.mbu.innerHTML.replace(/[,]/g, '.')
 
@@ -345,11 +364,9 @@ function minusMBSMBU() {
 
     if (x <= w) {
       clearInterval(tt)
+      mMBSMBU = false
     }
   }, 800)
 }
 
-// if (runMBS == true && runMBU == true) {
-//   getStatus('Тэны не выключены', 'yellow')
-//   checkHOLOPROK()
-// }
+function checkTAN() {}

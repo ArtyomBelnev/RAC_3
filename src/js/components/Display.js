@@ -39,8 +39,13 @@ export function startMBS() {
       // runMBS = false
     }
 
+    if (x >= 100 && y >= 100 && mTMax == false) {
+      getStatus('Темпер. превышена в масла баках', 'red')
+      mTMax = true
+    }
+
     elements.mbs.innerHTML = x.toFixed(1).replace(/[.]/g, ',')
-  }, 100)
+  }, 200)
 }
 
 export function startMBU() {
@@ -59,15 +64,20 @@ export function startMBU() {
       }, 200)
     }
 
-    if (x >= 30 && y >= 30 && mTMax == false) {
+    if (x >= 70 && y >= 70 && mTMax == false) {
       getStatus('Темпер. превышена в масла баках', 'yellow')
       mTMax = true
       // clearTimeout(tmbs)
       // clearTimeout(tmbu)
       // removeTAN()
     }
+
+    if (x >= 100 && y >= 100 && mTMax == false) {
+      getStatus('Темпер. превышена в масла баках', 'yellow')
+      mTMax = true
+    }
     elements.mbu.innerHTML = y.toFixed(1).replace(/[.]/g, ',')
-  }, 100)
+  }, 200)
 }
 
 export function stopMBS() {
@@ -78,6 +88,11 @@ export function stopMBS() {
 export function stopMBU() {
   clearTimeout(tmbu)
   runMBU = false
+}
+
+export function stopMBSMBU() {
+  clearTimeout(tmbs)
+  clearTimeout(tmbu)
 }
 
 // export function checkHOLOPROK() {
@@ -96,7 +111,7 @@ export function startVibTK() {
       clearTimeout(tVibTK)
     }
     elements.VibTK.value = x.toFixed(1)
-  }, 440)
+  }, 1200)
 }
 
 export function stopVibTK() {
@@ -108,7 +123,7 @@ export function stopVibTK() {
       clearTimeout(tVibTK)
       elements.VibTK.value = 0
     }
-  }, 440)
+  }, 1200)
 }
 
 export function startVibCT() {
@@ -119,7 +134,7 @@ export function startVibCT() {
       clearTimeout(tVibCT)
     }
     elements.VibCT.value = x.toFixed(1)
-  }, 420)
+  }, 990)
 }
 
 export function stopVibCT() {
