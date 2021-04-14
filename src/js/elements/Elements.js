@@ -31,6 +31,8 @@ export const elements = {
   HLSM: document.getElementById('HLSM'),
   HLOP: document.getElementById('HLOP'),
   modeWrap: document.querySelector('.mode__wrap'),
+  registr: document.querySelector('.registr'),
+  probTest: document.querySelector('.registr__main-bot__left'),
   VibTK: document.getElementById('VibTK'),
   VibCT: document.getElementById('VibCT'),
   Vib1T: document.getElementById('Vib1T'),

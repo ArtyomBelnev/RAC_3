@@ -56,7 +56,7 @@ export function getStatus(x, y, w, z, s) {
   let maxScroll = elements.disT4.scrollHeight
   elements.disT4.scrollTop = maxScroll
 
-  if (countError == 2) {
-    alert('Тест провален')
-  }
+  // if (countError == 2) {
+  //   alert('Тест провален')
+  // }
 }

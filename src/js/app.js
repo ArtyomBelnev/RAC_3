@@ -10,6 +10,7 @@ elements.powers.addEventListener('click', getPowers.bind(getPowers))
 elements.popup__close.addEventListener('click', pc_d.bind(pc_d))
 elements.popup.addEventListener('click', pc_d.bind(pc_d))
 elements.info.addEventListener('click', p_d)
+elements.probTest.addEventListener('click', goTest)
 
 document.body.onload = function () {
   setTimeout(function () {
@@ -17,4 +18,10 @@ document.body.onload = function () {
     elements.preloader.style.visibility = 'hidden'
     elements.preloader.style.transition = '1s all'
   }, 1500)
+}
+
+function goTest() {
+  elements.registr.style.opacity = '0'
+  elements.registr.style.visibility = 'hidden'
+  elements.registr.style.transition = '1s all'
 }
