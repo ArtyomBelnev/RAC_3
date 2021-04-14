@@ -37,6 +37,9 @@ export function getBtn(e) {
       break
     case 'PNS':
       if (!elements.vpns.classList.contains('btn__style-green')) {
+        if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 15) {
+          return getStatus('Низкая темпер. в масла баках', 'yellow')
+        }
         elements.vpns.classList.add('btn__style-green')
         getStatus('ПНС включено')
         PNSon = true
@@ -44,6 +47,9 @@ export function getBtn(e) {
       break
     case 'PNU':
       if (!elements.vpnu.classList.contains('btn__style-green')) {
+        if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 15) {
+          return getStatus('Низкая темпер. в масла баках', 'yellow')
+        }
         elements.vpnu.classList.add('btn__style-green')
         getStatus('ПНУ включено')
         PNUon = true
@@ -70,7 +76,6 @@ export function getBtn(e) {
 function plusTemp(i, w) {
   if (T > +elements.mbs.innerHTML.replace(/[,]/g, '.')) {
     clearInterval(tPlusTemp)
-    console.log('конец')
   }
   let count = i
   tPlusTemp = setInterval(() => {

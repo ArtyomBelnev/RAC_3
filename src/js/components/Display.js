@@ -1,7 +1,7 @@
 import { elements } from '../elements/Elements'
 import { getStatus } from './Journal'
 import { readyAPHP } from './Mode'
-import { removeTAN } from './PowerUP'
+// import { removeTAN } from './PowerUP'
 
 let tmbs = '',
   tmbu = '',
@@ -30,13 +30,13 @@ export function startMBS() {
       }, 200)
     }
 
-    if (x >= 30 && y >= 30 && mTMax == false) {
+    if (x >= 70 && y >= 70 && mTMax == false) {
       getStatus('Темпер. превышена в масла баках', 'yellow')
       mTMax = true
-      clearTimeout(tmbs)
-      clearTimeout(tmbu)
-      removeTAN()
-      runMBS = false
+      // clearTimeout(tmbs)
+      // clearTimeout(tmbu)
+      // removeTAN()
+      // runMBS = false
     }
 
     elements.mbs.innerHTML = x.toFixed(1).replace(/[.]/g, ',')
@@ -62,9 +62,9 @@ export function startMBU() {
     if (x >= 30 && y >= 30 && mTMax == false) {
       getStatus('Темпер. превышена в масла баках', 'yellow')
       mTMax = true
-      clearTimeout(tmbs)
-      clearTimeout(tmbu)
-      removeTAN()
+      // clearTimeout(tmbs)
+      // clearTimeout(tmbu)
+      // removeTAN()
     }
     elements.mbu.innerHTML = y.toFixed(1).replace(/[.]/g, ',')
   }, 100)
@@ -80,13 +80,13 @@ export function stopMBU() {
   runMBU = false
 }
 
-export function checkHOLOPROK() {
-  clearTimeout(tmbs)
-  clearTimeout(tmbu)
-  removeTAN()
-  runMBS = false
-  runMBU = false
-}
+// export function checkHOLOPROK() {
+//   clearTimeout(tmbs)
+//   clearTimeout(tmbu)
+//   removeTAN()
+//   runMBS = false
+//   runMBU = false
+// }
 
 export function startVibTK() {
   tVibTK = setInterval(() => {

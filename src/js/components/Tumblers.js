@@ -143,14 +143,16 @@ export function getTumblers(e) {
     case 'enter':
       let x = +elements.mbs.innerHTML.replace(/[,]/g, '.')
       let y = +elements.mbu.innerHTML.replace(/[,]/g, '.')
-      if (x >= 15 && y >= 15 && gAPHP == true && elements.PMC.innerHTML.replace(/[,]/g, '.') > 0.1 && elements.vpns.classList.contains('btn__style-green') && elements.vpnu.classList.contains('btn__style-green') && ModeHP == true && holProk == false) {
+      let w = +elements.PMC.innerHTML.replace(/[,]/g, '.')
+
+      if (x >= 15 && y >= 15 && gAPHP == true && w >= 0.1 && elements.vpns.classList.contains('btn__style-green') && elements.vpnu.classList.contains('btn__style-green') && ModeHP == true && holProk == false) {
         getStatus('Нажата испол. команда')
         holProk = true
 
         elements.mem.addEventListener('click', clikedHOL)
       }
 
-      if (gAPHP == true && elements.PMC.innerHTML.replace(/[,]/g, '.') > 0.1 && elements.vpns.classList.contains('btn__style-green') && elements.vpnu.classList.contains('btn__style-green') && loadDIST == true && ModeHP == false && hotProk == false) {
+      if (gAPHP == true && w > 0.1 && elements.vpns.classList.contains('btn__style-green') && elements.vpnu.classList.contains('btn__style-green') && loadDIST == true && ModeHP == false && hotProk == false) {
         getStatus('Нажата испол. команда')
         hotProk = true
 

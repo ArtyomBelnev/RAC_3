@@ -165,18 +165,18 @@ export function removeCliked() {
   elements.mem.removeEventListener('click', cliked)
 }
 
-export function removeTAN() {
-  elements.switch1.checked = false
-  elements.switch2.checked = false
-  power_1On = false
-  power_1Off = true
-  power_2On = false
-  power_2Off = true
-  power_1o2o = false
-  power_2o1o = false
-  getStatus(`Тэны отключены`)
-  TanOK = false
-}
+// export function removeTAN() {
+//   elements.switch1.checked = false
+//   elements.switch2.checked = false
+//   power_1On = false
+//   power_1Off = true
+//   power_2On = false
+//   power_2Off = true
+//   power_1o2o = false
+//   power_2o1o = false
+//   getStatus(`Тэны отключены`)
+//   TanOK = false
+// }
 
 function getRandomTemp() {
   let rand = -20 + Math.random() * (25 + 1 - -20)

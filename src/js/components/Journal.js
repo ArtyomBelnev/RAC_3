@@ -2,6 +2,7 @@ import { elements } from '../elements/Elements'
 
 let timer = ''
 let NumStatus = 1
+let countError = 0
 
 export function getStatus(x, y, w, z, s) {
   let date = new Date()
@@ -12,6 +13,7 @@ export function getStatus(x, y, w, z, s) {
   let ms = 100
 
   if (y == 'yellow') {
+    countError++
     elements.disT4.innerHTML += `<div style="color: yellow;">${NumStatus}) ${x} ${times}</div>`
   } else if (y == 'green') {
     elements.disT4.innerHTML += `<div style="color: green;">${NumStatus}) ${x} ${times}</div>`
@@ -53,4 +55,8 @@ export function getStatus(x, y, w, z, s) {
   NumStatus++
   let maxScroll = elements.disT4.scrollHeight
   elements.disT4.scrollTop = maxScroll
+
+  if (countError == 2) {
+    alert('Тест провален')
+  }
 }
