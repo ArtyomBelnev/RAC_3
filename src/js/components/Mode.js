@@ -9,7 +9,8 @@ import { tmMBS, tmMBU } from './Display'
 export let gAPHP = false
 
 export function readyAPHP() {
-  if (tmMBS == true && tmMBU == true && PowerOk == true && SignalOk == true && KranOK == true && ModeHP == true && gAPHP == false) {
+  let x = +elements.UP.innerHTML.replace(/[,]/g, '.')
+  if (x >= 9 && tmMBS == true && tmMBU == true && PowerOk == true && SignalOk == true && KranOK == true && ModeHP == true && gAPHP == false) {
     elements.apXp.style.background = 'yellow'
     gAPHP = true
   }

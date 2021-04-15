@@ -23,7 +23,7 @@
 
 .popup__content {
   z-index: 101;
-  background-color: #b6b0b0;
+  background-color: #daded0;
   border-top-right-radius: 10px;
   color: black;
   max-width: 1130px;
@@ -45,6 +45,10 @@
 .popup__close {
   cursor: pointer;
   position: absolute;
+  background-image: url(../../images/close_popup.png);
+  background-size: cover;
+  width: 15px;
+  height: 15px;
   right: 10px;
   top: 10px;
   font-size: 20px;

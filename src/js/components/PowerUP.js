@@ -1,9 +1,8 @@
 import { elements } from '../elements/Elements'
 import { getStatus } from './Journal'
-import { startMBS, startMBU, stopMBS, stopMBU } from './Display'
+import { startMBS, startMBU, stopMBS, stopMBU, mbsOK, mbuOK, mTMax, mmTMax } from './Display'
 import { getON, getOFF } from './PowerST'
 import { getCranes } from './Memo'
-import { mMBSMBU } from './HoloProk'
 
 export let PowerOk = false
 export let T = ''
@@ -33,6 +32,10 @@ let cliked = getCranes.bind(getCranes)
 export function getPowers(e) {
   switch (e.target.id) {
     case 'switch_1':
+      if (mbsOK == true || mTMax == true) {
+        elements.switch1.checked = false
+        return getStatus('Ошибка', 'yellow')
+      }
       if (elements.switch1.checked == true) {
         power_1On = true
         power_1Off = false
@@ -43,6 +46,10 @@ export function getPowers(e) {
       break
 
     case 'switch_2':
+      if (mbuOK == true || mmTMax == true) {
+        elements.switch2.checked = false
+        return getStatus('Ошибка', 'yellow')
+      }
       if (elements.switch2.checked == true) {
         power_2On = true
         power_2Off = false
@@ -143,14 +150,14 @@ function isPowers() {
 
   if (power_1On == true && power_1o2o == false && PowerOk == true) {
     power_1o2o = true
-    if (mMBSMBU == false) {
+    if (mbsOK == false) {
       startMBS()
     }
   }
 
   if (power_2On == true && power_2o1o == false && PowerOk == true) {
     power_2o1o = true
-    if (mMBSMBU == false) {
+    if (mbuOK == false) {
       startMBU()
     }
   }
@@ -170,18 +177,18 @@ export function removeCliked() {
   elements.mem.removeEventListener('click', cliked)
 }
 
-// export function removeTAN() {
-//   elements.switch1.checked = false
-//   elements.switch2.checked = false
-//   power_1On = false
-//   power_1Off = true
-//   power_2On = false
-//   power_2Off = true
-//   power_1o2o = false
-//   power_2o1o = false
-//   getStatus(`Тэны отключены`)
-//   TanOK = false
-// }
+export function removeTAN() {
+  elements.switch1.checked = false
+  elements.switch2.checked = false
+  power_1On = false
+  power_1Off = true
+  power_2On = false
+  power_2Off = true
+  power_1o2o = false
+  power_2o1o = false
+  getStatus(`Тэны отключены`)
+  TanOK = false
+}
 
 function getRandomTemp() {
   let rand = -20 + Math.random() * (25 + 1 - -20)
@@ -191,117 +198,46 @@ function getRandomTemp() {
   elements.info.style.display = 'block'
   elements.info.title = 'Таблица допустимых температур'
   elements.disRandomWT.style.background = 'rgb(37, 100, 16)'
-  getTemp(T)
+  getTemp()
 }
 
-function getTemp(t) {
-  if (t > 10) {
-    elements.UP.innerHTML = (t - 3.3).toFixed(1).replace(/[.]/g, ',')
-    elements.OP1.innerHTML = t - 3
-    elements.OP2.innerHTML = t - 3
-    elements.VHOD.innerHTML = t - 3
-    elements.VIHOD.innerHTML = (t - 3.2).toFixed(1).replace(/[.]/g, ',')
-    elements.mbs.innerHTML = '5,8'
-    elements.mbu.innerHTML = 6
-    elements.HLSM.innerHTML = (t - 3.7).toFixed(1).replace(/[.]/g, ',')
-    elements.HLOP.innerHTML = (t - 3.2).toFixed(1).replace(/[.]/g, ',')
+function getTemp() {
+  let i = T > 0 ? (i = 1) : T == 0 || T == -1 ? (i = 0) : (i = 1)
+  if (T >= 0) {
+    elements.UP.innerHTML = (T - (i + 0.1)).toFixed(1).replace(/[.]/g, ',')
+    elements.OP1.innerHTML = T - i
+    elements.OP2.innerHTML = T - i
+    elements.VHOD.innerHTML = (T - (i + 0.2)).toFixed(1).replace(/[.]/g, ',')
+    elements.VIHOD.innerHTML = (T - (i + 0.2)).toFixed(1).replace(/[.]/g, ',')
+    elements.mbs.innerHTML = (T / 2).toFixed(0)
+    elements.mbu.innerHTML = (T / 2).toFixed(0)
+    elements.HLSM.innerHTML = (T - (i + 0.4)).toFixed(1).replace(/[.]/g, ',')
+    elements.HLOP.innerHTML = (T - i + 0.2).toFixed(1).replace(/[.]/g, ',')
 
-    elements.Vib1T.value = (t - 3.3).toFixed(1)
-    elements.Vib2T.value = t - 3
-    elements.Vib3T.value = (t - 3.1).toFixed(1)
-    elements.Vib4T.value = t - 3
-    elements.Vib5T.value = t - 3
-    elements.Vib6T.value = t - 3
-    elements.VibSred.value = (t - 3.1).toFixed(1)
-  } else if (5 < t && t <= 10) {
-    elements.UP.innerHTML = (t - 2.3).toFixed(1).replace(/[.]/g, ',')
-    elements.OP1.innerHTML = t - 2
-    elements.OP2.innerHTML = t - 2
-    elements.VHOD.innerHTML = t - 2
-    elements.VIHOD.innerHTML = (t - 2.2).toFixed(1).replace(/[.]/g, ',')
-    elements.mbs.innerHTML = 3
-    elements.mbu.innerHTML = '2,8'
-    elements.HLSM.innerHTML = (t - 2.7).toFixed(1).replace(/[.]/g, ',')
-    elements.HLOP.innerHTML = t - 2
+    elements.Vib1T.value = (T - (i + 0.3)).toFixed(1)
+    elements.Vib2T.value = T - 1
+    elements.Vib3T.value = (T - (i + 0.1)).toFixed(1)
+    elements.Vib4T.value = T - 1
+    elements.Vib5T.value = T - 1
+    elements.Vib6T.value = T - 1
+    elements.VibSred.value = (T - (i + 0.1)).toFixed(1)
+  } else {
+    elements.UP.innerHTML = (T + (+i + 0.1)).toFixed(1).replace(/[.]/g, ',')
+    elements.OP1.innerHTML = T + i
+    elements.OP2.innerHTML = T + i
+    elements.VHOD.innerHTML = (T + (i + 0.2)).toFixed(1).replace(/[.]/g, ',')
+    elements.VIHOD.innerHTML = (T + (i + 0.2)).toFixed(1).replace(/[.]/g, ',')
+    elements.mbs.innerHTML = (T / 2).toFixed(0)
+    elements.mbu.innerHTML = (T / 2).toFixed(0)
+    elements.HLSM.innerHTML = (T + (i + 0.4)).toFixed(1).replace(/[.]/g, ',')
+    elements.HLOP.innerHTML = (T + i + 0.2).toFixed(1).replace(/[.]/g, ',')
 
-    elements.Vib1T.value = (t - 2.3).toFixed(1)
-    elements.Vib2T.value = t - 2
-    elements.Vib3T.value = (t - 2.1).toFixed(1)
-    elements.Vib4T.value = t - 2
-    elements.Vib5T.value = t - 2
-    elements.Vib6T.value = t - 2
-    elements.VibSred.value = (t - 2.1).toFixed(1)
-  } else if (0 <= t && t <= 5) {
-    elements.UP.innerHTML = (t - 1.3).toFixed(1).replace(/[.]/g, ',')
-    elements.OP1.innerHTML = t - 1
-    elements.OP2.innerHTML = t - 1
-    elements.VHOD.innerHTML = t - 1
-    elements.VIHOD.innerHTML = (t - 1.2).toFixed(1).replace(/[.]/g, ',')
-    elements.mbs.innerHTML = '2.5'
-    elements.mbu.innerHTML = '2,1'
-    elements.HLSM.innerHTML = (t - 1.7).toFixed(1).replace(/[.]/g, ',')
-    elements.HLOP.innerHTML = t - 1
-
-    elements.Vib1T.value = (t - 1.3).toFixed(1)
-    elements.Vib2T.value = t - 1
-    elements.Vib3T.value = (t - 1.1).toFixed(1)
-    elements.Vib4T.value = t - 1
-    elements.Vib5T.value = t - 1
-    elements.Vib6T.value = t - 1
-    elements.VibSred.value = (t - 1.1).toFixed(1)
-  } else if (-5 <= t && t < 0) {
-    elements.UP.innerHTML = (t + 3.3).toFixed(1).replace(/[.]/g, ',')
-    elements.OP1.innerHTML = t + 3
-    elements.OP2.innerHTML = t + 3
-    elements.VHOD.innerHTML = t + 3
-    elements.VIHOD.innerHTML = t + 3
-    elements.mbs.innerHTML = 2
-    elements.mbu.innerHTML = 2
-    elements.HLSM.innerHTML = (t + 3.7).toFixed(1).replace(/[.]/g, ',')
-    elements.HLOP.innerHTML = (t + 3).toFixed(0).replace(/[.]/g, ',')
-
-    elements.Vib1T.value = (t + 3.3).toFixed(1)
-    elements.Vib2T.value = t + 3
-    elements.Vib3T.value = (t + 3.1).toFixed(1)
-    elements.Vib4T.value = t + 3
-    elements.Vib5T.value = t + 3
-    elements.Vib6T.value = t + 3
-    elements.VibSred.value = (t + 3.1).toFixed(1)
-  } else if (-10 <= t && t <= -5) {
-    elements.UP.innerHTML = (t + 4.3).toFixed(1).replace(/[.]/g, ',')
-    elements.OP1.innerHTML = t + 4
-    elements.OP2.innerHTML = t + 4
-    elements.VHOD.innerHTML = t + 4
-    elements.VIHOD.innerHTML = t + 4
-    elements.mbs.innerHTML = '1,8'
-    elements.mbu.innerHTML = '1,7'
-    elements.HLSM.innerHTML = (t + 4.7).toFixed(1).replace(/[.]/g, ',')
-    elements.HLOP.innerHTML = (t + 4).toFixed(0).replace(/[.]/g, ',')
-
-    elements.Vib1T.value = (t + 4.3).toFixed(1)
-    elements.Vib2T.value = t + 4
-    elements.Vib3T.value = (t + 4.1).toFixed(1)
-    elements.Vib4T.value = t + 4
-    elements.Vib5T.value = t + 4
-    elements.Vib6T.value = t + 4
-    elements.VibSred.value = (t + 4.1).toFixed(1)
-  } else if (t < -10) {
-    elements.UP.innerHTML = (t + 3.3).toFixed(1).replace(/[.]/g, ',')
-    elements.OP1.innerHTML = t + 3
-    elements.OP2.innerHTML = t + 3
-    elements.VHOD.innerHTML = t + 3
-    elements.VIHOD.innerHTML = t + 3
-    elements.mbs.innerHTML = '0,2'
-    elements.mbu.innerHTML = '0,3'
-    elements.HLSM.innerHTML = (t + 3.7).toFixed(0).replace(/[.]/g, ',')
-    elements.HLOP.innerHTML = t + 3
-
-    elements.Vib1T.value = (t + 3.3).toFixed(1)
-    elements.Vib2T.value = t + 3
-    elements.Vib3T.value = (t + 3.1).toFixed(1)
-    elements.Vib4T.value = t + 3
-    elements.Vib5T.value = t + 3
-    elements.Vib6T.value = t + 3
-    elements.VibSred.value = (t + 3.1).toFixed(1)
+    elements.Vib1T.value = (T + (i + 0.3)).toFixed(1)
+    elements.Vib2T.value = T + 1
+    elements.Vib3T.value = (T + (i + 0.1)).toFixed(1)
+    elements.Vib4T.value = T + 1
+    elements.Vib5T.value = T + 1
+    elements.Vib6T.value = T + 1
+    elements.VibSred.value = (T - (i + 0.1)).toFixed(1)
   }
 }

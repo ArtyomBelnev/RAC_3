@@ -5,13 +5,10 @@ import { delGotholProk } from './Tumblers'
 import { arrowUP, arrowDN, arrowTK } from './Arrow'
 import { getPgDG, delPgDG, getPmBC, delPmBC, getPmTK, delPmTK, getPmCT, delPmCT, getPg13, delPg13 } from './Canals'
 import { readyHOLOPROK, readyAPHPholoPROK } from './Mode'
-import { startVibTK, startVibCT, stopVibTK, stopVibCT, runMBS, runMBU, stopMBSMBU, startMBS, startMBU } from './Display'
-
-export let mMBSMBU = false
+import { startVibTK, startVibCT, stopVibTK, stopVibCT } from './Display'
 
 let holProOk = false,
   HpObort = '',
-  tt = '',
   g1 = false,
   g3 = false,
   g10 = false,
@@ -99,23 +96,8 @@ export function getHOLPRO(e) {
 
           getStatus('Удержание КПВ 1,5 в откр. полож.')
 
-          if (runMBS == true || runMBU == true) {
-            stopMBSMBU()
-          }
+          getStatus('Время окончания ХП', false, true, 2, 0).then(() => isStatusHolPRo())
 
-          getStatus('Время окончания ХП', false, true, 0, 10)
-            .then(() => isStatusHolPRo())
-            .then(() => {
-              if (runMBS == true || elements.switch1.checked == true) {
-                startMBS()
-              }
-              if (runMBU == true || elements.switch2.checked == true) {
-                startMBU()
-              }
-            })
-            .then(() => clearInterval(tt))
-
-          minusMBSMBU()
           getPmBC(0.3)
           getPmTK(0.1)
           getPmCT(0.05)
@@ -348,25 +330,3 @@ export function isStatusHolPRo() {
   getStatus('Снятия питания АУП-10')
   holProOk = true
 }
-
-function minusMBSMBU() {
-  mMBSMBU = true
-  let w = (+elements.mbs.innerHTML.replace(/[,]/g, '.') / 2).toFixed(0)
-  tt = setInterval(() => {
-    let x = +elements.mbs.innerHTML.replace(/[,]/g, '.')
-    let y = +elements.mbu.innerHTML.replace(/[,]/g, '.')
-
-    x -= 0.1
-    y -= 0.1
-
-    elements.mbs.innerHTML = x.toFixed(1).replace(/[.]/g, ',')
-    elements.mbu.innerHTML = y.toFixed(1).replace(/[.]/g, ',')
-
-    if (x <= w) {
-      clearInterval(tt)
-      mMBSMBU = false
-    }
-  }, 800)
-}
-
-function checkTAN() {}

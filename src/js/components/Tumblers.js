@@ -6,7 +6,7 @@ import { getStatus } from './Journal'
 import { diotsON, diotsOFF, diotsOK } from './Diots'
 import { getHOLPRO } from './HoloProk'
 import { getHOTPRO } from './HotProk'
-import { getBtn, delBtn } from './Btn'
+import { getBtn, delBtn, PNSonPNUon } from './Btn'
 import { readyAPHP } from './Mode'
 
 export let loadDIST = false
@@ -141,18 +141,17 @@ export function getTumblers(e) {
       setTimeout(() => (elements.tumImg7.style.transform = 'rotate(0deg)'), 400)
       break
     case 'enter':
-      let x = +elements.mbs.innerHTML.replace(/[,]/g, '.')
-      let y = +elements.mbu.innerHTML.replace(/[,]/g, '.')
+      let x = +elements.UP.innerHTML.replace(/[,]/g, '.')
       let w = +elements.PMC.innerHTML.replace(/[,]/g, '.')
 
-      if (x >= 15 && y >= 15 && gAPHP == true && w >= 0.1 && elements.vpns.classList.contains('btn__style-green') && elements.vpnu.classList.contains('btn__style-green') && ModeHP == true && holProk == false) {
+      if (gAPHP == true && w >= 0.1 && x >= 9 && PNSonPNUon == true && ModeHP == true && holProk == false) {
         getStatus('Нажата испол. команда')
         holProk = true
 
         elements.mem.addEventListener('click', clikedHOL)
       }
 
-      if (gAPHP == true && w > 0.1 && elements.vpns.classList.contains('btn__style-green') && elements.vpnu.classList.contains('btn__style-green') && loadDIST == true && ModeHP == false && hotProk == false) {
+      if (gAPHP == true && w > 0.1 && loadDIST == true && ModeHP == false && hotProk == false) {
         getStatus('Нажата испол. команда')
         hotProk = true
 

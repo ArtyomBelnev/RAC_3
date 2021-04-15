@@ -1,107 +1,117 @@
 import { elements } from '../elements/Elements'
 import { getStatus } from './Journal'
 import { readyAPHP } from './Mode'
-// import { removeTAN } from './PowerUP'
+import { removeTAN } from './PowerUP'
 
 let tmbs = '',
   tmbu = '',
   tVibTK = '',
-  tVibCT = '',
-  mTMax = false
+  tVibCT = ''
+
+export let mTMax = false
+export let mmTMax = false
 
 export let tmMBS = false
 export let tmMBU = false
+export let mbsOK = false
+export let mbuOK = false
 export let runMBS = false
 export let runMBU = false
 
 export function startMBS() {
-  mTMax = false
   runMBS = true
+  mTMax = false
   tmbs = setInterval(() => {
     let x = +elements.mbs.innerHTML.replace(/[,]/g, '.')
     let y = +elements.mbu.innerHTML.replace(/[,]/g, '.')
-    // x += Math.random(0.15)
-    x += 0.12
+    x += 0.1
 
-    if (x >= 15 && y >= 15 && tmMBS == false) {
+    if (x >= 50 && tmMBS == false) {
       tmMBS = true
       setTimeout(() => {
         readyAPHP()
       }, 200)
     }
 
-    if (x >= 70 && y >= 70 && mTMax == false) {
-      getStatus('Темпер. превышена в масла баках', 'yellow')
+    if (x >= 70 && y >= 70 && mTMax == false && mmTMax == false) {
+      getStatus('Темпер. в масла баках > 70 ℃', 'yellow')
       mTMax = true
-      // clearTimeout(tmbs)
-      // clearTimeout(tmbu)
-      // removeTAN()
-      // runMBS = false
+      mmTMax = true
     }
 
-    if (x >= 100 && y >= 100 && mTMax == false) {
-      getStatus('Темпер. превышена в масла баках', 'red')
-      mTMax = true
+    if ((x >= 81 && y >= 81) || x >= 80) {
+      getStatus('Темпер. в масла баках > 80 ℃', 'red')
+      checkMBS()
     }
 
     elements.mbs.innerHTML = x.toFixed(1).replace(/[.]/g, ',')
-  }, 200)
+  }, 100)
 }
 
 export function startMBU() {
-  mTMax = false
   runMBU = true
+  mmTMax = false
   tmbu = setInterval(() => {
     let x = +elements.mbs.innerHTML.replace(/[,]/g, '.')
     let y = +elements.mbu.innerHTML.replace(/[,]/g, '.')
-    // y += Math.random(0.15)
-    y += 0.12
+    y += 0.1
 
-    if (x >= 15 && y >= 15 && tmMBU == false) {
+    if (y >= 50 && tmMBU == false) {
       tmMBU = true
       setTimeout(() => {
         readyAPHP()
-      }, 200)
+      }, 80)
     }
 
-    if (x >= 70 && y >= 70 && mTMax == false) {
-      getStatus('Темпер. превышена в масла баках', 'yellow')
+    if (x >= 70 && y >= 70 && mmTMax == false && mTMax == false) {
+      getStatus('Темпер. в масла баках > 70 ℃', 'yellow')
       mTMax = true
-      // clearTimeout(tmbs)
-      // clearTimeout(tmbu)
-      // removeTAN()
+      mmTMax = true
     }
 
-    if (x >= 100 && y >= 100 && mTMax == false) {
-      getStatus('Темпер. превышена в масла баках', 'yellow')
-      mTMax = true
+    if ((x >= 80 && y >= 81) || y >= 81) {
+      getStatus('Темпер. в масла баках > 80 ℃', 'red')
+      checkMBU()
     }
+
     elements.mbu.innerHTML = y.toFixed(1).replace(/[.]/g, ',')
-  }, 200)
+  }, 80)
 }
 
 export function stopMBS() {
   clearTimeout(tmbs)
   runMBS = false
+  if (+elements.mbs.innerHTML.replace(/[,]/g, '.') >= 50) {
+    mbsOK = true
+  }
 }
 
 export function stopMBU() {
   clearTimeout(tmbu)
+
   runMBU = false
+  if (+elements.mbu.innerHTML.replace(/[,]/g, '.') >= 50) {
+    mbuOK = true
+  }
 }
 
-export function stopMBSMBU() {
+function checkMBS() {
   clearTimeout(tmbs)
   clearTimeout(tmbu)
+  removeTAN()
+  runMBS = false
+  runMBU = false
+  mTMax = true
 }
 
-// export function checkHOLOPROK() {
-//   clearTimeout(tmbs)
-//   clearTimeout(tmbu)
-//   removeTAN()
-//   runMBS = false
-//   runMBU = false
-// }
+function checkMBU() {
+  clearTimeout(tmbs)
+  clearTimeout(tmbu)
+  removeTAN()
+  runMBS = false
+  runMBU = false
+  mmTMax = true
+}
 
 export function startVibTK() {
   tVibTK = setInterval(() => {
@@ -111,7 +121,7 @@ export function startVibTK() {
       clearTimeout(tVibTK)
     }
     elements.VibTK.value = x.toFixed(1)
-  }, 1200)
+  }, 1400)
 }
 
 export function stopVibTK() {
@@ -123,7 +133,7 @@ export function stopVibTK() {
       clearTimeout(tVibTK)
       elements.VibTK.value = 0
     }
-  }, 1200)
+  }, 440)
 }
 
 export function startVibCT() {
@@ -134,7 +144,7 @@ export function startVibCT() {
       clearTimeout(tVibCT)
     }
     elements.VibCT.value = x.toFixed(1)
-  }, 990)
+  }, 1400)
 }
 
 export function stopVibCT() {

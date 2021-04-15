@@ -2,12 +2,18 @@ import { elements } from '../elements/Elements'
 import { getStatus } from './Journal'
 import { getPMC, stopPMC, delPMC } from './Canals'
 import { T } from './PowerUP'
+import { readyAPHP } from './Mode'
+import { runMBS, runMBU, tmMBS } from './Display'
+
+export let PNSonPNUon = false
 
 let PNSon = false,
   PNUon = false,
   PMCok = false,
   tPlusTemp = '',
-  PNSonPNUon = false
+  tMinusOil = ''
+
+let finish = 0
 
 export function getBtn(e) {
   switch (e.target.id) {
@@ -37,8 +43,11 @@ export function getBtn(e) {
       break
     case 'PNS':
       if (!elements.vpns.classList.contains('btn__style-green')) {
-        if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 15) {
+        if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 30) {
           return getStatus('Низкая темпер. в масла баках', 'yellow')
+        }
+        if (runMBS == true) {
+          return getStatus('Не выкл. тэны', 'yellow')
         }
         elements.vpns.classList.add('btn__style-green')
         getStatus('ПНС включено')
@@ -47,8 +56,11 @@ export function getBtn(e) {
       break
     case 'PNU':
       if (!elements.vpnu.classList.contains('btn__style-green')) {
-        if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 15) {
+        if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 30) {
           return getStatus('Низкая темпер. в масла баках', 'yellow')
+        }
+        if (runMBU == true) {
+          return getStatus('Не выкл. тэны', 'yellow')
         }
         elements.vpnu.classList.add('btn__style-green')
         getStatus('ПНУ включено')
@@ -59,47 +71,17 @@ export function getBtn(e) {
 
   if (PNSon == true && PMCok == false) {
     PMCok = true
-
     stopPMC()
     getPMC()
   }
 
   if (PNSon == true && PNUon == true && PNSonPNUon == false) {
-    if (0 <= T && T <= 10) plusTemp(0.1, 2)
-    else if (T > 10) plusTemp(0.1, 1)
-    else if (-10 <= T && T <= 0) plusTemp(0.2, 4)
-    else if (-10 > T) plusTemp(0.2, 6)
     PNSonPNUon = true
+    plusTemp()
+    minusOil()
   }
 }
 
-function plusTemp(i, w) {
-  if (T > +elements.mbs.innerHTML.replace(/[,]/g, '.')) {
-    clearInterval(tPlusTemp)
-  }
-  let count = i
-  tPlusTemp = setInterval(() => {
-    elements.UP.innerHTML = (+elements.UP.innerHTML.replace(/[,]/g, '.') + i).toFixed(1).replace(/[.]/g, ',')
-    elements.OP1.innerHTML = (+elements.OP1.innerHTML.replace(/[,]/g, '.') + i).toFixed(1).replace(/[.]/g, ',')
-    elements.OP2.innerHTML = (+elements.OP2.innerHTML.replace(/[,]/g, '.') + i).toFixed(1).replace(/[.]/g, ',')
-    elements.VHOD.innerHTML = (+elements.VHOD.innerHTML.replace(/[,]/g, '.') + i).toFixed(1).replace(/[.]/g, ',')
-    elements.VIHOD.innerHTML = (+elements.VIHOD.innerHTML.replace(/[,]/g, '.') + i).toFixed(1).replace(/[.]/g, ',')
-    elements.HLSM.innerHTML = (+elements.HLSM.innerHTML.replace(/[,]/g, '.') + i).toFixed(1).replace(/[.]/g, ',')
-    elements.HLOP.innerHTML = (+elements.HLOP.innerHTML.replace(/[,]/g, '.') + i).toFixed(1).replace(/[.]/g, ',')
-
-    elements.Vib1T.value = (+elements.Vib1T.value + i).toFixed(1)
-    elements.Vib2T.value = (+elements.Vib2T.value + i).toFixed(1)
-    elements.Vib3T.value = (+elements.Vib3T.value + i).toFixed(1)
-    elements.Vib4T.value = (+elements.Vib4T.value + i).toFixed(1)
-    elements.Vib5T.value = (+elements.Vib5T.value + i).toFixed(1)
-    elements.Vib6T.value = (+elements.Vib6T.value + i).toFixed(1)
-    elements.VibSred.value = (+elements.VibSred.value + i).toFixed(1)
-    count += i
-    if (count >= w) {
-      clearInterval(tPlusTemp)
-    }
-  }, 9000)
-}
 export function delBtn(e) {
   switch (e.target.id) {
     case 'VM01':
@@ -128,12 +110,18 @@ export function delBtn(e) {
       break
     case 'PNS':
       if (elements.vpns.classList.contains('btn__style-green') && PMCok == true) {
+        if (PNSonPNUon == true) {
+          return getStatus('Ошибка', 'yellow')
+        }
         elements.vpns.classList.remove('btn__style-green')
         getStatus('ПНС отключено')
         PNSon = false
       }
       break
     case 'PNU':
+      if (PNSonPNUon == true) {
+        return getStatus('Ошибка', 'yellow')
+      }
       if (elements.vpnu.classList.contains('btn__style-green')) {
         elements.vpnu.classList.remove('btn__style-green')
         getStatus('ПНУ отключено')
@@ -148,4 +136,62 @@ export function delBtn(e) {
     stopPMC()
     delPMC()
   }
+}
+
+function plusTemp() {
+  let start = +elements.UP.innerHTML.replace(/[,]/g, '.')
+  let count = 0
+  let interval = 0
+  let match = false
+
+  if (T >= 18) {
+    count = 22
+    interval = 3000 / (count - start) // 6000
+    finish = (count - start) * interval
+  } else if (T > 10) {
+    count = 20
+    interval = 4000 / (count - start) // 12000
+    finish = (count - start) * interval
+  } else if (T > 0) {
+    count = 15
+    interval = 6000 / (count - start) // 18000
+    finish = (count - start) * interval
+  } else if (T <= 0) {
+    count = 10
+    interval = 8000 / (count - start) // 24000
+    finish = (count - start) * interval
+  }
+
+  tPlusTemp = setInterval(() => {
+    elements.UP.innerHTML = (+elements.UP.innerHTML.replace(/[,]/g, '.') + 0.11).toFixed(1).replace(/[.]/g, ',')
+    elements.OP1.innerHTML = (+elements.OP1.innerHTML.replace(/[,]/g, '.') + 0.11).toFixed(1).replace(/[.]/g, ',')
+    elements.OP2.innerHTML = (+elements.OP2.innerHTML.replace(/[,]/g, '.') + 0.11).toFixed(1).replace(/[.]/g, ',')
+
+    if (+elements.UP.innerHTML.replace(/[,]/g, '.') >= count) {
+      clearInterval(tPlusTemp)
+    }
+
+    if (+elements.UP.innerHTML.replace(/[,]/g, '.') >= 9 && match == false) {
+      readyAPHP()
+      match == false
+    }
+  }, interval)
+}
+
+function minusOil() {
+  let tMBS = +elements.mbs.innerHTML.replace(/[,]/g, '.')
+  if(T > 14 ) tMBS = tMBS/
+
+
+  let interval = finish / tMBS
+
+  
+  tMinusOil = setInterval(() => {
+    elements.mbs.innerHTML = (+elements.mbs.innerHTML.replace(/[,]/g, '.') - 0.11).toFixed(1).replace(/[.]/g, ',')
+    elements.mbu.innerHTML = (+elements.mbu.innerHTML.replace(/[,]/g, '.') - 0.11).toFixed(1).replace(/[.]/g, ',')
+
+    if (tMBS >= +elements.mbs.innerHTML.replace(/[,]/g, '.')) {
+      clearInterval(tMinusOil)
+    }
+  }, interval)
 }
