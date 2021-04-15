@@ -43,12 +43,12 @@ export function getBtn(e) {
       break
     case 'PNS':
       if (!elements.vpns.classList.contains('btn__style-green')) {
-        if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 30) {
-          return getStatus('Низкая темпер. в масла баках', 'yellow')
-        }
-        if (runMBS == true) {
-          return getStatus('Не выкл. тэны', 'yellow')
-        }
+        // if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 15) {
+        //   return getStatus('Низкая темпер. в масла баках', 'yellow')
+        // }
+        // if (runMBS == true) {
+        //   return getStatus('Не выкл. тэны', 'yellow')
+        // }
         elements.vpns.classList.add('btn__style-green')
         getStatus('ПНС включено')
         PNSon = true
@@ -56,12 +56,12 @@ export function getBtn(e) {
       break
     case 'PNU':
       if (!elements.vpnu.classList.contains('btn__style-green')) {
-        if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 30) {
-          return getStatus('Низкая темпер. в масла баках', 'yellow')
-        }
-        if (runMBU == true) {
-          return getStatus('Не выкл. тэны', 'yellow')
-        }
+        // if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 15) {
+        //   return getStatus('Низкая темпер. в масла баках', 'yellow')
+        // }
+        // if (runMBU == true) {
+        //   return getStatus('Не выкл. тэны', 'yellow')
+        // }
         elements.vpnu.classList.add('btn__style-green')
         getStatus('ПНУ включено')
         PNUon = true
@@ -140,26 +140,35 @@ export function delBtn(e) {
 
 function plusTemp() {
   let start = +elements.UP.innerHTML.replace(/[,]/g, '.')
+  let oil = +elements.mbs.innerHTML.replace(/[,]/g, '.')
   let count = 0
   let interval = 0
   let match = false
 
-  if (T >= 18) {
-    count = 22
-    interval = 3000 / (count - start) // 6000
+  if (T <= -10) {
+    count = 8
+    interval = 7000 / (count - start)
     finish = (count - start) * interval
-  } else if (T > 10) {
-    count = 20
-    interval = 4000 / (count - start) // 12000
+  } else if (T <= -1) {
+    count = 9
+    interval = 6000 / (count - start)
     finish = (count - start) * interval
-  } else if (T > 0) {
-    count = 15
-    interval = 6000 / (count - start) // 18000
-    finish = (count - start) * interval
-  } else if (T <= 0) {
+  } else if (T <= 10) {
     count = 10
-    interval = 8000 / (count - start) // 24000
+    interval = 4500 / (count - start)
     finish = (count - start) * interval
+  } else if (T <= 25) {
+    if (oil <= 40 && oil >= 23.9) {
+      count = +elements.UP.innerHTML.replace(/[,]/g, '.') + 1.1
+      interval = 4200 / (count - start)
+      finish = (count - start) * interval
+    } else if (oil >= 41) {
+      count = +elements.UP.innerHTML.replace(/[,]/g, '.') + 3.1
+      interval = 4200 / (count - start)
+      finish = (count - start) * interval
+    } else {
+      return
+    }
   }
 
   tPlusTemp = setInterval(() => {
@@ -170,27 +179,41 @@ function plusTemp() {
     if (+elements.UP.innerHTML.replace(/[,]/g, '.') >= count) {
       clearInterval(tPlusTemp)
     }
-
-    if (+elements.UP.innerHTML.replace(/[,]/g, '.') >= 9 && match == false) {
-      readyAPHP()
-      match == false
-    }
   }, interval)
 }
 
 function minusOil() {
   let tMBS = +elements.mbs.innerHTML.replace(/[,]/g, '.')
-  if(T > 14 ) tMBS = tMBS/
+  let count = 0
 
+  if (T <= -10) {
+    count = 17
+    tMBS = tMBS - count
+  } else if (T <= -1) {
+    count = 19
+    tMBS = tMBS - count
+  } else if (T <= 10) {
+    count = 20
+    tMBS = tMBS - count
+  } else if (T <= 25) {
+    if (tMBS <= 40 && tMBS >= 23.9) {
+      count = +elements.UP.innerHTML.replace(/[,]/g, '.') + 3.2
+      tMBS = tMBS - count
+    } else if (tMBS >= 41) {
+      count = +elements.UP.innerHTML.replace(/[,]/g, '.') + 5.2
+      tMBS = tMBS - count
+    } else {
+      return
+    }
+  }
 
   let interval = finish / tMBS
 
-  
   tMinusOil = setInterval(() => {
     elements.mbs.innerHTML = (+elements.mbs.innerHTML.replace(/[,]/g, '.') - 0.11).toFixed(1).replace(/[.]/g, ',')
     elements.mbu.innerHTML = (+elements.mbu.innerHTML.replace(/[,]/g, '.') - 0.11).toFixed(1).replace(/[.]/g, ',')
 
-    if (tMBS >= +elements.mbs.innerHTML.replace(/[,]/g, '.')) {
+    if (count >= +elements.mbs.innerHTML.replace(/[,]/g, '.')) {
       clearInterval(tMinusOil)
     }
   }, interval)

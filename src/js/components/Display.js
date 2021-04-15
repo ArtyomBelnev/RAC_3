@@ -45,7 +45,7 @@ export function startMBS() {
     }
 
     elements.mbs.innerHTML = x.toFixed(1).replace(/[.]/g, ',')
-  }, 100)
+  }, 60)
 }
 
 export function startMBU() {
@@ -75,7 +75,7 @@ export function startMBU() {
     }
 
     elements.mbu.innerHTML = y.toFixed(1).replace(/[.]/g, ',')
-  }, 80)
+  }, 60)
 }
 
 export function stopMBS() {

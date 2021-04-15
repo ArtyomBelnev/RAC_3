@@ -192,7 +192,8 @@ export function removeTAN() {
 
 function getRandomTemp() {
   let rand = -20 + Math.random() * (25 + 1 - -20)
-  T = Math.floor(rand)
+  // T = Math.floor(rand)
+  T = 25
 
   elements.disRandomTemp.innerHTML = T
   elements.info.style.display = 'block'
