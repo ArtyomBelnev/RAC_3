@@ -141,23 +141,20 @@ export function getTumblers(e) {
       setTimeout(() => (elements.tumImg7.style.transform = 'rotate(0deg)'), 400)
       break
     case 'enter':
-      let x = +elements.UP.innerHTML.replace(/[,]/g, '.')
       let w = +elements.PMC.innerHTML.replace(/[,]/g, '.')
 
-      if (gAPHP == true && w >= 0.1 && x >= 9 && PNSonPNUon == true && ModeHP == true && holProk == false) {
+      if (gAPHP == true && w >= 0.1 && PNSonPNUon == true && ModeHP == true && holProk == false) {
         getStatus('Нажата испол. команда')
         holProk = true
-
         elements.mem.addEventListener('click', clikedHOL)
-      }
-
-      if (gAPHP == true && w > 0.1 && loadDIST == true && ModeHP == false && hotProk == false) {
+      } else if (gAPHP == true && w > 0.1 && loadDIST == true && ModeHP == false && hotProk == false) {
         getStatus('Нажата испол. команда')
         hotProk = true
-
         elements.mem.addEventListener('click', clikedHOT)
+      } else {
+        getStatus('Ошибка', 'yellow')
+        break
       }
-      break
   }
   if (START == true && PowerOk == true) {
     getBtn(e)

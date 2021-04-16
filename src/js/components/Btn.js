@@ -3,7 +3,7 @@ import { getStatus } from './Journal'
 import { getPMC, stopPMC, delPMC } from './Canals'
 import { T } from './PowerUP'
 import { readyAPHP } from './Mode'
-import { runMBS, runMBU, tmMBS } from './Display'
+import { runOIL } from './Display'
 
 export let PNSonPNUon = false
 
@@ -43,12 +43,9 @@ export function getBtn(e) {
       break
     case 'PNS':
       if (!elements.vpns.classList.contains('btn__style-green')) {
-        // if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 15) {
-        //   return getStatus('Низкая темпер. в масла баках', 'yellow')
-        // }
-        // if (runMBS == true) {
-        //   return getStatus('Не выкл. тэны', 'yellow')
-        // }
+        if (runOIL == true) {
+          return getStatus('Не выкл. тэны', 'yellow')
+        }
         elements.vpns.classList.add('btn__style-green')
         getStatus('ПНС включено')
         PNSon = true
@@ -56,12 +53,9 @@ export function getBtn(e) {
       break
     case 'PNU':
       if (!elements.vpnu.classList.contains('btn__style-green')) {
-        // if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 15) {
-        //   return getStatus('Низкая темпер. в масла баках', 'yellow')
-        // }
-        // if (runMBU == true) {
-        //   return getStatus('Не выкл. тэны', 'yellow')
-        // }
+        if (runOIL == true) {
+          return getStatus('Не выкл. тэны', 'yellow')
+        }
         elements.vpnu.classList.add('btn__style-green')
         getStatus('ПНУ включено')
         PNUon = true

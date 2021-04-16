@@ -1,7 +1,7 @@
 import { elements } from '../elements/Elements'
 import { getStatus } from './Journal'
 import { readyAPHP } from './Mode'
-import { removeTAN } from './PowerUP'
+import { removeTAN, T } from './PowerUP'
 
 let tmbs = '',
   tmbu = '',
@@ -9,108 +9,51 @@ let tmbs = '',
   tVibCT = ''
 
 export let mTMax = false
-export let mmTMax = false
 
-export let tmMBS = false
-export let tmMBU = false
-export let mbsOK = false
-export let mbuOK = false
-export let runMBS = false
-export let runMBU = false
+export let tMBSMBU = false
+export let runOIL = false
 
-export function startMBS() {
-  runMBS = true
+export function startMBSMBU() {
   mTMax = false
-  tmbs = setInterval(() => {
-    let x = +elements.mbs.innerHTML.replace(/[,]/g, '.')
-    let y = +elements.mbu.innerHTML.replace(/[,]/g, '.')
-    x += 0.1
+  runOIL = true
+  let x = +elements.mbs.innerHTML.replace(/[,]/g, '.')
+  let y = +elements.mbu.innerHTML.replace(/[,]/g, '.')
 
-    if (x >= 50 && tmMBS == false) {
-      tmMBS = true
+  tmbs = setInterval(() => {
+    x += 0.1
+    y += 0.1
+
+    if (x >= 15 && tMBSMBU == false) {
+      tMBSMBU = true
       setTimeout(() => {
         readyAPHP()
       }, 200)
     }
 
-    if (x >= 70 && y >= 70 && mTMax == false && mmTMax == false) {
-      getStatus('Темпер. в масла баках > 70 ℃', 'yellow')
+    if (x >= 60 && mTMax == false) {
+      getStatus('Темпер. в масла баках > 60 ℃', 'yellow')
       mTMax = true
-      mmTMax = true
     }
 
-    if ((x >= 81 && y >= 81) || x >= 80) {
+    if (x >= 81) {
       getStatus('Темпер. в масла баках > 80 ℃', 'red')
-      checkMBS()
+      clearTimeout(tmbs)
+      removeTAN()
+      runOIL = false
     }
 
     elements.mbs.innerHTML = x.toFixed(1).replace(/[.]/g, ',')
-  }, 60)
-}
-
-export function startMBU() {
-  runMBU = true
-  mmTMax = false
-  tmbu = setInterval(() => {
-    let x = +elements.mbs.innerHTML.replace(/[,]/g, '.')
-    let y = +elements.mbu.innerHTML.replace(/[,]/g, '.')
-    y += 0.1
-
-    if (y >= 50 && tmMBU == false) {
-      tmMBU = true
-      setTimeout(() => {
-        readyAPHP()
-      }, 80)
-    }
-
-    if (x >= 70 && y >= 70 && mmTMax == false && mTMax == false) {
-      getStatus('Темпер. в масла баках > 70 ℃', 'yellow')
-      mTMax = true
-      mmTMax = true
-    }
-
-    if ((x >= 80 && y >= 81) || y >= 81) {
-      getStatus('Темпер. в масла баках > 80 ℃', 'red')
-      checkMBU()
-    }
-
     elements.mbu.innerHTML = y.toFixed(1).replace(/[.]/g, ',')
-  }, 60)
+  }, 50)
 }
 
-export function stopMBS() {
+export function stopMBSMBU() {
   clearTimeout(tmbs)
-  runMBS = false
-  if (+elements.mbs.innerHTML.replace(/[,]/g, '.') >= 50) {
-    mbsOK = true
-  }
-}
-
-export function stopMBU() {
-  clearTimeout(tmbu)
-
-  runMBU = false
-  if (+elements.mbu.innerHTML.replace(/[,]/g, '.') >= 50) {
-    mbuOK = true
-  }
-}
-
-function checkMBS() {
-  clearTimeout(tmbs)
-  clearTimeout(tmbu)
-  removeTAN()
-  runMBS = false
-  runMBU = false
-  mTMax = true
-}
-
-function checkMBU() {
-  clearTimeout(tmbs)
-  clearTimeout(tmbu)
-  removeTAN()
-  runMBS = false
-  runMBU = false
-  mmTMax = true
+  runOIL = false
+  // runMBS = false
+  // if (+elements.mbs.innerHTML.replace(/[,]/g, '.') >= 50) {
+  //   mbsOK = true
+  // }
 }
 
 export function startVibTK() {
@@ -157,4 +100,35 @@ export function stopVibCT() {
       elements.VibCT.value = 0
     }
   }, 440)
+}
+
+export function VVHH() {
+  let count = +elements.UP.innerHTML.replace(/[,]/g, '.')
+  let count2 = +elements.VHOD.innerHTML.replace(/[,]/g, '.') + 0.3
+  let interval = 0
+
+  if (T <= -10) {
+    count = 4
+    interval = 11000 / count
+  } else if (T <= -1) {
+    count = 4.5
+    interval = 11000 / (count - count2)
+  } else if (T <= 6) {
+    count = 5
+    interval = 11000 / (count - count2)
+  } else if (T > 6) {
+    count = count2 + 0.3
+    interval = 11000 / (count - count2)
+  }
+
+  let t = setInterval(() => {
+    elements.VHOD.innerHTML = (+elements.VHOD.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
+    elements.VIHOD.innerHTML = (+elements.VIHOD.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
+    elements.HLSM.innerHTML = (+elements.HLSM.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
+    elements.HLOP.innerHTML = (+elements.HLOP.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
+
+    if (count <= +elements.VHOD.innerHTML.replace(/[,]/g, '.')) {
+      clearInterval(t)
+    }
+  }, interval)
 }

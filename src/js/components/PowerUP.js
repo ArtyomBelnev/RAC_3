@@ -1,11 +1,14 @@
 import { elements } from '../elements/Elements'
 import { getStatus } from './Journal'
-import { startMBS, startMBU, stopMBS, stopMBU, mbsOK, mbuOK, mTMax, mmTMax } from './Display'
+import { startMBSMBU, stopMBSMBU, mbsOK, mTMax } from './Display'
 import { getON, getOFF } from './PowerST'
 import { getCranes } from './Memo'
 
 export let PowerOk = false
 export let T = ''
+export let minT = 0
+
+let oilOK = false
 
 let power_1On = false,
   power_1Off = true,
@@ -32,9 +35,12 @@ let cliked = getCranes.bind(getCranes)
 export function getPowers(e) {
   switch (e.target.id) {
     case 'switch_1':
-      if (mbsOK == true || mTMax == true) {
-        elements.switch1.checked = false
-        return getStatus('Ошибка', 'yellow')
+      if (oilOK == true) {
+        return (elements.switch1.checked = false)
+      }
+      if (minT >= +elements.mbs.innerHTML.replace(/[,]/g, '.') && power_1On == true) {
+        elements.switch1.checked = true
+        return getStatus(`Темпер. в масла баках < ${minT}`, 'yellow')
       }
       if (elements.switch1.checked == true) {
         power_1On = true
@@ -46,9 +52,12 @@ export function getPowers(e) {
       break
 
     case 'switch_2':
-      if (mbuOK == true || mmTMax == true) {
-        elements.switch2.checked = false
-        return getStatus('Ошибка', 'yellow')
+      if (oilOK == true) {
+        return (elements.switch2.checked = false)
+      }
+      if (minT >= +elements.mbs.innerHTML.replace(/[,]/g, '.') && power_2On == true) {
+        elements.switch2.checked = true
+        return getStatus(`Темпер. в масла баках < ${minT}`, 'yellow')
       }
       if (elements.switch2.checked == true) {
         power_2On = true
@@ -140,37 +149,41 @@ function isPowers() {
 
   if (power_1On == true && power_2On == true && TanOK == false && PowerOk == true) {
     getStatus(`Тэны включены`)
+    startMBSMBU()
     TanOK = true
   }
 
   if (power_1Off == true && power_2Off == true && TanOK == true && PowerOk == true) {
     getStatus(`Тэны отключены`)
+    stopMBSMBU()
     TanOK = false
+
+    if (minT < +elements.mbs.innerHTML.replace(/[,]/g, '.')) oilOK = true
   }
 
-  if (power_1On == true && power_1o2o == false && PowerOk == true) {
-    power_1o2o = true
-    if (mbsOK == false) {
-      startMBS()
-    }
-  }
+  // if (power_1On == true && power_1o2o == false && PowerOk == true) {
+  //   power_1o2o = true
+  //   if (mbsOK == false) {
+  //     startMBS()
+  //   }
+  // }
 
-  if (power_2On == true && power_2o1o == false && PowerOk == true) {
-    power_2o1o = true
-    if (mbuOK == false) {
-      startMBU()
-    }
-  }
+  // if (power_2On == true && power_2o1o == false && PowerOk == true) {
+  //   power_2o1o = true
+  //   if (mbuOK == false) {
+  //     startMBU()
+  //   }
+  // }
 
-  if (power_1Off == true && power_1o2o == true && PowerOk == true) {
-    power_1o2o = false
-    stopMBS()
-  }
+  // if (power_1Off == true && power_1o2o == true && PowerOk == true) {
+  //   power_1o2o = false
+  //   // stopMBS()
+  // }
 
-  if (power_2Off == true && power_2o1o == true && PowerOk == true) {
-    power_2o1o = false
-    stopMBU()
-  }
+  // if (power_2Off == true && power_2o1o == true && PowerOk == true) {
+  //   power_2o1o = false
+  //   // stopMBU()
+  // }
 }
 
 export function removeCliked() {
@@ -192,8 +205,9 @@ export function removeTAN() {
 
 function getRandomTemp() {
   let rand = -20 + Math.random() * (25 + 1 - -20)
-  // T = Math.floor(rand)
-  T = 25
+  T = Math.floor(rand)
+  T = 5
+  minT = T <= 0 ? (minT = 50) : T > 0 && T < 15 ? (minT = 40) : (minT = 30)
 
   elements.disRandomTemp.innerHTML = T
   elements.info.style.display = 'block'
@@ -212,8 +226,8 @@ function getTemp() {
     elements.VIHOD.innerHTML = (T - (i + 0.2)).toFixed(1).replace(/[.]/g, ',')
     elements.mbs.innerHTML = (T / 2).toFixed(0)
     elements.mbu.innerHTML = (T / 2).toFixed(0)
-    elements.HLSM.innerHTML = (T - (i + 0.4)).toFixed(1).replace(/[.]/g, ',')
-    elements.HLOP.innerHTML = (T - i + 0.2).toFixed(1).replace(/[.]/g, ',')
+    elements.HLSM.innerHTML = (T - (i + 0.3)).toFixed(1).replace(/[.]/g, ',')
+    elements.HLOP.innerHTML = (T - (i + 0.2)).toFixed(1).replace(/[.]/g, ',')
 
     elements.Vib1T.value = (T - (i + 0.3)).toFixed(1)
     elements.Vib2T.value = T - 1
@@ -230,8 +244,8 @@ function getTemp() {
     elements.VIHOD.innerHTML = (T + (i + 0.2)).toFixed(1).replace(/[.]/g, ',')
     elements.mbs.innerHTML = (T / 2).toFixed(0)
     elements.mbu.innerHTML = (T / 2).toFixed(0)
-    elements.HLSM.innerHTML = (T + (i + 0.4)).toFixed(1).replace(/[.]/g, ',')
-    elements.HLOP.innerHTML = (T + i + 0.2).toFixed(1).replace(/[.]/g, ',')
+    elements.HLSM.innerHTML = (T + (i + 0.3)).toFixed(1).replace(/[.]/g, ',')
+    elements.HLOP.innerHTML = (T + (i + 0.2)).toFixed(1).replace(/[.]/g, ',')
 
     elements.Vib1T.value = (T + (i + 0.3)).toFixed(1)
     elements.Vib2T.value = T + 1

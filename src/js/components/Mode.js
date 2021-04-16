@@ -4,13 +4,12 @@ import { PowerOk } from './PowerUP'
 import { KranOK } from './Memo'
 import { SignalOk } from './Diots'
 import { ModeHP } from './Tumblers'
-import { tmMBS, tmMBU } from './Display'
+import { tMBSMBU } from './Display'
 
 export let gAPHP = false
 
 export function readyAPHP() {
-  let x = +elements.UP.innerHTML.replace(/[,]/g, '.')
-  if (x >= 9 && tmMBS == true && tmMBU == true && PowerOk == true && SignalOk == true && KranOK == true && ModeHP == true && gAPHP == false) {
+  if (tMBSMBU == true && PowerOk == true && SignalOk == true && KranOK == true && ModeHP == true && gAPHP == false) {
     elements.apXp.style.background = 'yellow'
     gAPHP = true
   }
