@@ -68,7 +68,7 @@ export const elements = {
   holPro: document.getElementById('HOL-PRO'),
   run: document.getElementById('RUN'),
   pullContur: document.getElementById('PULLCONTUR'),
-  razV: document.getElementById('RAZVS'),
+  razVS: document.getElementById('RAZVS'),
   znXX: document.getElementById('ZNXX'),
   prog: document.getElementById('PROG'),
   TCwrapR: document.querySelector('.TC__wrap-r'),

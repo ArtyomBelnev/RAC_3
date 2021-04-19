@@ -24,3 +24,20 @@ export function readyAPHPholoPROK() {
   elements.holPro.style.background = null
   elements.apXp.style.background = 'yellow'
 }
+
+export function readyRUN() {
+  elements.apXp.style.background = null
+  elements.run.style.background = 'yellow'
+  elements.pullContur.style.background = 'yellow'
+}
+
+export function readyRAZBC() {
+  elements.razVS.style.background = 'yellow'
+  elements.run.style.background = null
+  elements.pullContur.style.background = null
+}
+
+export function readyZAJXX() {
+  elements.razVS.style.background = null
+  elements.znXX.style.background = 'yellow'
+}

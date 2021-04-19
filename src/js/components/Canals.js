@@ -8,7 +8,9 @@ let intPms = '',
   vPmBC = '',
   vPmTK = '',
   vPmCT = '',
-  vPg13 = ''
+  vPg13 = '',
+  vPgN = '',
+  vPgpN = ''
 
 export function getPMC() {
   intPms = setInterval(() => {
@@ -76,7 +78,7 @@ export function getPmBC(i) {
     if (x >= i) {
       clearInterval(vPmBC)
       if (Number.isInteger) {
-        elements.PgDG.innerHTML = i
+        elements.PmBC.innerHTML = i
       }
     }
   }, 200)
@@ -102,7 +104,7 @@ export function getPmTK(i) {
     if (x >= i) {
       clearInterval(vPmTK)
       if (Number.isInteger) {
-        elements.PgDG.innerHTML = i
+        elements.PmTK.innerHTML = i
       }
     }
   }, 900)
@@ -128,7 +130,7 @@ export function getPmCT(i) {
     if (x >= i) {
       clearInterval(vPmCT)
       if (Number.isInteger) {
-        elements.PgDG.innerHTML = i
+        elements.PmCT.innerHTML = i
       }
     }
   }, 1400)
@@ -154,7 +156,7 @@ export function getPg13(i) {
     if (x >= i) {
       clearInterval(vPg13)
       if (Number.isInteger) {
-        elements.PgDG.innerHTML = i
+        elements.Pg13.innerHTML = i
       }
     }
   }, 300)
@@ -170,4 +172,30 @@ export function delPg13() {
       elements.Pg13.innerHTML = 0
     }
   }, 300)
+}
+
+export function getPgN(i) {
+  return new Promise((resolve, reject) => {
+    vPgN = setInterval(() => {
+      let x = +elements.PgN.innerHTML
+      elements.PgN.innerHTML = (x + 0.2).toFixed(1)
+      if (+elements.PgN.innerHTML == i) {
+        clearInterval(vPgN)
+        resolve()
+      }
+      if (+elements.PgN.innerHTML == 3) {
+        elements.B5.classList.add('color-green')
+      }
+    }, 350)
+  })
+}
+
+export function getPgpN(i) {
+  vPgpN = setInterval(() => {
+    let x = +elements.PgpN.innerHTML
+    elements.PgpN.innerHTML = (x + 0.1).toFixed(1)
+    if (+elements.PgpN.innerHTML >= i) {
+      clearInterval(vPgpN)
+    }
+  }, 350)
 }

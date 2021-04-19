@@ -17,6 +17,7 @@ export let hotProk = false
 
 let START = false
 let STOP = false
+let HOLO = false
 
 let clikedHOL = getHOLPRO.bind(getHOLPRO)
 let clikedHOT = getHOTPRO.bind(getHOTPRO)
@@ -147,7 +148,8 @@ export function getTumblers(e) {
         getStatus('Нажата испол. команда')
         holProk = true
         elements.mem.addEventListener('click', clikedHOL)
-      } else if (gAPHP == true && w > 0.1 && loadDIST == true && ModeHP == false && hotProk == false) {
+      } else if (loadDIST == true && ModeAU == true && hotProk == false) {
+        // HOLO == true  gAPHP == true
         getStatus('Нажата испол. команда')
         hotProk = true
         elements.mem.addEventListener('click', clikedHOT)
@@ -166,5 +168,29 @@ export function getTumblers(e) {
 
 export function delGotholProk() {
   holProk = false
+  HOLO = true
   elements.mem.removeEventListener('click', clikedHOL)
+}
+
+export function checkTumb() {
+  if (elements.tumImg1.style.transform === 'rotate(-45deg)') {
+    START = true
+    STOP = false
+  }
+
+  if (elements.tumImg3.style.transform === 'rotate(45deg)') {
+    diotsON()
+  }
+
+  if (elements.tumImg5.style.transform === 'rotate(0deg)') {
+    loadDIST = true
+  }
+
+  if (elements.tumImg6.style.transform === 'rotate(-45deg)') {
+    ModeHP = true
+  }
+
+  if (elements.tumImg6.style.transform === 'rotate(0deg)') {
+    ModeAU = true
+  }
 }

@@ -3,6 +3,7 @@ import { getStatus } from './Journal'
 import { startMBSMBU, stopMBSMBU, mbsOK, mTMax } from './Display'
 import { getON, getOFF } from './PowerST'
 import { getCranes } from './Memo'
+import { checkTumb } from './Tumblers'
 
 export let PowerOk = false
 export let T = ''
@@ -138,6 +139,7 @@ function isPowers() {
     elements.mem.addEventListener('click', cliked)
     getON()
     getRandomTemp()
+    checkTumb()
   }
 
   if ((power_3On == false || power_4On == false || power_5On == false || power_6On == false || power_7On == false || power_8On == false) && PowerOk == true) {
