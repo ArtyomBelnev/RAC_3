@@ -212,3 +212,7 @@ function minusOil() {
     }
   }, interval)
 }
+
+export function blockPNSPNU() {
+  PNSonPNUon = false
+}

@@ -74,6 +74,7 @@ export const elements = {
   TCwrapR: document.querySelector('.TC__wrap-r'),
   ZwrapR: document.querySelector('.Z__wrap-r'),
   powers: document.querySelector('.powers'),
+  disT2: document.querySelector('.display-t2'),
   disT3: document.querySelector('.display-t3'),
   disT4: document.querySelector('.display-t4'),
   disOFF1: document.querySelector('.display-off1'),

@@ -139,65 +139,66 @@ export function VVHH() {
   }, interval)
 }
 
-export function getVib1T(i) {
+export function getVib1T(i, y) {
   vVib1T = setInterval(() => {
     let x = +elements.Vib1T.value
-    elements.Vib1T.value = (x + Math.random(0.5 - 2)).toFixed(1)
+    elements.Vib1T.value = (x + 0.5).toFixed(1)
     if (+elements.Vib1T.value >= i) {
       clearInterval(vVib1T)
     }
-  }, 50)
+  }, y)
 }
 
-export function getVib2T(i) {
+export function getVib2T(i, y) {
   vVib2T = setInterval(() => {
     let x = +elements.Vib2T.value
-    elements.Vib2T.value = (x + Math.random(0.5 - 2)).toFixed(1)
+    elements.Vib2T.value = (x + 0.5).toFixed(1)
     if (+elements.Vib2T.value >= i) {
       clearInterval(vVib2T)
     }
-  }, 50)
+  }, y)
 }
 
-export function getVib3T(i) {
+export function getVib3T(i, y) {
   vVib3T = setInterval(() => {
     let x = +elements.Vib3T.value
-    elements.Vib3T.value = (x + Math.random(0.5 - 2)).toFixed(1)
+    elements.Vib3T.value = (x + 0.5).toFixed(1)
     if (+elements.Vib3T.value >= i) {
       clearInterval(vVib3T)
     }
-  }, 50)
+  }, y)
 }
 
-export function getVib4T(i) {
+export function getVib4T(i, y) {
   vVib4T = setInterval(() => {
     let x = +elements.Vib4T.value
 
-    elements.Vib4T.value = (x + Math.random(0.5 - 2)).toFixed(1)
+    elements.Vib4T.value = (x + 0.5).toFixed(1)
     if (+elements.Vib4T.value >= i) {
       clearInterval(vVib4T)
     }
-  }, 50)
+  }, y)
 }
 
-export function getVib5T(i) {
+export function getVib5T(i, y) {
   vVib5T = setInterval(() => {
     let x = +elements.Vib4T.value
-    elements.Vib5T.value = (x + Math.random(0.5 - 2)).toFixed(1)
+    elements.Vib5T.value = (x + 0.6).toFixed(1)
     if (+elements.Vib5T.value >= i) {
       clearInterval(vVib5T)
     }
-  }, 50)
+  }, y)
 }
 
-export function getVib6T(i) {
+export function getVib6T(i, y) {
   vVib6T = setInterval(() => {
     let x = +elements.Vib4T.value
-    elements.Vib6T.value = (x + Math.random(0.5 - 2)).toFixed(1)
+    elements.Vib6T.value = (x + 0.5).toFixed(1)
     if (+elements.Vib6T.value >= i) {
       clearInterval(vVib6T)
     }
-  }, 50)
+    getVibSred()
+  }, y)
 }
 
 export function getVibSred() {

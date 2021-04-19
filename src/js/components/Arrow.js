@@ -23,9 +23,9 @@ export function arrowUP() {
     elements.ZwrapR.classList.remove('color-red')
   }
 
-  if (arrowTK == 138) {
-    elements.TCwrapR.classList.remove('color-red')
-  }
+  // // if (arrowTK == 138) {
+  // //   elements.TCwrapR.classList.remove('color-red')
+  // // }
 
   if (arrowTK == 228) {
     elements.ZwrapR.classList.add('color-red')

@@ -237,7 +237,7 @@ function getTemp() {
     elements.Vib4T.value = T - 1
     elements.Vib5T.value = T - 1
     elements.Vib6T.value = T - 1
-    elements.VibSred.value = (T - (i + 0.1)).toFixed(1)
+    elements.VibSred.value = (T - 1).toFixed(1)
   } else {
     elements.UP.innerHTML = (T + (+i + 0.1)).toFixed(1).replace(/[.]/g, ',')
     elements.OP1.innerHTML = T + i
@@ -255,6 +255,6 @@ function getTemp() {
     elements.Vib4T.value = T + 1
     elements.Vib5T.value = T + 1
     elements.Vib6T.value = T + 1
-    elements.VibSred.value = (T - (i + 0.1)).toFixed(1)
+    elements.VibSred.value = (T + 1).toFixed(1)
   }
 }

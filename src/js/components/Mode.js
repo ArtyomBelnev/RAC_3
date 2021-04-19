@@ -41,3 +41,7 @@ export function readyZAJXX() {
   elements.razVS.style.background = null
   elements.znXX.style.background = 'yellow'
 }
+export function readyFire() {
+  elements.znXX.style.background = null
+  elements.prog.style.background = 'yellow'
+}

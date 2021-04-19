@@ -23,6 +23,7 @@ export function getStatus(x, y, w, z, s) {
     return new Promise((resolve, reject) => {
       elements.disT4.innerHTML += `<div>${NumStatus})${x}<div class="stTimer"><span class="minContainer">${z}</span><span>мин : </span>
       <span class="secContainer">${s}</span><span> сек</span></div></div>`
+      NumStatus++
 
       timer = setInterval(() => {
         ms--
