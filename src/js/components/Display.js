@@ -108,37 +108,6 @@ export function stopVibCT() {
   }, 440)
 }
 
-export function VVHH() {
-  let count = +elements.UP.innerHTML.replace(/[,]/g, '.')
-  let count2 = +elements.VHOD.innerHTML.replace(/[,]/g, '.') + 0.3
-  let interval = 0
-
-  if (T <= -10) {
-    count = 4
-    interval = 11000 / (count - count2)
-  } else if (T <= -1) {
-    count = 4.5
-    interval = 11000 / (count - count2)
-  } else if (T <= 6) {
-    count = 5
-    interval = 11000 / (count - count2)
-  } else if (T > 6) {
-    count = count2 + 0.3
-    interval = 11000 / (count - count2)
-  }
-
-  let t = setInterval(() => {
-    elements.VHOD.innerHTML = (+elements.VHOD.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
-    elements.VIHOD.innerHTML = (+elements.VIHOD.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
-    elements.HLSM.innerHTML = (+elements.HLSM.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
-    elements.HLOP.innerHTML = (+elements.HLOP.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
-
-    if (count <= +elements.VHOD.innerHTML.replace(/[,]/g, '.')) {
-      clearInterval(t)
-    }
-  }, interval)
-}
-
 export function getVib1T(i, y) {
   vVib1T = setInterval(() => {
     let x = +elements.Vib1T.value
@@ -205,6 +174,37 @@ export function getVibSred() {
   elements.VibSred.value = ((+elements.Vib1T.value + +elements.Vib2T.value + +elements.Vib3T.value + +elements.Vib4T.value + +elements.Vib5T.value + +elements.Vib6T.value) / 6).toFixed(0)
 }
 
+export function VVHH() {
+  let count2 = +elements.VHOD.innerHTML.replace(/[,]/g, '.')
+  let count = 0
+  let interval = 0
+
+  if (T <= -10) {
+    count = 4
+    interval = 11000 / (count - count2)
+  } else if (T <= -1) {
+    count = 4.5
+    interval = 11000 / (count - count2)
+  } else if (T <= 6) {
+    count = 5
+    interval = 11000 / (count - count2)
+  } else if (T > 6) {
+    count = count2 + 0.4
+    interval = 11000 / (count - count2)
+  }
+
+  let t = setInterval(() => {
+    elements.VHOD.innerHTML = (+elements.VHOD.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
+    elements.VIHOD.innerHTML = (+elements.VIHOD.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
+    elements.HLSM.innerHTML = (+elements.HLSM.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
+    elements.HLOP.innerHTML = (+elements.HLOP.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
+
+    if (count <= +elements.VHOD.innerHTML.replace(/[,]/g, '.')) {
+      clearInterval(t)
+    }
+  }, interval)
+}
+
 export function hotT1() {
   let start = +elements.UP.innerHTML.replace(/[,]/g, '.')
   let start2 = +elements.VHOD.innerHTML.replace(/[,]/g, '.')
@@ -240,11 +240,11 @@ export function hotT1() {
     count2 = 7.5
     interval2 = 1660 / (count2 - start2)
   } else if (T > 6) {
-    count2 = count2 + 2.3
+    count2 = start2 + 2.3
     interval2 = 1660 / (count2 - start2)
   }
 
-  let t1 = (tPlusTemp = setInterval(() => {
+  let t1 = setInterval(() => {
     elements.UP.innerHTML = (+elements.UP.innerHTML.replace(/[,]/g, '.') + 0.11).toFixed(1).replace(/[.]/g, ',')
     elements.OP1.innerHTML = (+elements.OP1.innerHTML.replace(/[,]/g, '.') + 0.11).toFixed(1).replace(/[.]/g, ',')
     elements.OP2.innerHTML = (+elements.OP2.innerHTML.replace(/[,]/g, '.') + 0.11).toFixed(1).replace(/[.]/g, ',')
@@ -252,7 +252,7 @@ export function hotT1() {
     if (+elements.UP.innerHTML.replace(/[,]/g, '.') >= count) {
       clearInterval(t1)
     }
-  }, interval))
+  }, interval)
 
   let t2 = setInterval(() => {
     elements.VHOD.innerHTML = (+elements.VHOD.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
@@ -260,8 +260,59 @@ export function hotT1() {
     elements.HLSM.innerHTML = (+elements.HLSM.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
     elements.HLOP.innerHTML = (+elements.HLOP.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
 
-    if (count <= +elements.VHOD.innerHTML.replace(/[,]/g, '.')) {
+    if (count2 <= +elements.VHOD.innerHTML.replace(/[,]/g, '.')) {
       clearInterval(t2)
     }
   }, interval2)
+}
+
+export function hotT2() {
+  let startUP = +elements.UP.innerHTML.replace(/[,]/g, '.')
+  let startOP1 = +elements.OP1.innerHTML.replace(/[,]/g, '.')
+  let startVHOD = +elements.VHOD.innerHTML.replace(/[,]/g, '.')
+  let startVIHOD = +elements.VIHOD.innerHTML.replace(/[,]/g, '.')
+
+  let count = 0
+  let count2 = 0
+  let count3 = 0
+  let count4 = 0
+  let interval = 0
+  let interval2 = 0
+  let interval3 = 0
+  let interval4 = 0
+
+  count = 70
+  interval = 30000 / (count - startUP) //30000
+
+  let UP = setInterval(() => {
+    elements.UP.innerHTML = (+elements.UP.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
+    if (count <= +elements.UP.innerHTML.replace(/[,]/g, '.')) clearInterval(UP)
+  }, interval)
+
+  count2 = 46
+  interval2 = 30000 / (count2 - startOP1) //30000
+
+  let OP = setInterval(() => {
+    elements.OP1.innerHTML = (+elements.OP1.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
+    elements.OP2.innerHTML = (+elements.OP2.innerHTML.replace(/[,]/g, '.') + 0.095).toFixed(1).replace(/[.]/g, ',')
+    if (count2 <= +elements.OP1.innerHTML.replace(/[,]/g, '.')) clearInterval(OP)
+  }, interval2)
+
+  count3 = 50
+  interval3 = 30000 / (count3 - startVHOD) //30000
+
+  let VHOD = setInterval(() => {
+    elements.VHOD.innerHTML = (+elements.VHOD.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
+    elements.HLSM.innerHTML = (+elements.HLSM.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
+    elements.HLOP.innerHTML = (+elements.HLOP.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
+    if (count3 <= +elements.VHOD.innerHTML.replace(/[,]/g, '.')) clearInterval(VHOD)
+  }, interval3)
+
+  count4 = 65
+  interval4 = 30000 / (count4 - startVIHOD) //30000
+
+  let VIHOD = setInterval(() => {
+    elements.VIHOD.innerHTML = (+elements.VIHOD.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
+    if (count4 <= +elements.UP.innerHTML.replace(/[,]/g, '.')) clearInterval(VIHOD)
+  }, interval4)
 }

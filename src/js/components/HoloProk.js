@@ -263,7 +263,7 @@ export function getHOLPRO(e) {
         }
         break
       case 'r11':
-        if (g11 == true && d7 == false && d8 == false && d7_8 == false) {
+        if (g11 == true && d7 == false && d8 == false) {
           elements.G11.classList.remove('color-green')
           elements.R11.classList.add('color-red')
           g11 = false
@@ -314,7 +314,7 @@ export function getHOLPRO(e) {
         break
     }
 
-    if (g11 == false && g15 == false && g12 == false && g13 == false && g14 == false && d7 == false && d8 == false && d7_8 == false) {
+    if (g11 == false && g15 == false && g12 == false && g13 == false && g14 == false && d7 == false && d8 == false) {
       holProOk = false
       readyAPHPholoPROK()
       delGotholProk()

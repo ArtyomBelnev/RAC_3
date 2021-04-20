@@ -146,7 +146,7 @@ export function getTumblers(e) {
     case 'enter':
       let w = +elements.PMC.innerHTML.replace(/[,]/g, '.')
 
-      if (gAPHP == true && w >= 0.1 && PNSonPNUon == true && ModeHP == true && holProk == false) {
+      if (gAPHP == true && w >= 0.1 && PNSonPNUon == true && ModeHP == true && holProk == false && HOLO == false) {
         getStatus('Нажата испол. команда')
         holProk = true
         elements.mem.addEventListener('click', clikedHOL)

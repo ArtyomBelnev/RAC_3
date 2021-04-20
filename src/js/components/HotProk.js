@@ -5,7 +5,7 @@ import { blockPNSPNU } from './Btn'
 import { getStatus } from './Journal'
 import { readyRUN, readyRAZBC, readyZAJXX, readyFire } from './Mode'
 import { arrowUP, arrowDN, arrowTK } from './Arrow'
-import { startVibTK, startVibCT, stopVibTK, stopVibCT, VVHH, getVib1T, getVib2T, getVib3T, getVib4T, getVib5T, getVib6T, getVibSred, hotT1 } from './Display'
+import { startVibTK, startVibCT, stopVibTK, stopVibCT, VVHH, getVib1T, getVib2T, getVib3T, getVib4T, getVib5T, getVib6T, getVibSred, hotT1, hotT2 } from './Display'
 
 let hotProOk = false
 let tPlusTemp = ''
@@ -46,7 +46,7 @@ export function getHOTPRO(e) {
 
           readyRUN()
           getStatus('ОГ-12 на упоре')
-          getStatus('Заполнение контура', false, true, 0, 2).then(() => (g6 = true)) //10
+          getStatus('Заполнение контура', false, true, 0, 10).then(() => (g6 = true)) //10
         }
         break
       case 'g9':
@@ -58,7 +58,7 @@ export function getHOTPRO(e) {
           elements.G8.classList.remove('color-green')
 
           getPgN(3.8)
-            .then(() => getStatus('Стабилизация давления', false, true, 0, 5)) // 20
+            .then(() => getStatus('Стабилизация давления', false, true, 0, 20)) // 20
             .then(() => {
               r8 = true
               elements.B5.classList.remove('color-red')
@@ -145,8 +145,6 @@ export function getHOTPRO(e) {
           elements.R10.classList.remove('color-red')
           elements.MFT.style.opacity = '1'
           g10 = true
-
-          hotT1()
 
           getStatus('Подача питани на КПВ 1-5')
           getStatus('Подача питания на АУ-10 (ВНА на 16°)')
@@ -252,6 +250,8 @@ export function getHOTPRO(e) {
           elements.disT2.addEventListener('click', clikedT)
           d8 = false
 
+          hotT1()
+
           getVib1T(196, 50)
           getVib2T(195, 50)
           getVib3T(196, 50)
@@ -292,6 +292,7 @@ export function getHOTPRO(e) {
           elements.MFT.style.opacity = '0'
           d7 = false
           delPmBC()
+          hotT2()
 
           // b6 = true
 
