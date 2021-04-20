@@ -50,6 +50,8 @@ export function getBtn(e) {
           return getStatus('Не выкл. тэны', 'yellow')
         }
         if (hot == true) return getStatus('Ошибка', 'yellow')
+
+        if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 15) return getStatus('Ошибка', 'yellow')
         elements.vpns.classList.add('btn__style-green')
         getStatus('ПНС включено')
         elements.tumImg1.style.transform = 'rotate(0deg)'
@@ -63,6 +65,7 @@ export function getBtn(e) {
           return getStatus('Не выкл. тэны', 'yellow')
         }
         if (hot == true) return getStatus('Ошибка', 'yellow')
+        if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 15) return getStatus('Ошибка', 'yellow')
         elements.vpnu.classList.add('btn__style-green')
         getStatus('ПНУ включено')
         elements.tumImg1.style.transform = 'rotate(0deg)'
