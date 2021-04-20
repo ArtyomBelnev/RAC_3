@@ -115,7 +115,7 @@ export function VVHH() {
 
   if (T <= -10) {
     count = 4
-    interval = 11000 / count
+    interval = 11000 / (count - count2)
   } else if (T <= -1) {
     count = 4.5
     interval = 11000 / (count - count2)
@@ -203,4 +203,65 @@ export function getVib6T(i, y) {
 
 export function getVibSred() {
   elements.VibSred.value = ((+elements.Vib1T.value + +elements.Vib2T.value + +elements.Vib3T.value + +elements.Vib4T.value + +elements.Vib5T.value + +elements.Vib6T.value) / 6).toFixed(0)
+}
+
+export function hotT1() {
+  let start = +elements.UP.innerHTML.replace(/[,]/g, '.')
+  let start2 = +elements.VHOD.innerHTML.replace(/[,]/g, '.')
+  let count = 0
+  let count2 = 0
+  let interval = 0
+  let interval2 = 0
+
+  if (T <= -1) {
+    count = 16
+    interval = 1660 / (count - start)
+  } else if (T <= 11) {
+    count = 18
+    interval = 1660 / (count - start)
+  } else if (T <= 13) {
+    count = +elements.UP.innerHTML.replace(/[,]/g, '.') * 1.6
+    interval = 1660 / (count - start)
+  } else if (T <= 15) {
+    count = +elements.UP.innerHTML.replace(/[,]/g, '.') * 1.5
+    interval = 1660 / (count - start)
+  } else if (T >= 16) {
+    count = 30
+    interval = 1660 / (count - start)
+  }
+
+  if (T <= -10) {
+    count2 = 6
+    interval2 = 1660 / (count2 - start2)
+  } else if (T <= -1) {
+    count2 = 7
+    interval2 = 1660 / (count2 - start2)
+  } else if (T <= 6) {
+    count2 = 7.5
+    interval2 = 1660 / (count2 - start2)
+  } else if (T > 6) {
+    count2 = count2 + 2.3
+    interval2 = 1660 / (count2 - start2)
+  }
+
+  let t1 = (tPlusTemp = setInterval(() => {
+    elements.UP.innerHTML = (+elements.UP.innerHTML.replace(/[,]/g, '.') + 0.11).toFixed(1).replace(/[.]/g, ',')
+    elements.OP1.innerHTML = (+elements.OP1.innerHTML.replace(/[,]/g, '.') + 0.11).toFixed(1).replace(/[.]/g, ',')
+    elements.OP2.innerHTML = (+elements.OP2.innerHTML.replace(/[,]/g, '.') + 0.11).toFixed(1).replace(/[.]/g, ',')
+
+    if (+elements.UP.innerHTML.replace(/[,]/g, '.') >= count) {
+      clearInterval(t1)
+    }
+  }, interval))
+
+  let t2 = setInterval(() => {
+    elements.VHOD.innerHTML = (+elements.VHOD.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
+    elements.VIHOD.innerHTML = (+elements.VIHOD.innerHTML.replace(/[,]/g, '.') + 0.165).toFixed(1).replace(/[.]/g, ',')
+    elements.HLSM.innerHTML = (+elements.HLSM.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
+    elements.HLOP.innerHTML = (+elements.HLOP.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
+
+    if (count <= +elements.VHOD.innerHTML.replace(/[,]/g, '.')) {
+      clearInterval(t2)
+    }
+  }, interval2)
 }

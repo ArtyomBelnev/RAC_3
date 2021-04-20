@@ -4,6 +4,7 @@ import { getPMC, stopPMC, delPMC } from './Canals'
 import { T } from './PowerUP'
 import { readyAPHP } from './Mode'
 import { runOIL } from './Display'
+import { checkSTART } from './Tumblers'
 
 export let PNSonPNUon = false
 
@@ -14,6 +15,8 @@ let PNSon = false,
   tMinusOil = ''
 
 let finish = 0
+
+let hot = false
 
 export function getBtn(e) {
   switch (e.target.id) {
@@ -46,8 +49,11 @@ export function getBtn(e) {
         if (runOIL == true) {
           return getStatus('Не выкл. тэны', 'yellow')
         }
+        if (hot == true) return getStatus('Ошибка', 'yellow')
         elements.vpns.classList.add('btn__style-green')
         getStatus('ПНС включено')
+        elements.tumImg1.style.transform = 'rotate(0deg)'
+        checkSTART()
         PNSon = true
       }
       break
@@ -56,8 +62,11 @@ export function getBtn(e) {
         if (runOIL == true) {
           return getStatus('Не выкл. тэны', 'yellow')
         }
+        if (hot == true) return getStatus('Ошибка', 'yellow')
         elements.vpnu.classList.add('btn__style-green')
         getStatus('ПНУ включено')
+        elements.tumImg1.style.transform = 'rotate(0deg)'
+        checkSTART()
         PNUon = true
       }
       break
@@ -66,7 +75,7 @@ export function getBtn(e) {
   if (PNSon == true && PMCok == false) {
     PMCok = true
     stopPMC()
-    getPMC()
+    getPMC(0.15)
   }
 
   if (PNSon == true && PNUon == true && PNSonPNUon == false) {
@@ -99,6 +108,7 @@ export function delBtn(e) {
     case 'VM04':
       if (elements.vmr04.classList.contains('btn__style-green')) {
         elements.vmr04.classList.remove('btn__style-green')
+
         getStatus('ВМО4 отключено')
       }
       break
@@ -109,6 +119,8 @@ export function delBtn(e) {
         }
         elements.vpns.classList.remove('btn__style-green')
         getStatus('ПНС отключено')
+        elements.tumImg1.style.transform = 'rotate(0deg)'
+        checkSTART()
         PNSon = false
       }
       break
@@ -119,6 +131,8 @@ export function delBtn(e) {
       if (elements.vpnu.classList.contains('btn__style-green')) {
         elements.vpnu.classList.remove('btn__style-green')
         getStatus('ПНУ отключено')
+        elements.tumImg1.style.transform = 'rotate(0deg)'
+        checkSTART()
         PNUon = false
       }
       break
@@ -215,4 +229,5 @@ function minusOil() {
 
 export function blockPNSPNU() {
   PNSonPNUon = false
+  hot = true
 }

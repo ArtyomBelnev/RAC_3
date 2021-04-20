@@ -31,6 +31,8 @@ export function getTumblers(e) {
       break
     case '1':
       elements.tumImg1.style.transform = 'rotate(0deg)'
+      START = false
+      STOP = false
       break
     case '2':
       elements.tumImg1.style.transform = 'rotate(45deg)'
@@ -193,4 +195,9 @@ export function checkTumb() {
   if (elements.tumImg6.style.transform === 'rotate(0deg)') {
     ModeAU = true
   }
+}
+
+export function checkSTART() {
+  START = false
+  STOP = false
 }

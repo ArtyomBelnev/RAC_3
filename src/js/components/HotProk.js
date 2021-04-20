@@ -1,13 +1,14 @@
 import { elements } from '../elements/Elements'
-import { getPgDG, delPgDG, getPmBC, delPmBC, getPmTK, delPmTK, getPmCT, delPmCT, getPg13, delPg13, getPgN, getPgpN } from './Canals'
+import { getPMC, getPgDG, delPgDG, getPmBC, delPmBC, getPmTK, delPmTK, getPmCT, delPmCT, getPg13, delPg13, getPgN, getPgpN, getdPkonf, getOSleft, getOSright } from './Canals'
 import { d7_8 } from './Canals'
 import { blockPNSPNU } from './Btn'
 import { getStatus } from './Journal'
 import { readyRUN, readyRAZBC, readyZAJXX, readyFire } from './Mode'
 import { arrowUP, arrowDN, arrowTK } from './Arrow'
-import { startVibTK, startVibCT, stopVibTK, stopVibCT, VVHH, getVib1T, getVib2T, getVib3T, getVib4T, getVib5T, getVib6T, getVibSred } from './Display'
+import { startVibTK, startVibCT, stopVibTK, stopVibCT, VVHH, getVib1T, getVib2T, getVib3T, getVib4T, getVib5T, getVib6T, getVibSred, hotT1 } from './Display'
 
 let hotProOk = false
+let tPlusTemp = ''
 
 let Oborts = ''
 let Pm = false,
@@ -45,7 +46,7 @@ export function getHOTPRO(e) {
 
           readyRUN()
           getStatus('ОГ-12 на упоре')
-          getStatus('Заполнение контура', false, true, 0, 10).then(() => (g6 = true)) //10
+          getStatus('Заполнение контура', false, true, 0, 2).then(() => (g6 = true)) //10
         }
         break
       case 'g9':
@@ -57,8 +58,12 @@ export function getHOTPRO(e) {
           elements.G8.classList.remove('color-green')
 
           getPgN(3.8)
-            .then(() => getStatus('Стабилизация давления', false, true, 0, 20)) // 20
-            .then(() => (r8 = true))
+            .then(() => getStatus('Стабилизация давления', false, true, 0, 5)) // 20
+            .then(() => {
+              r8 = true
+              elements.B5.classList.remove('color-red')
+              elements.B5.classList.add('color-green')
+            })
 
           getPgpN(3.8)
         }
@@ -141,13 +146,18 @@ export function getHOTPRO(e) {
           elements.MFT.style.opacity = '1'
           g10 = true
 
+          hotT1()
+
           getStatus('Подача питани на КПВ 1-5')
           getStatus('Подача питания на АУ-10 (ВНА на 16°)')
 
           getPmBC(0.3)
           getPmTK(0.1)
-          getPmCT(0.05)
+          getPmCT(0.05, 1400)
           getPg13(0.35)
+          getdPkonf(3)
+          getOSleft(0.1)
+          getOSright(0.15)
           startVibTK()
           startVibCT()
 
@@ -246,8 +256,15 @@ export function getHOTPRO(e) {
           getVib2T(195, 50)
           getVib3T(196, 50)
           getVib4T(198, 50)
-          getVib5T(199, 50)
+          getVib5T(198, 50)
           getVib6T(196, 50)
+
+          getPmBC(0.4)
+          getPmTK(0.25)
+          getPmCT(0.27, 600)
+          getPgpN(3.9)
+          getPMC(0.21)
+          getdPkonf(4)
 
           Oborts = setInterval(() => {
             if (arrowTK < 138) {
@@ -270,14 +287,25 @@ export function getHOTPRO(e) {
           elements.Vib4T.setAttribute('disabled', 'true')
           elements.Vib5T.setAttribute('disabled', 'true')
           elements.Vib6T.setAttribute('disabled', 'true')
+          elements.B6.classList.remove('color-green')
+          elements.B6.classList.add('color-red')
+          elements.MFT.style.opacity = '0'
           d7 = false
+          delPmBC()
 
-          getVib1T(300, 100)
+          // b6 = true
+
+          getVib1T(299, 100)
           getVib2T(300, 100)
-          getVib3T(300, 100)
-          getVib4T(300, 100)
-          getVib5T(300, 100)
-          getVib6T(300, 100)
+          getVib3T(299.1, 100)
+          getVib4T(299.5, 100)
+          getVib5T(300.1, 100)
+          getVib6T(299.6, 100)
+
+          getPmTK(0.4)
+          getPmCT(0.36, 600)
+          getPgpN(4.1)
+          getdPkonf(10)
 
           Oborts = setInterval(() => {
             if (arrowTK < 228) {
@@ -301,10 +329,10 @@ export function getHOTPRO(e) {
         if (g10 == true && d7 == false) {
           elements.R10.classList.add('color-red')
           elements.G10.classList.remove('color-green')
-          elements.MFT.style.opacity = '0'
+          delPg13()
           g10 = false
         }
-        if (g7 == true) getStatus('Ошибка', 'yellow')
+        if (d7 == true) getStatus('Ошибка', 'yellow')
         break
       case 'r1':
         if (g1 == true && g10 == false) {
@@ -322,7 +350,7 @@ export function getHOTPRO(e) {
           elements.G12.classList.remove('color-green')
           g12 = false
         }
-        if (g12 == false) getStatus('Ошибка', 'yellow')
+        if (tStab == false) getStatus('Ошибка', 'yellow')
         break
       case 'r13':
         if (g13 == true && g12 == false) {
@@ -350,6 +378,5 @@ function getTemper() {
 
   if (+elements.VibSred.value == 200 && VibSred200 == false) {
     VibSred200 = true
-    elements.TCwrapR.classList.remove('color-red')
   }
 }

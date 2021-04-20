@@ -207,8 +207,8 @@ export function removeTAN() {
 
 function getRandomTemp() {
   let rand = -20 + Math.random() * (25 + 1 - -20)
-  T = Math.floor(rand)
-  // T = 5
+  // T = Math.floor(rand)
+  T = 20
   minT = T <= 0 ? (minT = 50) : T > 0 && T < 15 ? (minT = 40) : (minT = 30)
 
   elements.disRandomTemp.innerHTML = T

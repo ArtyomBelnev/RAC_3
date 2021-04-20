@@ -96,11 +96,11 @@ export function getHOLPRO(e) {
 
           getStatus('Удержание КПВ 1,5 в откр. полож.')
 
-          getStatus('Время окончания ХП', false, true, 2, 0).then(() => isStatusHolPRo())
+          getStatus('Время окончания ХП', false, true, 2, 0).then(() => isStatusHolPRo()) // 2 0
 
           getPmBC(0.3)
           getPmTK(0.1)
-          getPmCT(0.05)
+          getPmCT(0.05, 1400)
           getPg13(0.35)
           startVibTK()
           startVibCT()
@@ -273,42 +273,42 @@ export function getHOLPRO(e) {
         }
         break
       case 'r15':
-        if (g15 == true && g11 == false) {
+        if (g15 == true && g11 == false && d7 == false && d8 == false) {
           elements.G15.classList.remove('color-green')
           elements.R15.classList.add('color-red')
           g15 = false
         }
-        if (g11 == true) {
+        if (d7 == true || d8 == true || g11 == true) {
           getStatus('Ошибка', 'yellow')
         }
         break
       case 'r12':
-        if (g12 == true && g15 == false) {
+        if (g12 == true && g15 == false && d7 == false && d8 == false) {
           elements.G12.classList.remove('color-green')
           elements.R12.classList.add('color-red')
           g12 = false
         }
-        if (g15 == true) {
+        if (d7 == true || d8 == true || g15 == true) {
           getStatus('Ошибка', 'yellow')
         }
         break
       case 'r13':
-        if (g13 == true && g12 == false) {
+        if (g13 == true && g12 == false && d7 == false && d8 == false) {
           elements.G13.classList.remove('color-green')
           elements.R13.classList.add('color-red')
           g13 = false
         }
-        if (g12 == true) {
+        if (d7 == true || d8 == true || g12 == true) {
           getStatus('Ошибка', 'yellow')
         }
         break
       case 'r14':
-        if (g14 == true && g13 == false) {
+        if (g14 == true && g13 == false && d7 == false && d8 == false) {
           elements.G14.classList.remove('color-green')
           elements.R14.classList.add('color-red')
           g14 = false
         }
-        if (g13 == true) {
+        if (d7 == true || d8 == true || g13 == true) {
           getStatus('Ошибка', 'yellow')
         }
         break

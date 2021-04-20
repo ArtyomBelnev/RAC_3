@@ -10,13 +10,16 @@ let intPms = '',
   vPmCT = '',
   vPg13 = '',
   vPgN = '',
-  vPgpN = ''
+  vPgpN = '',
+  vdPkonf = '',
+  vOSleft = '',
+  vOSright = ''
 
-export function getPMC() {
+export function getPMC(i) {
   intPms = setInterval(() => {
     let x = +elements.PMC.innerHTML.replace(/[,]/g, '.')
     x += 0.01
-    if (x >= 0.14) {
+    if (x >= i) {
       clearTimeout(intPms)
     }
     elements.PMC.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
@@ -73,15 +76,12 @@ export function delPgDG() {
 export function getPmBC(i) {
   vPmBC = setInterval(() => {
     let x = +elements.PmBC.innerHTML.replace(/[,]/g, '.')
-    x += 0.05
+    x += 0.1
     elements.PmBC.innerHTML = x.toFixed(1).replace(/[.]/g, ',')
     if (x >= i) {
       clearInterval(vPmBC)
-      if (Number.isInteger) {
-        elements.PmBC.innerHTML = i
-      }
     }
-  }, 200)
+  }, 1500)
 }
 
 export function delPmBC() {
@@ -103,8 +103,8 @@ export function getPmTK(i) {
     elements.PmTK.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
     if (x >= i) {
       clearInterval(vPmTK)
-      if (Number.isInteger) {
-        elements.PmTK.innerHTML = i
+      if (x <= 0.1) {
+        elements.PmTK.innerHTML = i.toFixed(1).replace(/[.]/g, ',')
       }
     }
   }, 900)
@@ -122,18 +122,18 @@ export function delPmTK() {
   }, 700)
 }
 
-export function getPmCT(i) {
+export function getPmCT(i, y) {
   vPmCT = setInterval(() => {
     let x = +elements.PmCT.innerHTML.replace(/[,]/g, '.')
     x += 0.01
     elements.PmCT.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
     if (x >= i) {
       clearInterval(vPmCT)
-      if (Number.isInteger) {
-        elements.PmCT.innerHTML = i
+      if (x <= 0.1) {
+        elements.PmCT.innerHTML = i.toFixed(1).replace(/[.]/g, ',')
       }
     }
-  }, 1400)
+  }, y)
 }
 
 export function delPmCT() {
@@ -155,9 +155,6 @@ export function getPg13(i) {
     elements.Pg13.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
     if (x >= i) {
       clearInterval(vPg13)
-      if (Number.isInteger) {
-        elements.Pg13.innerHTML = i
-      }
     }
   }, 300)
 }
@@ -177,9 +174,10 @@ export function delPg13() {
 export function getPgN(i) {
   return new Promise((resolve, reject) => {
     vPgN = setInterval(() => {
-      let x = +elements.PgN.innerHTML
-      elements.PgN.innerHTML = (x + 0.2).toFixed(1)
-      if (+elements.PgN.innerHTML == i) {
+      let x = +elements.PgN.innerHTML.replace(/[,]/g, '.')
+      x += 0.2
+      elements.PgN.innerHTML = x.toFixed(1).replace(/[.]/g, ',')
+      if (x >= i) {
         clearInterval(vPgN)
         resolve()
       }
@@ -192,10 +190,49 @@ export function getPgN(i) {
 
 export function getPgpN(i) {
   vPgpN = setInterval(() => {
-    let x = +elements.PgpN.innerHTML
-    elements.PgpN.innerHTML = (x + 0.1).toFixed(1)
-    if (+elements.PgpN.innerHTML >= i) {
+    let x = +elements.PgpN.innerHTML.replace(/[,]/g, '.')
+    x += 0.2
+    elements.PgpN.innerHTML = x.toFixed(1).replace(/[.]/g, ',')
+    if (x >= i) {
       clearInterval(vPgpN)
     }
   }, 350)
+}
+
+export function getdPkonf(i) {
+  vdPkonf = setInterval(() => {
+    let x = +elements.dPkonf.innerHTML.replace(/[,]/g, '.')
+    x += 0.1
+    elements.dPkonf.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
+    if (x >= i) {
+      clearInterval(vdPkonf)
+      if (Number.isInteger) {
+        elements.dPkonf.innerHTML = i
+      }
+    }
+  }, 350)
+}
+
+export function getOSleft(i) {
+  vOSleft = setInterval(() => {
+    let x = +elements.OSleft.innerHTML.replace(/[,]/g, '.')
+    x += 0.01
+    elements.OSleft.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
+    if (x >= i) {
+      clearInterval(vOSleft)
+      elements.OSleft.innerHTML = i.toFixed(1).replace(/[.]/g, ',')
+    }
+  }, 550)
+}
+
+export function getOSright(i) {
+  vOSright = setInterval(() => {
+    let x = +elements.OSright.innerHTML.replace(/[,]/g, '.')
+    x += 0.01
+    elements.OSright.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
+    if (x >= i) {
+      clearInterval(vOSright)
+      // elements.OSright.innerHTML = i.toFixed(1).replace(/[.]/g, ',')
+    }
+  }, 570)
 }
