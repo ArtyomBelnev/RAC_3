@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   width: 716px;
+  font-family: 'Linux', sans-serif;
 }
 
 .buts-stop {
@@ -16,7 +17,7 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 20%;
-  
+
   &__name {
     display: flex;
     text-align: center;
@@ -74,4 +75,4 @@
       transition: 0.2s;
     }
   }
-} 
+}

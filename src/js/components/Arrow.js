@@ -5,6 +5,8 @@ export let arrowTK = 0
 let arrowST = 0
 
 export function arrowUP() {
+  let a = 6
+  let b = 200
   if (arrowTK < 300) {
     arrowTK += 6
     elements.turnovers1.style.transform = `rotate(${arrowTK}deg)`
@@ -12,11 +14,14 @@ export function arrowUP() {
     elements.ObTK.innerHTML = +elements.ObTK.innerHTML + 200
 
     if (arrowTK >= 48) {
-      if (arrowTK == 234) arrowST = 206
-      arrowST += 6
+      if (arrowTK > 208 && arrowTK <= 228) {
+        a = 12
+        b = 400
+      }
+      arrowST += a
       elements.turnovers2.style.transform = `rotate(${arrowST}deg)`
       elements.turnovers2.style.transition = `1.2s`
-      elements.ObCT.innerHTML = +elements.ObCT.innerHTML + 200
+      elements.ObCT.innerHTML = +elements.ObCT.innerHTML + b
     }
   }
 

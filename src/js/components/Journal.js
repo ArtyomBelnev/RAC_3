@@ -16,7 +16,7 @@ export function getStatus(x, y, w, z, s) {
     countError++
     elements.disT4.innerHTML += `<div style="color: yellow;">${NumStatus}) ${x} ${times}</div>`
   } else if (y == 'green') {
-    elements.disT4.innerHTML += `<div background-color: green; color: white;>${NumStatus}) ${x} ${times}</div>`
+    elements.disT4.innerHTML += `<div style="background-color: green; color: white;">${NumStatus}) ${x} ${times}</div>`
   } else if (y == 'red') {
     elements.disT4.innerHTML += `<div style="color: red;">${NumStatus}) ${x} ${times}</div>`
   } else if (y == 'war') {

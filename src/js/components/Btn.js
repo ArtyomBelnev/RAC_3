@@ -46,12 +46,12 @@ export function getBtn(e) {
       break
     case 'PNS':
       if (!elements.vpns.classList.contains('btn__style-green')) {
-        if (runOIL == true) {
-          return getStatus('Не выкл. тэны', 'yellow')
-        }
+        if (runOIL == true) return getStatus('Не выкл. тэны', 'yellow')
+
         if (hot == true) return getStatus('Ошибка', 'yellow')
 
         if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 15) return getStatus('Ошибка', 'yellow')
+
         elements.vpns.classList.add('btn__style-green')
         getStatus('ПНС включено')
         elements.tumImg1.style.transform = 'rotate(0deg)'

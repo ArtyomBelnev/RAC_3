@@ -32,7 +32,7 @@ export const elements = {
   HLOP: document.getElementById('HLOP'),
   modeWrap: document.querySelector('.mode__wrap'),
   registr: document.querySelector('.registr'),
-  probTest: document.querySelector('.registr__main-bot__left'),
+  probTest: document.querySelector('.registr__wrap-r-bot__left'),
   VibTK: document.getElementById('VibTK'),
   VibCT: document.getElementById('VibCT'),
   Vib1T: document.getElementById('Vib1T'),

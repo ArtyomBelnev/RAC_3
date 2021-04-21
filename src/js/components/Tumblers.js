@@ -47,7 +47,6 @@ export function getTumblers(e) {
         setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
         if (arrowTK >= 228 && arrowTK <= 236 && Fire == true && G14 == true && PNSon == false && PNUon == false) arrowUP()
         else return getStatus('Ошибка', 'yellow')
-        console.log(arrowTK)
       }
       break
     case '4':

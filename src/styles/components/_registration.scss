@@ -10,41 +10,80 @@
   // background-color: #fff;
   z-index: 10000;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   font-family: 'Linux', sans-serif;
   visibility: visible;
   // display: none;
 
+  &__header {
+    background-color: rgb(255, 255, 255);
+    color: #000;
+    text-align: center;
+    font-size: 35px;
+  }
+
   &__main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+  }
+
+  &__footer {
+    background-color: rgb(6, 42, 247);
+    color: #fff;
+    text-align: center;
+    font-size: 35px;
+  }
+
+  &__wrap-l {
+    width: 900px;
+    margin-right: 50px;
+    height: 800px;
+    background: url(../../images/1580404245_gpa-c-6_3.jpg) no-repeat;
+    background-size: auto;
+  }
+
+  &__wrap-r {
     opacity: 1;
-    margin-top: 21%;
-    width: 400px;
-    height: 150px;
-    background-color: #c0c0c0;
+    width: 350px;
+    height: 350px;
+    background-color: rgb(6, 42, 247);
     // box-shadow: 0 2px 4px 5px rgb(61, 61, 60);
     border: 2px solid #000;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    // align-items: center;
+    // justify-content: center;
 
     &-top {
       background-color: #fff;
       font-size: 25px;
-      height: 20%;
+      font-weight: 900;
+      height: 30%;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     &-bot {
-      height: 80%;
+      height: 70%;
+
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-around;
+      justify-content: center;
 
       &__left,
       &__right {
-        font-size: 18px;
+        font-size: 23px;
         padding: 5px 10px;
-        width: 150px;
+        width: 180px;
         box-shadow: 0 1px 1px 1px #000;
-        border-radius: 5px;
+        border-radius: 50px;
         text-align: center;
         color: #fff;
         transition: all 500ms ease;
@@ -60,10 +99,12 @@
 
       &__left {
         background-color: rgb(14, 151, 14);
+        margin-top: -20px;
       }
 
       &__right {
         background-color: rgb(201, 11, 11);
+        margin-top: 15px;
       }
     }
   }

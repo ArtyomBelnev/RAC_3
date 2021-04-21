@@ -387,12 +387,13 @@ export function getHOTPRO(e) {
             .then(() => {
               getStatus('Таймер закр. КПВ,ПНС,ПНУ', false, true, 0, 20).then(() => {
                 if (PNSon == true) getStatus('Не закрыт. ПНС', 'red')
-                if (PNUon == true) getStatus('Не закрыт. ПНС', 'red')
+                if (PNUon == true) getStatus('Не закрыт. ПНУ', 'red')
                 if (g14 == true) getStatus('Не закрыты КПВ', 'red')
+                blockPNSPNU()
                 getStatus('Прогрев ', false, true, 4, 40).then(() => {
                   getStatus('Время прогрева превышена', 'war')
+                  Fire = true
                 }) /// 5 0
-                Fire = true
                 readyFire()
               })
             })
