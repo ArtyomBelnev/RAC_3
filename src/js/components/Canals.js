@@ -175,28 +175,29 @@ export function getPgN(i) {
   return new Promise((resolve, reject) => {
     vPgN = setInterval(() => {
       let x = +elements.PgN.innerHTML.replace(/[,]/g, '.')
-      x += 0.2
+      x += 0.1
       elements.PgN.innerHTML = x.toFixed(1).replace(/[.]/g, ',')
       if (x >= i) {
         clearInterval(vPgN)
         resolve()
       }
-      if (+elements.PgN.innerHTML == 3) {
+      if (x == 3) {
+        elements.B5.classList.remove('color-red')
         elements.B5.classList.add('color-green')
       }
-    }, 350)
+    }, 40) //340
   })
 }
 
 export function getPgpN(i) {
   vPgpN = setInterval(() => {
     let x = +elements.PgpN.innerHTML.replace(/[,]/g, '.')
-    x += 0.2
+    x += 0.1
     elements.PgpN.innerHTML = x.toFixed(1).replace(/[.]/g, ',')
     if (x >= i) {
       clearInterval(vPgpN)
     }
-  }, 350)
+  }, 40) // 340
 }
 
 export function getdPkonf(i) {
@@ -235,4 +236,12 @@ export function getOSright(i) {
       // elements.OSright.innerHTML = i.toFixed(1).replace(/[.]/g, ',')
     }
   }, 570)
+}
+
+export function stopCanlsHOT2() {
+  clearInterval(vPmBC)
+  clearInterval(vPmTK)
+  clearInterval(vPmCT)
+  clearInterval(vPgpN)
+  clearInterval(vdPkonf)
 }

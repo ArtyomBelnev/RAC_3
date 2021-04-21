@@ -7,10 +7,10 @@ import { runOIL } from './Display'
 import { checkSTART } from './Tumblers'
 
 export let PNSonPNUon = false
+export let PNSon = false
+export let PNUon = false
 
-let PNSon = false,
-  PNUon = false,
-  PMCok = false,
+let PMCok = false,
   tPlusTemp = '',
   tMinusOil = ''
 
@@ -141,12 +141,12 @@ export function delBtn(e) {
       break
   }
 
-  if (PNSon == false && PMCok == true) {
-    PMCok = false
+  // if (PNSon == false && PMCok == true) {
+  //   PMCok = false
 
-    stopPMC()
-    delPMC()
-  }
+  //   stopPMC()
+  //   delPMC()
+  // }
 }
 
 function plusTemp() {

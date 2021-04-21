@@ -94,7 +94,7 @@ export function getHOLPRO(e) {
           elements.MFT.style.opacity = '1'
           g10 = true
 
-          getStatus('Удержание КПВ 1,5 в откр. полож.')
+          getStatus('Подача питания на КПВ 1-5')
 
           getStatus('Время окончания ХП', false, true, 2, 0).then(() => isStatusHolPRo()) // 2 0
 
@@ -110,7 +110,6 @@ export function getHOLPRO(e) {
             if (arrowTK < 60) {
               arrowUP()
             } else {
-              getStatus('Pm перед ДГ > 1,5 МПа')
               clearTimeout(HpObort)
             }
           }, 1500)

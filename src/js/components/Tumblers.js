@@ -1,23 +1,25 @@
 import { elements } from '../elements/Elements'
 import { PowerOk } from './PowerUP'
 import { gAPHP } from './Mode'
-import { arrowUP, arrowDN } from './Arrow'
+import { arrowUP, arrowDN, arrowTK } from './Arrow'
 import { getStatus } from './Journal'
 import { diotsON, diotsOFF, diotsOK } from './Diots'
 import { getHOLPRO } from './HoloProk'
 import { getHOTPRO } from './HotProk'
 import { getBtn, delBtn, PNSonPNUon } from './Btn'
-import { readyAPHP } from './Mode'
+import { readyAPHP, readyOUTRING, JOBRING, readyLOADTRASS } from './Mode'
 
 export let loadDIST = false
 export let ModeHP = false
 export let ModeAU = false
 export let holProk = false
 export let hotProk = false
+export let TK240 = false
 
 let START = false
 let STOP = false
 let HOLO = false
+let isJobRing = false
 
 let clikedHOL = getHOLPRO.bind(getHOLPRO)
 let clikedHOT = getHOTPRO.bind(getHOTPRO)
@@ -40,17 +42,20 @@ export function getTumblers(e) {
       START = false
       break
     case '3':
-      elements.tumImg2.style.transform = 'rotate(-45deg)'
-      setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
       if (PowerOk == true) {
-        arrowUP()
+        elements.tumImg2.style.transform = 'rotate(-45deg)'
+        setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
+        if (arrowTK >= 228 && arrowTK <= 236) arrowUP()
+        else return getStatus('Ошибка', 'yellow')
+        console.log(arrowTK)
       }
       break
     case '4':
-      elements.tumImg2.style.transform = 'rotate(45deg)'
-      setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
       if (PowerOk == true) {
-        arrowDN()
+        elements.tumImg2.style.transform = 'rotate(45deg)'
+        setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
+        if (arrowTK > 228 && arrowTK < 240) arrowDN()
+        else return getStatus('Ошибка', 'yellow')
       }
       break
     case '5':
@@ -150,11 +155,19 @@ export function getTumblers(e) {
         getStatus('Нажата испол. команда')
         holProk = true
         elements.mem.addEventListener('click', clikedHOL)
-      } else if (loadDIST == true && ModeAU == true && hotProk == false && HOLO == true && gAPHP == true) {
+      } else if (loadDIST == true && ModeAU == true && hotProk == false) {
         // && HOLO == true && gAPHP == true
         getStatus('Нажата испол. команда')
         hotProk = true
         elements.mem.addEventListener('click', clikedHOT)
+      } else if (arrowTK == 240 && TK240 == false) {
+        TK240 = true
+        getStatus('Нажата испол. команда')
+        readyOUTRING()
+      } else if (JOBRING == true && isJobRing == false) {
+        isJobRing = true
+        getStatus('Нажата испол. команда')
+        readyLOADTRASS()
       } else {
         getStatus('Ошибка', 'yellow')
         break

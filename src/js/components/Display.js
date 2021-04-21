@@ -14,6 +14,11 @@ let tmbs = '',
   vVib5T = '',
   vVib6T = ''
 
+let UP = ''
+let OP = ''
+let VHOD = ''
+let VIHOD = ''
+
 export let mTMax = false
 
 export let tMBSMBU = false
@@ -284,7 +289,7 @@ export function hotT2() {
   count = 70
   interval = 30000 / (count - startUP) //30000
 
-  let UP = setInterval(() => {
+  UP = setInterval(() => {
     elements.UP.innerHTML = (+elements.UP.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
     if (count <= +elements.UP.innerHTML.replace(/[,]/g, '.')) clearInterval(UP)
   }, interval)
@@ -292,7 +297,7 @@ export function hotT2() {
   count2 = 46
   interval2 = 30000 / (count2 - startOP1) //30000
 
-  let OP = setInterval(() => {
+  OP = setInterval(() => {
     elements.OP1.innerHTML = (+elements.OP1.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
     elements.OP2.innerHTML = (+elements.OP2.innerHTML.replace(/[,]/g, '.') + 0.095).toFixed(1).replace(/[.]/g, ',')
     if (count2 <= +elements.OP1.innerHTML.replace(/[,]/g, '.')) clearInterval(OP)
@@ -301,7 +306,7 @@ export function hotT2() {
   count3 = 50
   interval3 = 30000 / (count3 - startVHOD) //30000
 
-  let VHOD = setInterval(() => {
+  VHOD = setInterval(() => {
     elements.VHOD.innerHTML = (+elements.VHOD.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
     elements.HLSM.innerHTML = (+elements.HLSM.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
     elements.HLOP.innerHTML = (+elements.HLOP.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
@@ -311,8 +316,22 @@ export function hotT2() {
   count4 = 65
   interval4 = 30000 / (count4 - startVIHOD) //30000
 
-  let VIHOD = setInterval(() => {
+  VIHOD = setInterval(() => {
     elements.VIHOD.innerHTML = (+elements.VIHOD.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
     if (count4 <= +elements.UP.innerHTML.replace(/[,]/g, '.')) clearInterval(VIHOD)
   }, interval4)
+}
+
+export function stopHOT2() {
+  clearInterval(UP)
+  clearInterval(OP)
+  clearInterval(VHOD)
+  clearInterval(VIHOD)
+
+  clearInterval(vVib1T)
+  clearInterval(vVib2T)
+  clearInterval(vVib3T)
+  clearInterval(vVib4T)
+  clearInterval(vVib5T)
+  clearInterval(vVib6T)
 }

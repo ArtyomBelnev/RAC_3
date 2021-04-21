@@ -12,6 +12,7 @@ export function arrowUP() {
     elements.ObTK.innerHTML = +elements.ObTK.innerHTML + 200
 
     if (arrowTK >= 48) {
+      if (arrowTK == 234) arrowST = 206
       arrowST += 6
       elements.turnovers2.style.transform = `rotate(${arrowST}deg)`
       elements.turnovers2.style.transition = `1.2s`
@@ -27,10 +28,10 @@ export function arrowUP() {
     elements.TCwrapR.classList.remove('color-red')
   }
 
-  if (arrowTK == 228) {
-    elements.ZwrapR.classList.add('color-red')
-    elements.TCwrapR.classList.add('color-red')
-  }
+  // if (arrowTK == 228) {
+  //   elements.ZwrapR.classList.add('color-red')
+  //   elements.TCwrapR.classList.add('color-red')
+  // }
 }
 
 export function arrowDN() {
