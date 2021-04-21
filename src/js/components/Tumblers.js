@@ -5,8 +5,8 @@ import { arrowUP, arrowDN, arrowTK } from './Arrow'
 import { getStatus } from './Journal'
 import { diotsON, diotsOFF, diotsOK } from './Diots'
 import { getHOLPRO } from './HoloProk'
-import { getHOTPRO } from './HotProk'
-import { getBtn, delBtn, PNSonPNUon } from './Btn'
+import { getHOTPRO, G14, Fire } from './HotProk'
+import { getBtn, delBtn, PNSonPNUon, PNSon, PNUon } from './Btn'
 import { readyAPHP, readyOUTRING, JOBRING, readyLOADTRASS } from './Mode'
 
 export let loadDIST = false
@@ -45,7 +45,7 @@ export function getTumblers(e) {
       if (PowerOk == true) {
         elements.tumImg2.style.transform = 'rotate(-45deg)'
         setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
-        if (arrowTK >= 228 && arrowTK <= 236) arrowUP()
+        if (arrowTK >= 228 && arrowTK <= 236 && Fire == true && G14 == true && PNSon == false && PNUon == false) arrowUP()
         else return getStatus('Ошибка', 'yellow')
         console.log(arrowTK)
       }
@@ -54,7 +54,7 @@ export function getTumblers(e) {
       if (PowerOk == true) {
         elements.tumImg2.style.transform = 'rotate(45deg)'
         setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
-        if (arrowTK > 228 && arrowTK < 240) arrowDN()
+        if (arrowTK > 228 && arrowTK < 240 && Fire == true && G14 == true && PNSon == true && PNUon == true) arrowDN()
         else return getStatus('Ошибка', 'yellow')
       }
       break
@@ -155,7 +155,7 @@ export function getTumblers(e) {
         getStatus('Нажата испол. команда')
         holProk = true
         elements.mem.addEventListener('click', clikedHOL)
-      } else if (loadDIST == true && ModeAU == true && hotProk == false) {
+      } else if (loadDIST == true && ModeAU == true && hotProk == false && HOLO == true && gAPHP == true) {
         // && HOLO == true && gAPHP == true
         getStatus('Нажата испол. команда')
         hotProk = true

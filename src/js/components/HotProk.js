@@ -18,6 +18,9 @@ let Pm = false,
 
 let clikedT = getTemper.bind(getTemper)
 
+export let G14 = false
+export let Fire = false
+
 let g1 = false,
   g3 = false,
   g5 = false,
@@ -48,7 +51,7 @@ export function getHOTPRO(e) {
 
           readyRUN()
           getStatus('ОГ-12 на упоре')
-          getStatus('Заполнение контура', false, true, 0, 2).then(() => (g6 = true)) //10
+          getStatus('Заполнение контура', false, true, 0, 10).then(() => (g6 = true)) //10
         }
         break
       case 'g9':
@@ -60,7 +63,7 @@ export function getHOTPRO(e) {
           elements.G8.classList.remove('color-green')
 
           getPgN(3.8)
-            .then(() => getStatus('Стабилизация давления', false, true, 0, 4)) // 20
+            .then(() => getStatus('Стабилизация давления', false, true, 0, 20)) // 20
             .then(() => {
               r8 = true
             })
@@ -128,7 +131,7 @@ export function getHOTPRO(e) {
           d7 = true
         }
 
-        if (d7 == false) getStatus('Ошибка', 'yellow')
+        if (b3 == false) getStatus('Ошибка', 'yellow')
         break
       case 'd8':
         if (d8 == false && b3 == true) {
@@ -137,7 +140,7 @@ export function getHOTPRO(e) {
           d8 = true
         }
 
-        if (d7 == false) getStatus('Ошибка', 'yellow')
+        if (b3 == false) getStatus('Ошибка', 'yellow')
         break
       case 'g10':
         if (g10 == false && d7 == true && d8 == true && d7_8 == true) {
@@ -232,6 +235,8 @@ export function getHOTPRO(e) {
             }
           })
         }
+        if (g7 == false) getStatus('Ошибка', 'yellow')
+        break
     }
   }
 
@@ -321,13 +326,14 @@ export function getHOTPRO(e) {
         if (VibSred200 == false) {
           getStatus('Ошибка', 'yellow')
         }
+        break
       case 'b6':
         if (b6 == true && d7 == false) {
           elements.B6.classList.remove('color-green')
           elements.B6.classList.add('color-red')
           b6 = false
         }
-        if (d7 == true && b6 == false) {
+        if (b6 == true && d8 == false) {
           getStatus('Ошибка', 'yellow')
         }
         break
@@ -342,6 +348,9 @@ export function getHOTPRO(e) {
         if (b6 == true) {
           getStatus('Ошибка', 'yellow')
         }
+        break
+      case 'g2':
+        if (g1 == true) getStatus('Ошибка', 'yellow')
         break
       case 'r1':
         if (g1 == true && g10 == false) {
@@ -378,11 +387,12 @@ export function getHOTPRO(e) {
             .then(() => {
               getStatus('Таймер закр. КПВ,ПНС,ПНУ', false, true, 0, 20).then(() => {
                 if (PNSon == true) getStatus('Не закрыт. ПНС', 'red')
-                if (PNSon == true) getStatus('Не закрыт. ПНС', 'red')
+                if (PNUon == true) getStatus('Не закрыт. ПНС', 'red')
                 if (g14 == true) getStatus('Не закрыты КПВ', 'red')
-                getStatus('Прогрев ', false, true, 0, 5).then(() => {
-                  getStatus('Время прогрева превышена')
+                getStatus('Прогрев ', false, true, 4, 40).then(() => {
+                  getStatus('Время прогрева превышена', 'war')
                 }) /// 5 0
+                Fire = true
                 readyFire()
               })
             })
@@ -416,6 +426,7 @@ export function getHOTPRO(e) {
           elements.R14.classList.add('color-red')
           elements.G14.classList.remove('color-green')
           g14 = false
+          G14 = true
           blockPNSPNU()
         }
         if (g13 == true) {

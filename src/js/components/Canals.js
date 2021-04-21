@@ -185,7 +185,7 @@ export function getPgN(i) {
         elements.B5.classList.remove('color-red')
         elements.B5.classList.add('color-green')
       }
-    }, 40) //340
+    }, 340) //340
   })
 }
 
@@ -197,7 +197,7 @@ export function getPgpN(i) {
     if (x >= i) {
       clearInterval(vPgpN)
     }
-  }, 40) // 340
+  }, 340) // 340
 }
 
 export function getdPkonf(i) {

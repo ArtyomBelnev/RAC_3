@@ -287,7 +287,7 @@ export function hotT2() {
   let interval4 = 0
 
   count = 70
-  interval = 30000 / (count - startUP) //30000
+  interval = 31500 / (count - startUP) //30000
 
   UP = setInterval(() => {
     elements.UP.innerHTML = (+elements.UP.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
@@ -295,7 +295,7 @@ export function hotT2() {
   }, interval)
 
   count2 = 46
-  interval2 = 30000 / (count2 - startOP1) //30000
+  interval2 = 31500 / (count2 - startOP1) //30000
 
   OP = setInterval(() => {
     elements.OP1.innerHTML = (+elements.OP1.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
@@ -304,7 +304,7 @@ export function hotT2() {
   }, interval2)
 
   count3 = 50
-  interval3 = 30000 / (count3 - startVHOD) //30000
+  interval3 = 31500 / (count3 - startVHOD) //30000
 
   VHOD = setInterval(() => {
     elements.VHOD.innerHTML = (+elements.VHOD.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
@@ -314,7 +314,7 @@ export function hotT2() {
   }, interval3)
 
   count4 = 65
-  interval4 = 30000 / (count4 - startVIHOD) //30000
+  interval4 = 31500 / (count4 - startVIHOD) //30000
 
   VIHOD = setInterval(() => {
     elements.VIHOD.innerHTML = (+elements.VIHOD.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
