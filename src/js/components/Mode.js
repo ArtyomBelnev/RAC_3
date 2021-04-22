@@ -4,7 +4,7 @@ import { PowerOk } from './PowerUP'
 import { KranOK } from './Memo'
 import { SignalOk } from './Diots'
 import { ModeHP } from './Tumblers'
-import { tMBSMBU, getVib1T, getVib2T, getVib3T, getVib4T, getVib5T, getVib6T } from './Display'
+import { startVibTK, startVibCT, tMBSMBU, getVib1T, getVib2T, getVib3T, getVib4T, getVib5T, getVib6T } from './Display'
 
 export let gAPHP = false
 export let JOBRING = false
@@ -57,6 +57,8 @@ export function readyOUTRING() {
   getVib4T(369.5, 170)
   getVib5T(370.1, 170)
   getVib6T(369.6, 170)
+  startVibTK(2.1)
+  startVibCT(2.1)
 }
 
 export function readyJOBRING() {

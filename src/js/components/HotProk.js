@@ -159,8 +159,8 @@ export function getHOTPRO(e) {
           getdPkonf(3)
           getOSleft(0.1)
           getOSright(0.15)
-          startVibTK()
-          startVibCT()
+          startVibTK(1.2)
+          startVibCT(1.2)
 
           Oborts = setInterval(() => {
             if (arrowTK < 60) {
@@ -309,6 +309,8 @@ export function getHOTPRO(e) {
           getPmCT(0.36, 600)
           getPgpN(4.1)
           getdPkonf(10)
+          startVibTK(1.5)
+          startVibCT(1.5)
 
           Oborts = setInterval(() => {
             if (arrowTK < 150) {
@@ -365,6 +367,8 @@ export function getHOTPRO(e) {
           getPmCT(0.36, 600)
           getPgpN(4.1)
           getdPkonf(10)
+          startVibTK(1.7)
+          startVibCT(1.7)
           hotT2()
           getVib1T(299, 100)
           getVib2T(300, 100)
@@ -396,9 +400,9 @@ export function getHOTPRO(e) {
                 getVib4T(319.5, 6875)
                 getVib5T(320.1, 6875)
                 getVib6T(319.6, 6875)
-                getdPkonf(15)
-                getStatus('Работа КНПС', false, false, 0, 10, true)
                 getStatus('Прогрев ', false, true, 4, 40).then(() => {
+                  getdPkonf(15)
+                  getStatus('Работа КНПС', false, false, 0, 10, true)
                   getStatus('Время прогрева превышена', 'war')
 
                   Fire = true

@@ -161,29 +161,29 @@ function plusTemp() {
   let match = false
 
   if (T <= -10) {
-    count = 8
-    interval = 7000 / (count - start)
+    count = 7
+    interval = 6500 / (count - start) //6500
     finish = (count - start) * interval
   } else if (T <= -1) {
+    count = 8
+    interval = 5500 / (count - start) // 5500
+    finish = (count - start) * interval
+  } else if (T <= 5) {
     count = 9
-    interval = 6000 / (count - start)
+    interval = 4500 / (count - start) // 4500
     finish = (count - start) * interval
-  } else if (T <= 10) {
+  } else if (T <= 10 && oil <= 45) {
     count = 10
-    interval = 4500 / (count - start)
+    interval = 4500 / (count - start) // 4500
     finish = (count - start) * interval
-  } else if (T <= 25) {
-    if (oil <= 40 && oil >= 23.9) {
-      count = +elements.UP.innerHTML.replace(/[,]/g, '.') + 1.1
-      interval = 4200 / (count - start)
-      finish = (count - start) * interval
-    } else if (oil >= 41) {
-      count = +elements.UP.innerHTML.replace(/[,]/g, '.') + 3.1
-      interval = 4200 / (count - start)
-      finish = (count - start) * interval
-    } else {
-      return
-    }
+  } else if (T <= 10 && oil <= 55) {
+    count = 13
+    interval = 4500 / (count - start) // 4500
+    finish = (count - start) * interval
+  } else if (T <= 10 && oil <= 82) {
+    count = 16
+    interval = 4500 / (count - start) // 4500
+    finish = (count - start) * interval
   }
 
   tPlusTemp = setInterval(() => {
@@ -202,24 +202,23 @@ function minusOil() {
   let count = 0
 
   if (T <= -10) {
-    count = 17
+    count = 18
     tMBS = tMBS - count
   } else if (T <= -1) {
     count = 19
     tMBS = tMBS - count
-  } else if (T <= 10) {
+  } else if (T <= 5) {
     count = 20
     tMBS = tMBS - count
-  } else if (T <= 25) {
-    if (tMBS <= 40 && tMBS >= 23.9) {
-      count = +elements.UP.innerHTML.replace(/[,]/g, '.') + 3.2
-      tMBS = tMBS - count
-    } else if (tMBS >= 41) {
-      count = +elements.UP.innerHTML.replace(/[,]/g, '.') + 5.2
-      tMBS = tMBS - count
-    } else {
-      return
-    }
+  } else if (T <= 10 && tMBS <= 45) {
+    count = 21
+    tMBS = tMBS - count
+  } else if (T <= 10 && tMBS <= 55) {
+    count = 23
+    tMBS = tMBS - count
+  } else if (T <= 10 && tMBS <= 82) {
+    count = 27
+    tMBS = tMBS - count
   }
 
   let interval = finish / tMBS
