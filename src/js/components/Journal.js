@@ -23,7 +23,6 @@ export function getStatus(x, y, w, z, s, n) {
   } else if (y == 'war') {
     elements.disT4.innerHTML += `<div style="background-color: yellow;">${NumStatus}) ${x} ${times}</div>`
   } else if (w == true) {
-    console.log(11111)
     return new Promise((resolve, reject) => {
       elements.disT4.innerHTML += `<div>${NumStatus})${x}<div class="stTimer"><span class="minContainer">${z}</span><span>мин : </span>
       <span class="secContainer">${s}</span><span> сек</span></div></div>`
@@ -55,7 +54,6 @@ export function getStatus(x, y, w, z, s, n) {
       }, 10)
     })
   } else if (n == true) {
-    console.log(222)
     elements.disT4.innerHTML += `<div>${NumStatus})${x}<div class="stTimer1"><span class="minContainer1">${z}</span><span>мин : </span>
       <span class="secContainer1">${s}</span><span> сек</span></div></div>`
     NumStatus++

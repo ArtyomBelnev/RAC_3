@@ -15,6 +15,7 @@ let PMCok = false,
   tMinusOil = ''
 
 let finish = 0
+let countPNSPNU = 0
 
 let hot = false
 
@@ -45,6 +46,7 @@ export function getBtn(e) {
       }
       break
     case 'PNS':
+      if (countPNSPNU == 1) return getStatus('Ошибка', 'yellow')
       if (!elements.vpns.classList.contains('btn__style-green')) {
         if (runOIL == true) return getStatus('Не выкл. тэны', 'yellow')
 
@@ -60,6 +62,7 @@ export function getBtn(e) {
       }
       break
     case 'PNU':
+      if (countPNSPNU == 1) return getStatus('Ошибка', 'yellow')
       if (!elements.vpnu.classList.contains('btn__style-green')) {
         if (runOIL == true) {
           return getStatus('Не выкл. тэны', 'yellow')
@@ -81,8 +84,9 @@ export function getBtn(e) {
     getPMC(0.15)
   }
 
-  if (PNSon == true && PNUon == true && PNSonPNUon == false) {
+  if (PNSon == true && PNUon == true && PNSonPNUon == false && countPNSPNU == 0) {
     PNSonPNUon = true
+    countPNSPNU = 1
     plusTemp()
     minusOil()
   }

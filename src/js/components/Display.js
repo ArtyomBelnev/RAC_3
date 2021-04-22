@@ -292,16 +292,16 @@ export function hotT1() {
     }
   }, interval2)
 
-  if (start3 < +elements.OP1.innerHTML.replace(/[,]/g, '.')) {
-    let t3 = setInterval(() => {
+  let t3 = setInterval(() => {
+    if (start3 < +elements.OP1.innerHTML.replace(/[,]/g, '.')) {
       elements.mbs.innerHTML = (+elements.mbs.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
       elements.mbu.innerHTML = (+elements.mbu.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
 
       if (count3 <= +elements.mbs.innerHTML.replace(/[,]/g, '.')) {
         clearInterval(t3)
       }
-    }, interval3)
-  }
+    }
+  }, interval3)
 }
 
 export function hotT2() {

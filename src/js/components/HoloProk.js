@@ -318,15 +318,17 @@ export function getHOLPRO(e) {
       holProOk = false
       readyAPHPholoPROK()
       delGotholProk()
+      getStatus('ХОЛ. ПРОКРУТКА ОКОНЧЕНА', 'green')
     }
   }
 }
 
 export function isStatusHolPRo() {
   if (g15 == true) {
-    getStatus('ХОЛ. ПРОКРУТКА ОКОНЧЕНА', 'green')
+    // getStatus('ХОЛ. ПРОКРУТКА ОКОНЧЕНА', 'green')
   } else {
-    getStatus('ХОЛ. ПРОКРУТКА ОКОНЧЕНА С ОШИБКАМИ', 'red')
+    // getStatus('ХОЛ ПРОКРУТКА ОКОНЧЕНА С ОШИБКАМИ', 'red')
+    getStatus('КПВ не открыты', 'red')
   }
   getStatus('Снятия питания АУП-10')
   holProOk = true

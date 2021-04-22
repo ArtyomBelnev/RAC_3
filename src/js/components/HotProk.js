@@ -382,8 +382,6 @@ export function getHOTPRO(e) {
             }
           }, 1100)
 
-          getStatus('Работа КНПС', false, false, 0, 10, true)
-
           getStatus('Таймер КПВ', false, true, 0, 15)
             .then(() => (tStab = true))
             .then(() => {
@@ -399,6 +397,7 @@ export function getHOTPRO(e) {
                 getVib5T(320.1, 6875)
                 getVib6T(319.6, 6875)
                 getdPkonf(15)
+                getStatus('Работа КНПС', false, false, 0, 10, true)
                 getStatus('Прогрев ', false, true, 4, 40).then(() => {
                   getStatus('Время прогрева превышена', 'war')
 
