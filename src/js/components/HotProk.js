@@ -48,7 +48,6 @@ export function getHOTPRO(e) {
         if (g6 == false) {
           elements.G6.classList.add('color-green')
           elements.R6.classList.remove('color-red')
-
           readyRUN()
           getStatus('ОГ-12 на упоре')
           getStatus('Заполнение контура', false, true, 0, 10).then(() => (g6 = true)) //10
@@ -149,8 +148,9 @@ export function getHOTPRO(e) {
           elements.MFT.style.opacity = '1'
           g10 = true
 
-          getStatus('Подача питания на КПВ 1-5')
-          getStatus('Подача питания на АУ-10 (ВНА на 16°)')
+          // getStatus('Подача питания на КПВ 1-5')
+          getStatus('Вкл. эл.м. АУП-10(КПВ 1,5)')
+          getStatus('Под. пит. на АУП-10 (ВНА на 16°)')
 
           getPmBC(0.3)
           getPmTK(0.1)
@@ -382,6 +382,8 @@ export function getHOTPRO(e) {
             }
           }, 1100)
 
+          getStatus('Работа КНПС', false, false, 0, 10, true)
+
           getStatus('Таймер КПВ', false, true, 0, 15)
             .then(() => (tStab = true))
             .then(() => {
@@ -390,8 +392,16 @@ export function getHOTPRO(e) {
                 if (PNUon == true) getStatus('Не закрыт. ПНУ', 'red')
                 if (g14 == true) getStatus('Не закрыты КПВ', 'red')
                 blockPNSPNU()
+                getVib1T(319, 6875)
+                getVib2T(320, 6875)
+                getVib3T(319.1, 6875)
+                getVib4T(319.5, 6875)
+                getVib5T(320.1, 6875)
+                getVib6T(319.6, 6875)
+                getdPkonf(15)
                 getStatus('Прогрев ', false, true, 4, 40).then(() => {
                   getStatus('Время прогрева превышена', 'war')
+
                   Fire = true
                 }) /// 5 0
                 readyFire()

@@ -154,7 +154,7 @@ export function getTumblers(e) {
         getStatus('Нажата испол. команда')
         holProk = true
         elements.mem.addEventListener('click', clikedHOL)
-      } else if (loadDIST == true && ModeAU == true && hotProk == false && HOLO == true && gAPHP == true) {
+      } else if (loadDIST == true && ModeAU == true && hotProk == false) {
         // && HOLO == true && gAPHP == true
         getStatus('Нажата испол. команда')
         hotProk = true

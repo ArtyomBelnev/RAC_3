@@ -1,10 +1,11 @@
 import { elements } from '../elements/Elements'
 
 let timer = ''
+let timer1 = ''
 let NumStatus = 1
 let countError = 0
 
-export function getStatus(x, y, w, z, s) {
+export function getStatus(x, y, w, z, s, n) {
   let date = new Date()
   let times = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
 
@@ -22,6 +23,7 @@ export function getStatus(x, y, w, z, s) {
   } else if (y == 'war') {
     elements.disT4.innerHTML += `<div style="background-color: yellow;">${NumStatus}) ${x} ${times}</div>`
   } else if (w == true) {
+    console.log(11111)
     return new Promise((resolve, reject) => {
       elements.disT4.innerHTML += `<div>${NumStatus})${x}<div class="stTimer"><span class="minContainer">${z}</span><span>мин : </span>
       <span class="secContainer">${s}</span><span> сек</span></div></div>`
@@ -52,6 +54,35 @@ export function getStatus(x, y, w, z, s) {
         }
       }, 10)
     })
+  } else if (n == true) {
+    console.log(222)
+    elements.disT4.innerHTML += `<div>${NumStatus})${x}<div class="stTimer1"><span class="minContainer1">${z}</span><span>мин : </span>
+      <span class="secContainer1">${s}</span><span> сек</span></div></div>`
+    NumStatus++
+
+    timer1 = setInterval(() => {
+      ms--
+      if (ms == 0) {
+        ms = 100
+        sec--
+        if (sec == -1) {
+          sec = 59
+          min--
+          document.querySelector('.minContainer1').innerText = min
+        }
+
+        document.querySelector('.secContainer1').innerText = sec
+        document.querySelector('.minContainer1').innerText = min
+
+        if (min == 0 && sec == 0) {
+          document.querySelector('.minContainer1').innerText = 0
+          document.querySelector('.secContainer1').innerText = 0
+          document.querySelector('.minContainer1').classList.remove('minContainer1')
+          document.querySelector('.secContainer1').classList.remove('secContainer1')
+          clearTimeout(timer1)
+        }
+      }
+    }, 10)
   } else {
     elements.disT4.innerHTML += `<p>${NumStatus}) ${x} ${times}</p>`
   }

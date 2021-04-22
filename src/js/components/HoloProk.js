@@ -94,7 +94,8 @@ export function getHOLPRO(e) {
           elements.MFT.style.opacity = '1'
           g10 = true
 
-          getStatus('Подача питания на КПВ 1-5')
+          // getStatus('Подача питания на КПВ 1-5')
+          getStatus('Вкл. эл.м. АУП-10(КПВ 1,5)')
 
           getStatus('Время окончания ХП', false, true, 2, 0).then(() => isStatusHolPRo()) // 2 0
 
@@ -323,9 +324,9 @@ export function getHOLPRO(e) {
 
 export function isStatusHolPRo() {
   if (g15 == true) {
-    getStatus('ХОЛОДНАЯ ПРОКРУТКА ОКОНЧЕНА', 'green')
+    getStatus('ХОЛ. ПРОКРУТКА ОКОНЧЕНА', 'green')
   } else {
-    getStatus('ХОЛОДНАЯ ПРОКРУТКА ОКОНЧЕНА С ОШИБКАМИ', 'red')
+    getStatus('ХОЛ. ПРОКРУТКА ОКОНЧЕНА С ОШИБКАМИ', 'red')
   }
   getStatus('Снятия питания АУП-10')
   holProOk = true

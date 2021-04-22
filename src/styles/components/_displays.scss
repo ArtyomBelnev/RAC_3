@@ -248,7 +248,7 @@
   background-color: #c0c0c0;
   font-family: 'Linux', sans-serif;
   border: 2px solid rgb(10, 10, 10);
-  width: 300px;
+  width: 318px;
   height: 845.5px;
   padding-left: 10px;
   padding-right: 10px;
@@ -280,12 +280,15 @@
 }
 
 .secContainer,
-.minContainer {
+.secContainer1,
+.minContainer,
+.minContainer1 {
   color: #000;
   font-size: 20px;
 }
 
-.stTimer {
+.stTimer,
+.stTimer1 {
   margin: 0 2px;
   padding: 0 1px;
   border: 1px solid;
