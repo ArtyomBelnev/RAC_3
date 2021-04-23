@@ -14,7 +14,7 @@ export function arrowUP() {
     elements.ObTK.innerHTML = +elements.ObTK.innerHTML + 200
 
     if (arrowTK >= 48) {
-      if (arrowTK > 208 && arrowTK <= 228) {
+      if (arrowTK > 180 && arrowTK <= 198) {
         a = 12
         b = 400
       }

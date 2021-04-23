@@ -211,7 +211,7 @@ export function getdPkonf(i) {
         elements.dPkonf.innerHTML = i
       }
     }
-  }, 350)
+  }, 240)
 }
 
 export function getOSleft(i) {

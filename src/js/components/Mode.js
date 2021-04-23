@@ -3,6 +3,7 @@ import { elements } from '../elements/Elements'
 import { PowerOk } from './PowerUP'
 import { KranOK } from './Memo'
 import { SignalOk } from './Diots'
+import { getStatus } from './Journal'
 import { ModeHP } from './Tumblers'
 import { startVibTK, startVibCT, tMBSMBU, getVib1T, getVib2T, getVib3T, getVib4T, getVib5T, getVib6T } from './Display'
 
@@ -57,8 +58,9 @@ export function readyOUTRING() {
   getVib4T(369.5, 170)
   getVib5T(370.1, 170)
   getVib6T(369.6, 170)
-  startVibTK(2.1)
-  startVibCT(2.1)
+  startVibTK(7.2, 400)
+  startVibCT(7.3, 400)
+  getStatus('Работа КНПС', false, false, 0, 10, true)
 }
 
 export function readyJOBRING() {
@@ -83,4 +85,6 @@ export function readyJOBS() {
   getVib4T(449.5, 300)
   getVib5T(450.1, 300)
   getVib6T(449.6, 300)
+  startVibTK(9, 300)
+  startVibCT(9.1, 300)
 }

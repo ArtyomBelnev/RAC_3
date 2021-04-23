@@ -68,7 +68,7 @@ export function stopMBSMBU() {
   // }
 }
 
-export function startVibTK(i) {
+export function startVibTK(i, y) {
   tVibTK = setInterval(() => {
     let x = +elements.VibTK.value
     x += 0.1
@@ -76,7 +76,7 @@ export function startVibTK(i) {
       clearTimeout(tVibTK)
     }
     elements.VibTK.value = x.toFixed(1)
-  }, 1400)
+  }, y) //1400
 }
 
 export function stopVibTK() {
@@ -91,7 +91,7 @@ export function stopVibTK() {
   }, 440)
 }
 
-export function startVibCT(i) {
+export function startVibCT(i, y) {
   tVibCT = setInterval(() => {
     let x = +elements.VibCT.value
     x += 0.1
@@ -99,7 +99,7 @@ export function startVibCT(i) {
       clearTimeout(tVibCT)
     }
     elements.VibCT.value = x.toFixed(1)
-  }, 1400)
+  }, y) //1400
 }
 
 export function stopVibCT() {
@@ -280,9 +280,11 @@ export function hotT2() {
   }, interval4)
 
   MBS = setInterval(() => {
-    elements.mbs.innerHTML = (+elements.mbs.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
-    elements.mbu.innerHTML = (+elements.mbu.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
-    if (count5 <= +elements.mbs.innerHTML.replace(/[,]/g, '.')) clearInterval(MBS)
+    if (startMBS < +elements.OP1.innerHTML.replace(/[,]/g, '.')) {
+      elements.mbs.innerHTML = (+elements.mbs.innerHTML.replace(/[,]/g, '.') + 0.11).toFixed(1).replace(/[.]/g, ',')
+      elements.mbu.innerHTML = (+elements.mbu.innerHTML.replace(/[,]/g, '.') + 0.11).toFixed(1).replace(/[.]/g, ',')
+      if (count5 <= +elements.mbs.innerHTML.replace(/[,]/g, '.')) clearInterval(MBS)
+    }
   }, interval5)
 }
 
@@ -293,6 +295,8 @@ export function stopHOT2() {
   clearInterval(VHOD)
   clearInterval(VIHOD)
 
+  clearTimeout(tVibTK)
+  clearTimeout(tVibCT)
   clearInterval(vVib1T)
   clearInterval(vVib2T)
   clearInterval(vVib3T)

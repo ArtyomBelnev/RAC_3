@@ -50,7 +50,7 @@ export function getHOTPRO(e) {
           elements.R6.classList.remove('color-red')
           readyRUN()
           getStatus('ОГ-12 на упоре')
-          getStatus('Заполнение контура', false, true, 0, 10).then(() => (g6 = true)) //10
+          getStatus('Продувка', false, true, 0, 10).then(() => (g6 = true)) //10
         }
         break
       case 'g9':
@@ -159,8 +159,8 @@ export function getHOTPRO(e) {
           getdPkonf(3)
           getOSleft(0.1)
           getOSright(0.15)
-          startVibTK(1.2)
-          startVibCT(1.2)
+          startVibTK(1.2, 1400)
+          startVibCT(1.2, 1400)
 
           Oborts = setInterval(() => {
             if (arrowTK < 60) {
@@ -221,7 +221,7 @@ export function getHOTPRO(e) {
           g7 = true
           readyZAJXX()
         }
-        if (Pm == false) getStatus('Ошибка', 'yellow')
+        if (g15 == false || Pm == false) getStatus('Ошибка', 'yellow')
         break
       case 'b6':
         if (b6 == false && g7 == true) {
@@ -255,14 +255,18 @@ export function getHOTPRO(e) {
           elements.disT2.addEventListener('click', clikedT)
           d8 = false
 
+          let count = 8440 / (198 - +elements.Vib3T.value)
+
           hotT1()
 
-          getVib1T(196, 50)
-          getVib2T(195, 50)
-          getVib3T(196, 50)
-          getVib4T(198, 50)
-          getVib5T(198, 50)
-          getVib6T(196, 50)
+          getVib1T(196, count)
+          getVib2T(195, count)
+          getVib3T(196, count)
+          getVib4T(198, count)
+          getVib5T(198, count)
+          getVib6T(196, count)
+          startVibTK(3.2, 832)
+          startVibCT(3.1, 832)
 
           getPmBC(0.4)
           getPmTK(0.25)
@@ -309,8 +313,8 @@ export function getHOTPRO(e) {
           getPmCT(0.36, 600)
           getPgpN(4.1)
           getdPkonf(10)
-          startVibTK(1.5)
-          startVibCT(1.5)
+          startVibTK(4, 272)
+          startVibCT(4.1, 272)
 
           Oborts = setInterval(() => {
             if (arrowTK < 150) {
@@ -367,19 +371,19 @@ export function getHOTPRO(e) {
           getPmCT(0.36, 600)
           getPgpN(4.1)
           getdPkonf(10)
-          startVibTK(1.7)
-          startVibCT(1.7)
           hotT2()
-          getVib1T(299, 100)
-          getVib2T(300, 100)
-          getVib3T(299.1, 100)
-          getVib4T(299.5, 100)
-          getVib5T(300.1, 100)
-          getVib6T(299.6, 100)
+          getVib1T(299, 59)
+          getVib2T(300, 59)
+          getVib3T(299.1, 59)
+          getVib4T(299.5, 59)
+          getVib5T(300.1, 59)
+          getVib6T(299.6, 59)
+          startVibTK(6.5, 384)
+          startVibCT(6.6, 384)
           elements.TCwrapR.classList.add('color-red')
 
           Oborts = setInterval(() => {
-            if (arrowTK < 228) {
+            if (arrowTK < 198) {
               arrowUP()
             } else {
               clearTimeout(Oborts)
@@ -402,7 +406,6 @@ export function getHOTPRO(e) {
                 getVib6T(319.6, 6875)
                 getStatus('Прогрев ', false, true, 4, 40).then(() => {
                   getdPkonf(15)
-                  getStatus('Работа КНПС', false, false, 0, 10, true)
                   getStatus('Время прогрева превышена', 'war')
 
                   Fire = true

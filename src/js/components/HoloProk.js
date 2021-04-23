@@ -103,8 +103,8 @@ export function getHOLPRO(e) {
           getPmTK(0.1)
           getPmCT(0.05, 1400)
           getPg13(0.35)
-          startVibTK()
-          startVibCT()
+          startVibTK(1.2, 1400)
+          startVibCT(1.2, 1400)
           VVHH()
 
           HpObort = setInterval(() => {

@@ -45,7 +45,7 @@ export function getTumblers(e) {
       if (PowerOk == true) {
         elements.tumImg2.style.transform = 'rotate(-45deg)'
         setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
-        if (arrowTK >= 228 && arrowTK <= 236 && Fire == true && G14 == true && PNSon == false && PNUon == false) arrowUP()
+        if (arrowTK >= 198 && arrowTK <= 236 && Fire == true && G14 == true && PNSon == false && PNUon == false) arrowUP()
         else return getStatus('Ошибка', 'yellow')
       }
       break
@@ -53,7 +53,7 @@ export function getTumblers(e) {
       if (PowerOk == true) {
         elements.tumImg2.style.transform = 'rotate(45deg)'
         setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
-        if (arrowTK > 228 && arrowTK < 240 && Fire == true && G14 == true && PNSon == true && PNUon == true) arrowDN()
+        if (arrowTK > 198 && arrowTK < 240 && Fire == true && G14 == true && PNSon == false && PNUon == false) arrowDN()
         else return getStatus('Ошибка', 'yellow')
       }
       break

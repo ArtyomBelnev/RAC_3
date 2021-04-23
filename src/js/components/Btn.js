@@ -25,34 +25,48 @@ export function getBtn(e) {
       if (!elements.vmr01.classList.contains('btn__style-green')) {
         elements.vmr01.classList.add('btn__style-green')
         getStatus('ВМО1 включено')
+        elements.tumImg1.style.transform = 'rotate(0deg)'
       }
       break
     case 'VM02':
       if (!elements.vmr02.classList.contains('btn__style-green')) {
         elements.vmr02.classList.add('btn__style-green')
         getStatus('ВМО2 включено')
+        elements.tumImg1.style.transform = 'rotate(0deg)'
       }
       break
     case 'VM03':
       if (!elements.vmr03.classList.contains('btn__style-green')) {
         elements.vmr03.classList.add('btn__style-green')
         getStatus('ВМО3 включено')
+        elements.tumImg1.style.transform = 'rotate(0deg)'
       }
       break
     case 'VM04':
       if (!elements.vmr04.classList.contains('btn__style-green')) {
         elements.vmr04.classList.add('btn__style-green')
         getStatus('ВМО4 включено')
+        elements.tumImg1.style.transform = 'rotate(0deg)'
       }
       break
     case 'PNS':
-      if (countPNSPNU == 1) return getStatus('Ошибка', 'yellow')
+      if (countPNSPNU == 1) {
+        elements.tumImg1.style.transform = 'rotate(0deg)'
+        return getStatus('Ошибка', 'yellow')
+      }
       if (!elements.vpns.classList.contains('btn__style-green')) {
-        if (runOIL == true) return getStatus('Не выкл. тэны', 'yellow')
-
-        if (hot == true) return getStatus('Ошибка', 'yellow')
-
-        if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 15) return getStatus('Ошибка', 'yellow')
+        if (runOIL == true) {
+          elements.tumImg1.style.transform = 'rotate(0deg)'
+          return getStatus('Не выкл. тэны', 'yellow')
+        }
+        if (hot == true) {
+          elements.tumImg1.style.transform = 'rotate(0deg)'
+          return getStatus('Ошибка', 'yellow')
+        }
+        if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 15) {
+          elements.tumImg1.style.transform = 'rotate(0deg)'
+          return getStatus('Ошибка', 'yellow')
+        }
 
         elements.vpns.classList.add('btn__style-green')
         getStatus('ПНС включено')
@@ -62,13 +76,23 @@ export function getBtn(e) {
       }
       break
     case 'PNU':
-      if (countPNSPNU == 1) return getStatus('Ошибка', 'yellow')
+      if (countPNSPNU == 1) {
+        elements.tumImg1.style.transform = 'rotate(0deg)'
+        return getStatus('Ошибка', 'yellow')
+      }
       if (!elements.vpnu.classList.contains('btn__style-green')) {
         if (runOIL == true) {
+          elements.tumImg1.style.transform = 'rotate(0deg)'
           return getStatus('Не выкл. тэны', 'yellow')
         }
-        if (hot == true) return getStatus('Ошибка', 'yellow')
-        if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 15) return getStatus('Ошибка', 'yellow')
+        if (hot == true) {
+          elements.tumImg1.style.transform = 'rotate(0deg)'
+          return getStatus('Ошибка', 'yellow')
+        }
+        if (+elements.mbs.innerHTML.replace(/[,]/g, '.') <= 15) {
+          elements.tumImg1.style.transform = 'rotate(0deg)'
+          return getStatus('Ошибка', 'yellow')
+        }
         elements.vpnu.classList.add('btn__style-green')
         getStatus('ПНУ включено')
         elements.tumImg1.style.transform = 'rotate(0deg)'
@@ -98,30 +122,34 @@ export function delBtn(e) {
       if (elements.vmr01.classList.contains('btn__style-green')) {
         elements.vmr01.classList.remove('btn__style-green')
         getStatus('ВМО1 отключено')
+        elements.tumImg1.style.transform = 'rotate(0deg)'
       }
       break
     case 'VM02':
       if (elements.vmr02.classList.contains('btn__style-green')) {
         elements.vmr02.classList.remove('btn__style-green')
         getStatus('ВМО2 отключено')
+        elements.tumImg1.style.transform = 'rotate(0deg)'
       }
       break
     case 'VM03':
       if (elements.vmr03.classList.contains('btn__style-green')) {
         elements.vmr03.classList.remove('btn__style-green')
         getStatus('ВМО3 отключено')
+        elements.tumImg1.style.transform = 'rotate(0deg)'
       }
       break
     case 'VM04':
       if (elements.vmr04.classList.contains('btn__style-green')) {
         elements.vmr04.classList.remove('btn__style-green')
-
+        elements.tumImg1.style.transform = 'rotate(0deg)'
         getStatus('ВМО4 отключено')
       }
       break
     case 'PNS':
       if (elements.vpns.classList.contains('btn__style-green') && PMCok == true) {
         if (PNSonPNUon == true) {
+          elements.tumImg1.style.transform = 'rotate(0deg)'
           return getStatus('Ошибка', 'yellow')
         }
         elements.vpns.classList.remove('btn__style-green')
@@ -133,6 +161,7 @@ export function delBtn(e) {
       break
     case 'PNU':
       if (PNSonPNUon == true) {
+        elements.tumImg1.style.transform = 'rotate(0deg)'
         return getStatus('Ошибка', 'yellow')
       }
       if (elements.vpnu.classList.contains('btn__style-green')) {
