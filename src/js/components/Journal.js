@@ -3,7 +3,8 @@ import { elements } from '../elements/Elements'
 let timer = ''
 let timer1 = ''
 let NumStatus = 1
-let countError = 0
+let countErrors = 0
+let countErrorsactive = false
 
 export function getStatus(x, y, w, z, s, n) {
   let date = new Date()
@@ -14,11 +15,12 @@ export function getStatus(x, y, w, z, s, n) {
   let ms = 100
 
   if (y == 'yellow') {
-    countError++
+    countErrors++
     elements.disT4.innerHTML += `<div style="color: yellow;">${NumStatus}) ${x} ${times}</div>`
   } else if (y == 'green') {
     elements.disT4.innerHTML += `<div style="background-color: green; color: white;">${NumStatus}) ${x} ${times}</div>`
   } else if (y == 'red') {
+    countErrors++
     elements.disT4.innerHTML += `<div style="color: red;">${NumStatus}) ${x} ${times}</div>`
   } else if (y == 'war') {
     elements.disT4.innerHTML += `<div style="background-color: yellow;">${NumStatus}) ${x} ${times}</div>`
@@ -88,7 +90,12 @@ export function getStatus(x, y, w, z, s, n) {
   let maxScroll = elements.disT4.scrollHeight
   elements.disT4.scrollTop = maxScroll
 
-  // if (countError == 2) {
-  //   alert('Тест провален')
-  // }
+  if (countErrors == 1 && countErrorsactive == true) {
+    elements.rezultERROR.style.opacity = '1'
+    elements.rezultERROR.style.visibility = 'visible'
+  }
+}
+
+export function errorActive() {
+  countErrorsactive = true
 }
