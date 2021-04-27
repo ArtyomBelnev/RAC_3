@@ -9,6 +9,7 @@ import { TK240 } from './Tumblers'
 import { startVibTK, startVibCT, stopVibTK, stopVibCT, VVHH, getVib1T, getVib2T, getVib3T, getVib4T, getVib5T, getVib6T, getVibSred, hotT1, hotT2, stopHOT2 } from './Display'
 
 let hotProOk = false
+let normSTOP = false
 let tPlusTemp = ''
 
 let Oborts = ''
@@ -42,7 +43,7 @@ let g1 = false,
   d8 = false
 
 export function getHOTPRO(e) {
-  if (hotProOk == false) {
+  if (hotProOk == false && normSTOP == false) {
     switch (e.target.classList.value.slice(0, 3).split(' ').join('')) {
       case 'g6':
         if (g6 == false) {
@@ -240,7 +241,7 @@ export function getHOTPRO(e) {
     }
   }
 
-  if (hotProOk == true) {
+  if (hotProOk == true && normSTOP == false) {
     switch (e.target.classList.value.slice(0, 3).split(' ').join('')) {
       case 'd8':
         if (d8 == true && b6 == true) {
@@ -481,10 +482,15 @@ export function getHOTPRO(e) {
           elements.R7.classList.add('color-red')
           g7 = false
           readyJOBS()
+          normSTOP = true
         }
         if (g9 == false) getStatus('Ошибка', 'yellow')
         break
     }
+  }
+
+  if (normSTOP == true) {
+    console.log(2)
   }
 }
 
