@@ -7,7 +7,7 @@
   left: 0;
   top: 0;
   opacity: 0;
-  // visibility: hidden;
+  visibility: hidden;
   overflow-y: auto;
   overflow-x: hidden;
   transition: all 0.8s ease 0s;
@@ -67,7 +67,7 @@
   .popup__text-img {
     width: 1045px;
     height: 150px;
-    background: url(../../images/tab.png) no-repeat;
+    // background: url(../../images/tab.png) no-repeat;
     background-size: auto;
   }
 }
