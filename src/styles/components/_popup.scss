@@ -35,7 +35,7 @@
   position: relative;
   transition: all 0.8s ease 0s;
   opacity: 0;
-  transform: perspective(600px) translate(0px, -100px) rotateX(45deg);
+  transform: perspective(600px) translate(0px, -600px);
 }
 
 .popup__title {
@@ -60,17 +60,38 @@
 .popup__text {
   font-size: 18px;
   display: flex;
+  width: 1130px;
   flex-direction: column;
-  // align-items: flex-end;
-  // justify-content: center;
   transition: all 0.8s ease 0s;
 
+  .disabled {
+    display: none;
+  }
+
   .popup__text-img {
-    margin-top: 15px;
-    width: 1045px;
-    // background: url(../../images/tab.png) no-repeat;
     background-size: auto;
     transition: all 0.2s ease 0s;
+    position: relative;
+    width: 100%;
+    // overflow: hidden;
+
+    img {
+      position: absolute;
+      object-fit: cover;
+      width: 100%;
+      max-height: 500px;
+      top: 30px;
+      left: 50%;
+      margin-left: -595px;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .active {
+      visibility: visible;
+      transition: all 0.2s ease 0s;
+      opacity: 1;
+    }
   }
 
   &-names {
@@ -84,6 +105,10 @@
       color: rgb(184, 17, 17);
       cursor: pointer;
     }
+
+    .active {
+      color: rgb(184, 17, 17);
+    }
   }
 }
 
@@ -93,6 +118,6 @@
 // }
 
 .popup__content_disabled {
-  transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+  transform: perspective(600px) translate(0px, 0%);
   opacity: 1;
 }
