@@ -13,7 +13,7 @@ export function p_dd() {
   elements.popup.style.visibility = 'visible'
   elements.popup.transition = 'all 0.8s ease 0s'
   elements.popup__content.classList.add('popup__content_disabled')
-  elements.popupImages.style.background = 'url(../src/images/fon.jpg) no-repeat'
+  elements.popupImages.style.background = 'url(../src/images/Memo.jpg) no-repeat'
 }
 
 export function pc_d(e) {
