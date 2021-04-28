@@ -20,6 +20,7 @@ export function p_dd() {
   elements.popup.style.transition = 'all 0.8s ease 0s'
   elements.popup__content.classList.add('popup__content_disabled')
   elements.popupTextNames.classList.remove('disabled')
+  elements.infoLink.forEach((el) => el.classList.remove('active'))
 
   elements.infoImg.forEach((el) => el.classList.remove('active'))
 }

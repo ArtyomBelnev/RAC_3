@@ -79,6 +79,17 @@ export function startVibTK(i, y) {
   }, y) //1400
 }
 
+export function delVibTK(i, y) {
+  tVibTK = setInterval(() => {
+    let x = +elements.VibTK.value
+    x -= 0.1
+    if (x <= i) {
+      clearTimeout(tVibTK)
+    }
+    elements.VibTK.value = x.toFixed(1)
+  }, y) //1400
+}
+
 export function stopVibTK() {
   tVibTK = setInterval(() => {
     let x = +elements.VibTK.value
@@ -96,6 +107,17 @@ export function startVibCT(i, y) {
     let x = +elements.VibCT.value
     x += 0.1
     if (x >= i) {
+      clearTimeout(tVibCT)
+    }
+    elements.VibCT.value = x.toFixed(1)
+  }, y) //1400
+}
+
+export function delVibCT(i, y) {
+  tVibCT = setInterval(() => {
+    let x = +elements.VibCT.value
+    x -= 0.1
+    if (x <= i) {
       clearTimeout(tVibCT)
     }
     elements.VibCT.value = x.toFixed(1)
@@ -124,6 +146,16 @@ export function getVib1T(i, y) {
   }, y)
 }
 
+export function delVib1T(i, y) {
+  vVib1T = setInterval(() => {
+    let x = +elements.Vib1T.value
+    elements.Vib1T.value = (x - 0.5).toFixed(1)
+    if (+elements.Vib1T.value <= i) {
+      clearInterval(vVib1T)
+    }
+  }, y)
+}
+
 export function getVib2T(i, y) {
   vVib2T = setInterval(() => {
     let x = +elements.Vib2T.value
@@ -134,11 +166,31 @@ export function getVib2T(i, y) {
   }, y)
 }
 
+export function delVib2T(i, y) {
+  vVib2T = setInterval(() => {
+    let x = +elements.Vib2T.value
+    elements.Vib2T.value = (x - 0.5).toFixed(1)
+    if (+elements.Vib2T.value <= i) {
+      clearInterval(vVib2T)
+    }
+  }, y)
+}
+
 export function getVib3T(i, y) {
   vVib3T = setInterval(() => {
     let x = +elements.Vib3T.value
     elements.Vib3T.value = (x + 0.5).toFixed(1)
     if (+elements.Vib3T.value >= i) {
+      clearInterval(vVib3T)
+    }
+  }, y)
+}
+
+export function delVib3T(i, y) {
+  vVib3T = setInterval(() => {
+    let x = +elements.Vib3T.value
+    elements.Vib3T.value = (x - 0.5).toFixed(1)
+    if (+elements.Vib3T.value <= i) {
       clearInterval(vVib3T)
     }
   }, y)
@@ -155,6 +207,17 @@ export function getVib4T(i, y) {
   }, y)
 }
 
+export function delVib4T(i, y) {
+  vVib4T = setInterval(() => {
+    let x = +elements.Vib4T.value
+
+    elements.Vib4T.value = (x - 0.5).toFixed(1)
+    if (+elements.Vib4T.value <= i) {
+      clearInterval(vVib4T)
+    }
+  }, y)
+}
+
 export function getVib5T(i, y) {
   vVib5T = setInterval(() => {
     let x = +elements.Vib4T.value
@@ -165,11 +228,32 @@ export function getVib5T(i, y) {
   }, y)
 }
 
+export function delVib5T(i, y) {
+  vVib5T = setInterval(() => {
+    let x = +elements.Vib4T.value
+    elements.Vib5T.value = (x - 0.6).toFixed(1)
+    if (+elements.Vib5T.value <= i) {
+      clearInterval(vVib5T)
+    }
+  }, y)
+}
+
 export function getVib6T(i, y) {
   vVib6T = setInterval(() => {
     let x = +elements.Vib4T.value
     elements.Vib6T.value = (x + 0.5).toFixed(1)
     if (+elements.Vib6T.value >= i) {
+      clearInterval(vVib6T)
+    }
+    getVibSred()
+  }, y)
+}
+
+export function delVib6T(i, y) {
+  vVib6T = setInterval(() => {
+    let x = +elements.Vib4T.value
+    elements.Vib6T.value = (x - 0.5).toFixed(1)
+    if (+elements.Vib6T.value <= i) {
       clearInterval(vVib6T)
     }
     getVibSred()
@@ -284,6 +368,56 @@ export function hotT2() {
       elements.mbs.innerHTML = (+elements.mbs.innerHTML.replace(/[,]/g, '.') + 0.11).toFixed(1).replace(/[.]/g, ',')
       elements.mbu.innerHTML = (+elements.mbu.innerHTML.replace(/[,]/g, '.') + 0.11).toFixed(1).replace(/[.]/g, ',')
       if (count5 <= +elements.mbs.innerHTML.replace(/[,]/g, '.')) clearInterval(MBS)
+    }
+  }, interval5)
+}
+
+export function hotT3() {
+  let startUP = +elements.UP.innerHTML.replace(/[,]/g, '.')
+  let startOP1 = +elements.OP1.innerHTML.replace(/[,]/g, '.')
+  let startMBS = +elements.mbs.innerHTML.replace(/[,]/g, '.')
+  let startVHOD = +elements.VHOD.innerHTML.replace(/[,]/g, '.')
+  let startVIHOD = +elements.VIHOD.innerHTML.replace(/[,]/g, '.')
+
+  let count = 60
+  let count2 = 40
+  let count3 = 41
+  let count4 = 55
+  let count5 = 40
+  let interval = 31900 / (startUP - count) //30000
+  let interval2 = 31900 / (startOP1 - count2) //30000
+  let interval3 = 31900 / (startVHOD - count3) //30000
+  let interval4 = 31900 / (startVIHOD - count4) //30000
+  let interval5 = 31900 / (startMBS - count5) //30000
+
+  UP = setInterval(() => {
+    elements.UP.innerHTML = (+elements.UP.innerHTML.replace(/[,]/g, '.') - 0.1).toFixed(1).replace(/[.]/g, ',')
+    if (count >= +elements.UP.innerHTML.replace(/[,]/g, '.')) clearInterval(UP)
+  }, interval)
+
+  OP = setInterval(() => {
+    elements.OP1.innerHTML = (+elements.OP1.innerHTML.replace(/[,]/g, '.') - 0.1).toFixed(1).replace(/[.]/g, ',')
+    elements.OP2.innerHTML = (+elements.OP2.innerHTML.replace(/[,]/g, '.') - 0.095).toFixed(1).replace(/[.]/g, ',')
+    if (count2 >= +elements.OP1.innerHTML.replace(/[,]/g, '.')) clearInterval(OP)
+  }, interval2)
+
+  VHOD = setInterval(() => {
+    elements.VHOD.innerHTML = (+elements.VHOD.innerHTML.replace(/[,]/g, '.') - 0.1).toFixed(1).replace(/[.]/g, ',')
+    elements.HLSM.innerHTML = (+elements.HLSM.innerHTML.replace(/[,]/g, '.') - 0.1).toFixed(1).replace(/[.]/g, ',')
+    elements.HLOP.innerHTML = (+elements.HLOP.innerHTML.replace(/[,]/g, '.') - 0.1).toFixed(1).replace(/[.]/g, ',')
+    if (count3 >= +elements.VHOD.innerHTML.replace(/[,]/g, '.')) clearInterval(VHOD)
+  }, interval3)
+
+  VIHOD = setInterval(() => {
+    elements.VIHOD.innerHTML = (+elements.VIHOD.innerHTML.replace(/[,]/g, '.') - 0.1).toFixed(1).replace(/[.]/g, ',')
+    if (count4 >= +elements.UP.innerHTML.replace(/[,]/g, '.')) clearInterval(VIHOD)
+  }, interval4)
+
+  MBS = setInterval(() => {
+    if (startMBS < +elements.OP1.innerHTML.replace(/[,]/g, '.')) {
+      elements.mbs.innerHTML = (+elements.mbs.innerHTML.replace(/[,]/g, '.') - 0.11).toFixed(1).replace(/[.]/g, ',')
+      elements.mbu.innerHTML = (+elements.mbu.innerHTML.replace(/[,]/g, '.') - 0.11).toFixed(1).replace(/[.]/g, ',')
+      if (count5 >= +elements.mbs.innerHTML.replace(/[,]/g, '.')) clearInterval(MBS)
     }
   }, interval5)
 }

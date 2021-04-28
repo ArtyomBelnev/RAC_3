@@ -98,7 +98,14 @@ module.exports = {
       },
       {
         test: /\.(png||jpg||svg||gif)$/,
-        use: ['file-loader'],
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'images/',
+            },
+          },
+        ],
       },
       {
         test: /\.(ttf||woff||woff2||eot)$/,

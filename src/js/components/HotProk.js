@@ -1,15 +1,17 @@
 import { elements } from '../elements/Elements'
 import { getPMC, getPgDG, delPgDG, getPmBC, delPmBC, getPmTK, delPmTK, getPmCT, delPmCT, getPg13, delPg13, getPgN, getPgpN, getdPkonf, getOSleft, getOSright } from './Canals'
-import { d7_8, stopCanlsHOT2 } from './Canals'
-import { blockPNSPNU, PNSon, PNUon } from './Btn'
+import { d7_8, stopCanlsHOT2, deldPkonf } from './Canals'
+import { clickNormStop } from './BtnStops'
+import { OHLOJDEPNSPNU, blockPNSPNU, block2PNSPNU, PNSon, PNUon } from './Btn'
 import { getStatus } from './Journal'
-import { readyRUN, readyRAZBC, readyZAJXX, readyFire, readyJOBRING, LOADTRASS, readyJOBS } from './Mode'
+import { readyRUN, readyRAZBC, readyZAJXX, readyFire, readyJOBRING, LOADTRASS, readyJOBS, readyOHLAJDEN } from './Mode'
 import { arrowUP, arrowDN, arrowTK } from './Arrow'
 import { TK240 } from './Tumblers'
-import { startVibTK, startVibCT, stopVibTK, stopVibCT, VVHH, getVib1T, getVib2T, getVib3T, getVib4T, getVib5T, getVib6T, getVibSred, hotT1, hotT2, stopHOT2 } from './Display'
+import { startVibTK, startVibCT, stopVibTK, stopVibCT, VVHH, getVib1T, getVib2T, getVib3T, getVib4T, getVib5T, getVib6T, getVibSred, hotT1, hotT2, hotT3, stopHOT2, delVib1T, delVib2T, delVib3T, delVib4T, delVib5T, delVib6T, delVibCT, delVibTK } from './Display'
+
+export let normSTOP = false
 
 let hotProOk = false
-let normSTOP = false
 let tPlusTemp = ''
 
 let Oborts = ''
@@ -232,7 +234,7 @@ export function getHOTPRO(e) {
           hotProOk = true
           getStatus('Работа КНПС', false, true, 0, 10).then(() => {
             if (d8 == true) {
-              getStatus('A3 не отрк.', 'red')
+              getStatus('A3 не откр.', 'red')
             }
           })
         }
@@ -406,11 +408,10 @@ export function getHOTPRO(e) {
                 getVib5T(320.1, 6875)
                 getVib6T(319.6, 6875)
                 getStatus('Прогрев ', false, true, 4, 40).then(() => {
-                  getdPkonf(15)
                   getStatus('Время прогрева превышена', 'war')
 
                   Fire = true
-                }) /// 5 0
+                }) /// 4 40
                 readyFire()
               })
             })
@@ -483,6 +484,8 @@ export function getHOTPRO(e) {
           g7 = false
           readyJOBS()
           normSTOP = true
+          getdPkonf(15)
+          getStatus('ГОРЯЧИЙ РЕЖИМ ОКОНЧЕН', 'green')
         }
         if (g9 == false) getStatus('Ошибка', 'yellow')
         break
@@ -490,7 +493,105 @@ export function getHOTPRO(e) {
   }
 
   if (normSTOP == true) {
-    console.log(2)
+    switch (e.target.classList.value.slice(0, 3).split(' ').join('')) {
+      case 'g7':
+        if (g7 == false && clickNormStop == true) {
+          elements.R7.classList.remove('color-red')
+          elements.G7.classList.add('color-green')
+          g7 = true
+        }
+        if (clickNormStop == false) getStatus('Ошибка', 'yellow')
+        break
+      case 'r9':
+        if (g9 == true && g7 == true) {
+          elements.G9.classList.remove('color-green')
+          elements.R9.classList.add('color-red')
+          g9 = false
+
+          readyOHLAJDEN()
+        }
+        if (g7 == false) getStatus('Ошибка', 'yellow')
+        break
+      case 'g11':
+        if (g11 == false && arrowTK == 228) {
+          elements.R11.classList.remove('color-red')
+          elements.G11.classList.add('color-green')
+          g11 = true
+        }
+        if (arrowTK > 229) getStatus('Ошибка', 'yellow')
+        break
+      case 'g15':
+        if (g15 == false && g11 == true) {
+          elements.R15.classList.remove('color-red')
+          elements.G15.classList.add('color-green')
+
+          getStatus('Охлаждение', false, true, 5, 0).then(() => {
+            g15 = true
+          })
+          hotT3()
+          delVib1T(319, 6875)
+          delVib2T(320, 6875)
+          delVib3T(319.1, 6875)
+          delVib4T(319.5, 6875)
+          delVib5T(320.1, 6875)
+          delVib6T(319.6, 6875)
+          delVibTK(7, 384)
+          delVibCT(6.9, 384)
+          deldPkonf(10)
+        }
+        if (g11 == false) getStatus('Ошибка', 'yellow')
+        break
+
+      case 'r3':
+        if (g3 == true && g15 == true) {
+          elements.G3.classList.remove('color-green')
+          elements.R3.classList.add('color-red')
+          elements.R4.classList.remove('color-red')
+          elements.G4.classList.add('color-green')
+          g3 = false
+        }
+        if (g15 == false) {
+          getStatus('Ошибка', 'yellow')
+        }
+        break
+      case 'g4':
+        if (g3 == true) {
+          getStatus('Ошибка', 'yellow')
+        }
+        break
+      case 'b3':
+        if (b3 == true && g3 == false) {
+          elements.B3.classList.remove('color-green')
+          b3 = false
+          delPgDG()
+        }
+        if (g3 == true) {
+          getStatus('Ошибка', 'yellow')
+        }
+        break
+      case 'd7':
+        if (d7 == false && b3 == false) {
+          elements.D7.classList.remove('color-green')
+          elements.D7.classList.add('color-red')
+          d7 = true
+          block2PNSPNU(d7, d8)
+        }
+        if (b3 == true) {
+          getStatus('Ошибка', 'yellow')
+        }
+        break
+      case 'd8':
+        if (d8 == false && b3 == false) {
+          elements.D8.classList.remove('color-green')
+          elements.D8.classList.add('color-red')
+          d8 = true
+          block2PNSPNU(d7, d8)
+        }
+        if (b3 == true) {
+          getStatus('Ошибка', 'yellow')
+        }
+        break
+    }
   }
 }
 
@@ -501,3 +602,15 @@ function getTemper() {
     VibSred200 = true
   }
 }
+
+// OHLOJDEPNSPNU
+// delPMC(0.15)
+
+// let a = setInterval(() => {
+//   if (arrowTK <= 228) {
+//     arrowDN()
+//   }
+//   if (arrowTK == 0) {
+//     clearTimeout(a)
+//   }
+// }, 1200)

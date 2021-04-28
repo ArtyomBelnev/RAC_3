@@ -7,7 +7,7 @@ import { diotsON, diotsOFF, diotsOK } from './Diots'
 import { getHOLPRO } from './HoloProk'
 import { getHOTPRO, G14, Fire } from './HotProk'
 import { getBtn, delBtn, PNSonPNUon, PNSon, PNUon } from './Btn'
-import { readyAPHP, readyOUTRING, JOBRING, readyLOADTRASS } from './Mode'
+import { readyAPHP, readyOUTRING, JOBRING, readyLOADTRASS, OHLAJDEN } from './Mode'
 
 export let loadDIST = false
 export let ModeHP = false
@@ -53,8 +53,10 @@ export function getTumblers(e) {
       if (PowerOk == true) {
         elements.tumImg2.style.transform = 'rotate(45deg)'
         setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
-        if (arrowTK > 198 && arrowTK < 240 && Fire == true && G14 == true && PNSon == false && PNUon == false) arrowDN()
-        else return getStatus('Ошибка', 'yellow')
+        if (arrowTK > 228 && arrowTK <= 240 && OHLAJDEN == true) {
+          arrowDN()
+          console.log(arrowTK)
+        } else return getStatus('Ошибка', 'yellow')
       }
       break
     case '5':

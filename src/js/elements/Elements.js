@@ -83,6 +83,8 @@ export const elements = {
   jobring: document.getElementById('JOBRING'),
   loadtrass: document.getElementById('LOADTRASS'),
   jobs: document.getElementById('JOBS'),
+  normstop: document.getElementById('NORMSTOP'),
+  ohlajde: document.getElementById('OHLAJDE'),
   TCwrapR: document.querySelector('.TC__wrap-r'),
   ZwrapR: document.querySelector('.Z__wrap-r'),
   powers: document.querySelector('.powers'),

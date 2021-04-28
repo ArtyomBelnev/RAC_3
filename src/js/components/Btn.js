@@ -5,10 +5,13 @@ import { T } from './PowerUP'
 import { readyAPHP } from './Mode'
 import { runOIL } from './Display'
 import { checkSTART } from './Tumblers'
+import { normSTOP } from './HotProk'
+import { arrowUP, arrowDN, arrowTK } from './Arrow'
 
 export let PNSonPNUon = false
 export let PNSon = false
 export let PNUon = false
+export let OHLOJDEPNSPNU = false
 
 let PMCok = false,
   tPlusTemp = '',
@@ -80,6 +83,7 @@ export function getBtn(e) {
         elements.tumImg1.style.transform = 'rotate(0deg)'
         return getStatus('Ошибка', 'yellow')
       }
+
       if (!elements.vpnu.classList.contains('btn__style-green')) {
         if (runOIL == true) {
           elements.tumImg1.style.transform = 'rotate(0deg)'
@@ -102,13 +106,17 @@ export function getBtn(e) {
       break
   }
 
-  if (PNSon == true && PMCok == false) {
+  if (PNSon == true && PNUon == true && normSTOP == true) {
+    OHLOJDEPNSPNU = true
+  }
+
+  if (PNSon == true && PMCok == false && normSTOP == false) {
     PMCok = true
     stopPMC()
     getPMC(0.15)
   }
 
-  if (PNSon == true && PNUon == true && PNSonPNUon == false && countPNSPNU == 0) {
+  if (PNSon == true && PNUon == true && PNSonPNUon == false && countPNSPNU == 0 && normSTOP == false) {
     PNSonPNUon = true
     countPNSPNU = 1
     plusTemp()
@@ -265,4 +273,12 @@ function minusOil() {
 export function blockPNSPNU() {
   PNSonPNUon = false
   hot = true
+}
+
+export function block2PNSPNU(x, y) {
+  if (x == true && y == true) {
+    countPNSPNU = 0
+    hot = false
+    getStatus('Под. пит. на АУП-10 (ВНА на 16°)')
+  }
 }

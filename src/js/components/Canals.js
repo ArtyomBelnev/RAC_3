@@ -26,12 +26,12 @@ export function getPMC(i) {
   }, 500)
 }
 
-export function delPMC() {
+export function delPMC(i) {
   intPms = setInterval(() => {
     let x = +elements.PMC.innerHTML.replace(/[,]/g, '.')
     x -= 0.01
     elements.PMC.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
-    if (x <= 0) {
+    if (x <= i) {
       clearTimeout(intPms)
       elements.PMC.innerHTML = 0
     }
@@ -206,6 +206,20 @@ export function getdPkonf(i) {
     x += 0.1
     elements.dPkonf.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
     if (x >= i) {
+      clearInterval(vdPkonf)
+      if (Number.isInteger) {
+        elements.dPkonf.innerHTML = i
+      }
+    }
+  }, 240)
+}
+
+export function deldPkonf(i) {
+  vdPkonf = setInterval(() => {
+    let x = +elements.dPkonf.innerHTML.replace(/[,]/g, '.')
+    x -= 0.1
+    elements.dPkonf.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
+    if (x <= i) {
       clearInterval(vdPkonf)
       if (Number.isInteger) {
         elements.dPkonf.innerHTML = i
