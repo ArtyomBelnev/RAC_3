@@ -90,7 +90,7 @@ export const elements = {
   powers: document.querySelector('.powers'),
   disT2: document.querySelector('.display-t2'),
   disT3: document.querySelector('.display-t3'),
-  disT4: document.querySelector('.display-t4'),
+  disT4: document.querySelector('.display-t4__wrap'),
   disOFF1: document.querySelector('.display-off1'),
   disOFF2: document.querySelector('.display-off2'),
   headerNAME: document.querySelector('.header__centr'),

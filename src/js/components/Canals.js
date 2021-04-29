@@ -33,7 +33,6 @@ export function delPMC(i) {
     elements.PMC.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
     if (x <= i) {
       clearTimeout(intPms)
-      elements.PMC.innerHTML = 0
     }
   }, 500)
 }
@@ -110,7 +109,7 @@ export function getPmTK(i) {
   }, 900)
 }
 
-export function delPmTK() {
+export function delPmTK(y) {
   vPmTK = setInterval(() => {
     let x = +elements.PmTK.innerHTML.replace(/[,]/g, '.')
     x -= 0.01
@@ -119,7 +118,7 @@ export function delPmTK() {
       clearInterval(vPmTK)
       elements.PmTK.innerHTML = 0
     }
-  }, 700)
+  }, y) // 700
 }
 
 export function getPmCT(i, y) {
@@ -136,7 +135,7 @@ export function getPmCT(i, y) {
   }, y)
 }
 
-export function delPmCT() {
+export function delPmCT(y) {
   vPmCT = setInterval(() => {
     let x = +elements.PmCT.innerHTML.replace(/[,]/g, '.')
     x -= 0.01
@@ -145,7 +144,7 @@ export function delPmCT() {
       clearInterval(vPmCT)
       elements.PmCT.innerHTML = 0
     }
-  }, 1000)
+  }, y) // 1000
 }
 
 export function getPg13(i) {
@@ -189,6 +188,18 @@ export function getPgN(i) {
   })
 }
 
+export function delPgN(y) {
+  vPgN = setInterval(() => {
+    let x = +elements.PgN.innerHTML.replace(/[,]/g, '.')
+    x -= 0.1
+    elements.PgN.innerHTML = x.toFixed(1).replace(/[.]/g, ',')
+    if (x <= 0) {
+      clearInterval(vPgN)
+      elements.PgN.innerHTML = 0
+    }
+  }, y) // 1000
+}
+
 export function getPgpN(i) {
   vPgpN = setInterval(() => {
     let x = +elements.PgpN.innerHTML.replace(/[,]/g, '.')
@@ -198,6 +209,18 @@ export function getPgpN(i) {
       clearInterval(vPgpN)
     }
   }, 340) // 340
+}
+
+export function delPgpN(y) {
+  vPgpN = setInterval(() => {
+    let x = +elements.PgpN.innerHTML.replace(/[,]/g, '.')
+    x -= 0.1
+    elements.PgpN.innerHTML = x.toFixed(1).replace(/[.]/g, ',')
+    if (x <= 0) {
+      clearInterval(vPgpN)
+      elements.PgpN.innerHTML = 0
+    }
+  }, y) // 1000
 }
 
 export function getdPkonf(i) {
@@ -214,7 +237,7 @@ export function getdPkonf(i) {
   }, 240)
 }
 
-export function deldPkonf(i) {
+export function deldPkonf(i, y) {
   vdPkonf = setInterval(() => {
     let x = +elements.dPkonf.innerHTML.replace(/[,]/g, '.')
     x -= 0.1
@@ -225,7 +248,7 @@ export function deldPkonf(i) {
         elements.dPkonf.innerHTML = i
       }
     }
-  }, 240)
+  }, y) // 240
 }
 
 export function getOSleft(i) {
@@ -240,6 +263,18 @@ export function getOSleft(i) {
   }, 550)
 }
 
+export function delOSleft(y) {
+  vOSleft = setInterval(() => {
+    let x = +elements.OSleft.innerHTML.replace(/[,]/g, '.')
+    x -= 0.1
+    elements.OSleft.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
+    if (x <= 0) {
+      clearInterval(vOSleft)
+      elements.OSleft.innerHTML = 0
+    }
+  }, y) // 1000
+}
+
 export function getOSright(i) {
   vOSright = setInterval(() => {
     let x = +elements.OSright.innerHTML.replace(/[,]/g, '.')
@@ -250,6 +285,18 @@ export function getOSright(i) {
       // elements.OSright.innerHTML = i.toFixed(1).replace(/[.]/g, ',')
     }
   }, 570)
+}
+
+export function delOSright(y) {
+  vOSright = setInterval(() => {
+    let x = +elements.OSright.innerHTML.replace(/[,]/g, '.')
+    x -= 0.1
+    elements.OSright.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
+    if (x <= 0) {
+      clearInterval(vOSright)
+      elements.OSright.innerHTML = 0
+    }
+  }, y) // 1000
 }
 
 export function stopCanlsHOT2() {

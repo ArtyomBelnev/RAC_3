@@ -4,7 +4,8 @@ let timer = ''
 let timer1 = ''
 let NumStatus = 1
 let countErrors = 0
-let countErrorsactive = false
+
+export let countErrorsactive = false
 
 export function getStatus(x, y, w, z, s, n) {
   let date = new Date()
@@ -93,6 +94,7 @@ export function getStatus(x, y, w, z, s, n) {
   if (countErrors == 1 && countErrorsactive == true) {
     elements.rezultERROR.style.opacity = '1'
     elements.rezultERROR.style.visibility = 'visible'
+    elements.rezultERROR.innerHTML = '<div class="rezult__error__main"><div class="rezult__error__main-name">ЭКЗАМЕН НЕ СДАН</div><a href="">Вернутся на главную страницу</a></div>'
   }
 }
 

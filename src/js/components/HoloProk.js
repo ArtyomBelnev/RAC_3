@@ -182,8 +182,8 @@ export function getHOLPRO(e) {
           g10 = false
 
           delPmBC()
-          delPmTK()
-          delPmCT()
+          delPmTK(700)
+          delPmCT(1000)
           delPg13()
           stopVibTK()
           stopVibCT()

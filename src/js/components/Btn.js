@@ -1,11 +1,11 @@
 import { elements } from '../elements/Elements'
-import { getStatus } from './Journal'
+import { countErrorsactive, getStatus } from './Journal'
 import { getPMC, stopPMC, delPMC } from './Canals'
 import { T } from './PowerUP'
 import { readyAPHP } from './Mode'
 import { runOIL } from './Display'
 import { checkSTART } from './Tumblers'
-import { normSTOP } from './HotProk'
+import { FIHISH, normSTOP } from './HotProk'
 import { arrowUP, arrowDN, arrowTK } from './Arrow'
 
 export let PNSonPNUon = false
@@ -182,12 +182,15 @@ export function delBtn(e) {
       break
   }
 
-  // if (PNSon == false && PMCok == true) {
-  //   PMCok = false
-
-  //   stopPMC()
-  //   delPMC()
-  // }
+  if (PNSon == false && PNUon == false && FIHISH == true && countErrorsactive == false) {
+    elements.rezultERROR.style.opacity = '1'
+    elements.rezultERROR.style.visibility = 'visible'
+    elements.rezultERROR.innerHTML = '<div class="rezult__test__main"><div class="rezult__test__main-name">ПРОБНЫЙ ТЕСТ ПРОЙДЕТ</div><a href="">Вернутся на главную страницу</a></div>'
+  } else if (PNSon == false && PNUon == false && FIHISH == true && countErrorsactive == true) {
+    elements.rezultERROR.style.opacity = '1'
+    elements.rezultERROR.style.visibility = 'visible'
+    elements.rezultERROR.innerHTML = '<div class="rezult__finish__main"><div class="rezult__finish__main-name">ЭКЗАМЕН СДАН</div><a href="">Вернутся на главную страницу</a></div>'
+  }
 }
 
 function plusTemp() {
@@ -278,6 +281,7 @@ export function blockPNSPNU() {
 export function block2PNSPNU(x, y) {
   if (x == true && y == true) {
     countPNSPNU = 0
+    PNSonPNUon = true
     hot = false
     getStatus('Под. пит. на АУП-10 (ВНА на 16°)')
   }

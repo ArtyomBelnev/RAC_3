@@ -55,7 +55,6 @@ export function getTumblers(e) {
         setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
         if (arrowTK > 228 && arrowTK <= 240 && OHLAJDEN == true) {
           arrowDN()
-          console.log(arrowTK)
         } else return getStatus('Ошибка', 'yellow')
       }
       break

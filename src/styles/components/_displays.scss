@@ -248,15 +248,9 @@
   background-color: #c0c0c0;
   font-family: 'Linux', sans-serif;
   border: 2px solid rgb(10, 10, 10);
-  width: 318px;
-  height: 845.5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  overflow-y: scroll;
 
   &__name {
-    width: 100%;
+    width: 50%;
     background-color: #000;
     color: #fff;
     font-size: 18px;
@@ -264,18 +258,29 @@
     align-items: center;
     justify-content: center;
     padding: 2px 0;
-    margin-bottom: 5px;
+    margin: 2px auto;
+  }
+
+  &__wrap {
+    width: 318px;
+    height: 814.5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    border-top: 2px solid;
+
+    div {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
   }
 
   p {
     font-size: 16px;
     margin-bottom: 1px;
-  }
-
-  div {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
   }
 }
 

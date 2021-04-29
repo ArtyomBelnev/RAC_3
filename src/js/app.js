@@ -37,5 +37,6 @@ function goKontorls() {
   elements.registr.style.visibility = 'hidden'
   elements.registr.style.transition = '1s all'
   elements.headerNAME.innerHTML = 'KOНТРОЛЬ ЗНАНИЙ'
+  elements.information.remove()
   errorActive()
 }
