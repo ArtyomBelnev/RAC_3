@@ -45,7 +45,7 @@ export function getTumblers(e) {
       if (PowerOk == true) {
         elements.tumImg2.style.transform = 'rotate(-45deg)'
         setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
-        if (arrowTK >= 198 && arrowTK <= 236 && Fire == true && G14 == true && PNSon == false && PNUon == false) arrowUP()
+        if (arrowTK >= 198 && arrowTK < 258 && Fire == true && G14 == true && PNSon == false && PNUon == false) arrowUP()
         else return getStatus('Ошибка', 'yellow')
       }
       break
@@ -53,7 +53,7 @@ export function getTumblers(e) {
       if (PowerOk == true) {
         elements.tumImg2.style.transform = 'rotate(45deg)'
         setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
-        if (arrowTK > 228 && arrowTK <= 240 && OHLAJDEN == true) {
+        if (arrowTK > 228 && arrowTK <= 258 && OHLAJDEN == true) {
           arrowDN()
         } else return getStatus('Ошибка', 'yellow')
       }
@@ -160,7 +160,7 @@ export function getTumblers(e) {
         getStatus('Нажата испол. команда')
         hotProk = true
         elements.mem.addEventListener('click', clikedHOT)
-      } else if (arrowTK == 240 && TK240 == false) {
+      } else if (arrowTK >= 248 && arrowTK <= 258 && TK240 == false) {
         TK240 = true
         getStatus('Нажата испол. команда')
         readyOUTRING()

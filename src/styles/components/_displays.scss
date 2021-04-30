@@ -262,11 +262,13 @@
   }
 
   &__wrap {
+    white-space: pre-wrap;
+    vertical-align: middle;
     width: 318px;
     height: 814.5px;
     padding-left: 10px;
     padding-right: 10px;
-    overflow-y: scroll;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     border-top: 2px solid;

@@ -398,9 +398,9 @@ export function getHOTPRO(e) {
             .then(() => (tStab = true))
             .then(() => {
               getStatus('Таймер закр. КПВ,ПНС,ПНУ', false, true, 0, 20).then(() => {
-                if (PNSon == true) getStatus('Не закрыт. ПНС', 'red')
-                if (PNUon == true) getStatus('Не закрыт. ПНУ', 'red')
-                if (g14 == true) getStatus('Не закрыты КПВ', 'red')
+                if (PNSon == true) getStatus('Не отключен. ПНС', 'red')
+                if (PNUon == true) getStatus('Не отключен. ПНУ', 'red')
+                if (g14 == true) getStatus('Не отключен КПВ', 'red')
                 blockPNSPNU()
                 getVib1T(319, 6875)
                 getVib2T(320, 6875)
@@ -514,12 +514,12 @@ export function getHOTPRO(e) {
         if (g7 == false) getStatus('Ошибка', 'yellow')
         break
       case 'g11':
-        if (g11 == false && arrowTK == 228) {
+        if (g11 == false && arrowTK >= 228) {
           elements.R11.classList.remove('color-red')
           elements.G11.classList.add('color-green')
           g11 = true
         }
-        if (arrowTK > 229) getStatus('Ошибка', 'yellow')
+        if (arrowTK > 258) getStatus('Ошибка', 'yellow')
         break
       case 'g15':
         if (g15 == false && g11 == true) {
@@ -637,11 +637,13 @@ export function getHOTPRO(e) {
           delVibCT(0, 857)
 
           let tT = setInterval(() => {
-            if (arrowTK < 229) {
+            if (arrowTK <= 258) {
               arrowDN()
             }
             if (arrowTK == 0) {
               clearTimeout(tT)
+              elements.D7.classList.add('color-green')
+              elements.D8.classList.add('color-green')
               stopHOT2()
             }
           }, 1700)
@@ -676,12 +678,12 @@ export function getHOTPRO(e) {
         if (g7 == true) getStatus('Ошибка', 'yellow')
         break
       case 'r11':
-        if (g11 == true && r8 == false) {
+        if (g11 == true && r8 == false && arrowTK <= 60) {
           elements.G11.classList.remove('color-green')
           elements.R11.classList.add('color-red')
           g11 = false
         }
-        if (r8 == true) getStatus('Ошибка', 'yellow')
+        if (arrowTK > 60) getStatus('Ошибка', 'yellow')
         break
       case 'r15':
         if (g15 == true && g11 == false) {

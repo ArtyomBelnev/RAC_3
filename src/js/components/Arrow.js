@@ -14,9 +14,9 @@ export function arrowUP() {
     elements.ObTK.innerHTML = +elements.ObTK.innerHTML + 200
 
     if (arrowTK >= 48) {
-      if (arrowTK > 180 && arrowTK <= 198) {
-        a = 12
-        b = 400
+      if (arrowTK > 180 && arrowTK <= 240) {
+        a = 9
+        b = 300
       }
       arrowST += a
       elements.turnovers2.style.transform = `rotate(${arrowST}deg)`
@@ -48,9 +48,9 @@ export function arrowDN() {
     elements.ObTK.innerHTML = +elements.ObTK.innerHTML - 200
 
     if (arrowTK >= 48) {
-      if (arrowTK > 180 && arrowTK <= 198) {
-        a = 12
-        b = 400
+      if (arrowTK > 180 && arrowTK <= 240) {
+        a = 9
+        b = 300
       }
       arrowST -= a
       elements.turnovers2.style.transform = `rotate(${arrowST}deg)`

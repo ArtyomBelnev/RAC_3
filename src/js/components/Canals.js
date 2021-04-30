@@ -184,7 +184,7 @@ export function getPgN(i) {
         elements.B5.classList.remove('color-red')
         elements.B5.classList.add('color-green')
       }
-    }, 340) //340
+    }, 200) //340
   })
 }
 
@@ -208,7 +208,7 @@ export function getPgpN(i) {
     if (x >= i) {
       clearInterval(vPgpN)
     }
-  }, 340) // 340
+  }, 200) // 340
 }
 
 export function delPgpN(y) {
@@ -266,7 +266,7 @@ export function getOSleft(i) {
 export function delOSleft(y) {
   vOSleft = setInterval(() => {
     let x = +elements.OSleft.innerHTML.replace(/[,]/g, '.')
-    x -= 0.1
+    x -= 0.01
     elements.OSleft.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
     if (x <= 0) {
       clearInterval(vOSleft)
@@ -290,7 +290,7 @@ export function getOSright(i) {
 export function delOSright(y) {
   vOSright = setInterval(() => {
     let x = +elements.OSright.innerHTML.replace(/[,]/g, '.')
-    x -= 0.1
+    x -= 0.01
     elements.OSright.innerHTML = x.toFixed(2).replace(/[.]/g, ',')
     if (x <= 0) {
       clearInterval(vOSright)
