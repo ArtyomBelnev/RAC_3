@@ -39,6 +39,7 @@ export const elements = {
   probTest: document.querySelector('.registr__wrap-r-bot__left'),
   kontrols: document.querySelector('.registr__wrap-r-bot__right'),
   popupTextNames: document.querySelector('.popup__text-names'),
+  header: document.querySelector('.header'),
   VibTK: document.getElementById('VibTK'),
   VibCT: document.getElementById('VibCT'),
   Vib1T: document.getElementById('Vib1T'),

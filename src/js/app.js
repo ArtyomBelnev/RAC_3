@@ -22,6 +22,7 @@ document.body.onload = function () {
     elements.preloader.style.opacity = '0'
     elements.preloader.style.visibility = 'hidden'
     elements.preloader.style.transition = '1s all'
+    elements.header.style.height = null
   }, 1500)
 }
 
