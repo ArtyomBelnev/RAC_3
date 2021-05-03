@@ -73,11 +73,6 @@
     transition: all 0.2s ease 0s;
     position: relative;
 
-    .info__link {
-      width: 33.33%;
-      text-align: center;
-    }
-
     .info__img1 {
       background: url(../../images/HP.png) 50% 50% no-repeat;
       border: 5px solid #fff;
@@ -140,7 +135,8 @@
     }
 
     .active {
-      color: #4509ff;
+      color: #0e0722;
+      border: 2px solid;
     }
   }
 }

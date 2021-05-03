@@ -102,8 +102,3 @@ export function readyOHLAJDEN() {
   elements.ohlajde.style.background = 'yellow'
   OHLAJDEN = true
 }
-
-export function readyFihish() {
-  elements.ohlajde.style.background = null
-  elements.normstop.style.background = null
-}
