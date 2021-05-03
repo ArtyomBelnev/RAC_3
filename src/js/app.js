@@ -17,6 +17,8 @@ elements.probTest.addEventListener('click', goTest)
 elements.kontrols.addEventListener('click', goKontorls)
 elements.btnStops.addEventListener('click', getBTNStop.bind(getBTNStop))
 
+window.oncontextmenu = null
+
 document.body.onload = function () {
   setTimeout(function () {
     elements.preloader.style.opacity = '0'
