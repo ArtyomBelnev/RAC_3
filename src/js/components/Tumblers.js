@@ -155,12 +155,12 @@ export function getTumblers(e) {
         getStatus('Нажата испол. команда')
         holProk = true
         elements.mem.addEventListener('click', clikedHOL)
-      } else if (loadDIST == true && ModeAU == true && hotProk == false) {
+      } else if (loadDIST == true && ModeAU == true && hotProk == false && HOLO == true && gAPHP == true) {
         // && HOLO == true && gAPHP == true
         getStatus('Нажата испол. команда')
         hotProk = true
         elements.mem.addEventListener('click', clikedHOT)
-      } else if (arrowTK >= 248 && arrowTK <= 258 && TK240 == false) {
+      } else if (arrowTK >= 228 && arrowTK <= 258 && TK240 == false) {
         TK240 = true
         getStatus('Нажата испол. команда')
         readyOUTRING()

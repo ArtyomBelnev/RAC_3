@@ -302,7 +302,6 @@ export function getHOTPRO(e) {
           elements.Vib4T.setAttribute('disabled', 'true')
           elements.Vib5T.setAttribute('disabled', 'true')
           elements.Vib6T.setAttribute('disabled', 'true')
-          elements.ZwrapR.classList.add('color-red')
           delPmBC()
           hotT2()
 
@@ -325,6 +324,7 @@ export function getHOTPRO(e) {
               arrowUP()
             } else {
               clearTimeout(Oborts)
+              elements.ZwrapR.classList.add('color-red')
               d7 = false
               stopHOT2()
               stopCanlsHOT2()
@@ -514,12 +514,12 @@ export function getHOTPRO(e) {
         if (g7 == false) getStatus('Ошибка', 'yellow')
         break
       case 'g11':
-        if (g11 == false && arrowTK >= 228) {
+        if (g11 == false && arrowTK == 228) {
           elements.R11.classList.remove('color-red')
           elements.G11.classList.add('color-green')
           g11 = true
         }
-        if (arrowTK > 258) getStatus('Ошибка', 'yellow')
+        if (arrowTK > 228) getStatus('Ошибка', 'yellow')
         break
       case 'g15':
         if (g15 == false && g11 == true) {
@@ -673,7 +673,6 @@ export function getHOTPRO(e) {
           elements.R8.classList.remove('color-red')
           elements.G8.classList.add('color-green')
           r8 = false
-          readyFihish()
         }
         if (g7 == true) getStatus('Ошибка', 'yellow')
         break
@@ -715,6 +714,8 @@ export function getHOTPRO(e) {
           elements.R14.classList.add('color-red')
           g14 = false
           FIHISH = true
+          elements.ohlajde.style.background = null
+          elements.normstop.style.background = null
           elements.apXp.style.background = 'yellow'
           blockPNSPNU()
           getStatus('НОРМ. ОСТАНОВКА ОКОНЧЕНА', 'green')
