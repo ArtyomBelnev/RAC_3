@@ -42,17 +42,17 @@ export function getTumblers(e) {
       START = false
       break
     case '3':
+      elements.tumImg2.style.transform = 'rotate(-45deg)'
+      setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
       if (PowerOk == true) {
-        elements.tumImg2.style.transform = 'rotate(-45deg)'
-        setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
         if (arrowTK >= 198 && arrowTK < 258 && Fire == true && G14 == true && PNSon == false && PNUon == false) arrowUP()
         else return getStatus('Ошибка', 'yellow')
       }
       break
     case '4':
+      elements.tumImg2.style.transform = 'rotate(45deg)'
+      setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
       if (PowerOk == true) {
-        elements.tumImg2.style.transform = 'rotate(45deg)'
-        setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
         if (arrowTK > 228 && arrowTK <= 258 && OHLAJDEN == true) {
           arrowDN()
         } else return getStatus('Ошибка', 'yellow')

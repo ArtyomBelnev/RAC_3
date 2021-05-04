@@ -16,6 +16,7 @@ let hotProOk = false
 let tPlusTemp = ''
 
 let Oborts = ''
+let Oborts2 = ''
 let Pm = false,
   VibSred200 = false,
   tStab = false
@@ -123,7 +124,7 @@ export function getHOTPRO(e) {
         if (b3 == false && g3 == true) {
           elements.B3.classList.add('color-green')
           b3 = true
-          getPgDG(2)
+          getPgDG(2.3)
         }
         if (b3 == false) getStatus('Ошибка', 'yellow')
         break
@@ -510,6 +511,9 @@ export function getHOTPRO(e) {
           g9 = false
 
           readyOHLAJDEN()
+          getStatus('Охлаждение', false, true, 5, 0).then(() => {
+            g15 = true
+          })
         }
         if (g7 == false) getStatus('Ошибка', 'yellow')
         break
@@ -526,9 +530,6 @@ export function getHOTPRO(e) {
           elements.R15.classList.remove('color-red')
           elements.G15.classList.add('color-green')
 
-          getStatus('Охлаждение', false, true, 5, 0).then(() => {
-            g15 = true
-          })
           hotT3(60, 40, 41, 55, 40, 30000)
           delVib1T(319, 150000)
           delVib2T(320, 150000)
@@ -539,6 +540,15 @@ export function getHOTPRO(e) {
           delVibTK(7, 684)
           delVibCT(6.9, 684)
           deldPkonf(10, 340)
+
+          Oborts = setInterval(() => {
+            if (arrowTK > 198) {
+              arrowDN()
+            } else {
+              clearTimeout(Oborts)
+              getStatus('ОГ-12 на упоре')
+            }
+          }, 1100)
         }
         if (g11 == false) getStatus('Ошибка', 'yellow')
         break
@@ -636,12 +646,12 @@ export function getHOTPRO(e) {
           delVibTK(0, 857)
           delVibCT(0, 857)
 
-          let tT = setInterval(() => {
+          Oborts2 = setInterval(() => {
             if (arrowTK <= 258) {
               arrowDN()
             }
             if (arrowTK == 0) {
-              clearTimeout(tT)
+              clearTimeout(Oborts2)
               elements.D7.classList.add('color-green')
               elements.D8.classList.add('color-green')
               stopHOT2()
@@ -732,4 +742,9 @@ function getTemper() {
   if (+elements.VibSred.value == 200 && VibSred200 == false) {
     VibSred200 = true
   }
+}
+
+export function warnigSTOPhotprok() {
+  clearTimeout(Oborts)
+  clearTimeout(Oborts2)
 }

@@ -186,12 +186,12 @@ export function delBtn(e) {
     elements.PMC.innerHTML = 0
     elements.rezultERROR.style.opacity = '1'
     elements.rezultERROR.style.visibility = 'visible'
-    elements.rezultERROR.innerHTML = '<div class="rezult__test__main"><div class="rezult__test__main-name">ПРОБНЫЙ ТЕСТ ПРОЙДЕТ</div><a href="">Вернутся на главную страницу</a></div>'
+    elements.rezultERROR.innerHTML = '<div class="rezult__test__main"><div class="rezult__test__main-name">ПРОБНЫЙ ТЕСТ ПРОЙДЕН</div><a href="">Вернуться на главную страницу</a></div>'
   } else if (PNSon == false && PNUon == false && FIHISH == true && countErrorsactive == true) {
     elements.PMC.innerHTML = 0
     elements.rezultERROR.style.opacity = '1'
     elements.rezultERROR.style.visibility = 'visible'
-    elements.rezultERROR.innerHTML = '<div class="rezult__finish__main"><div class="rezult__finish__main-name">ЭКЗАМЕН СДАН</div><a href="">Вернутся на главную страницу</a></div>'
+    elements.rezultERROR.innerHTML = '<div class="rezult__finish__main"><div class="rezult__finish__main-name">ЭКЗАМЕН СДАН</div><a href="">Вернуться на главную страницу</a></div>'
   }
 }
 

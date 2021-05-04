@@ -4,7 +4,6 @@ import { readyAPHP } from './Mode'
 import { removeTAN, T } from './PowerUP'
 
 let tmbs = '',
-  tmbu = '',
   tVibTK = '',
   tVibCT = '',
   vVib1T = '',
@@ -12,13 +11,16 @@ let tmbs = '',
   vVib3T = '',
   vVib4T = '',
   vVib5T = '',
-  vVib6T = ''
+  vVib6T = '',
+  t = '',
+  t1 = '',
+  t2 = ''
 
-let UP = ''
-let OP = ''
-let MBS = ''
-let VHOD = ''
-let VIHOD = ''
+let UP = '',
+  OP = '',
+  MBS = '',
+  VHOD = '',
+  VIHOD = ''
 
 export let mTMax = false
 
@@ -56,7 +58,7 @@ export function startMBSMBU() {
 
     elements.mbs.innerHTML = x.toFixed(1).replace(/[.]/g, ',')
     elements.mbu.innerHTML = y.toFixed(1).replace(/[.]/g, ',')
-  }, 50)
+  }, 80)
 }
 
 export function stopMBSMBU() {
@@ -286,7 +288,7 @@ export function VVHH() {
     interval = 11000 / (count - count2) //11000
   } else if (T <= 10) return
 
-  let t = setInterval(() => {
+  t = setInterval(() => {
     elements.VHOD.innerHTML = (+elements.VHOD.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
     elements.VIHOD.innerHTML = (+elements.VIHOD.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
     elements.HLSM.innerHTML = (+elements.HLSM.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
@@ -306,7 +308,7 @@ export function hotT1() {
   let interval = 1660 / (count - start)
   let interval2 = 1660 / (count2 - start2)
 
-  let t1 = setInterval(() => {
+  t1 = setInterval(() => {
     elements.UP.innerHTML = (+elements.UP.innerHTML.replace(/[,]/g, '.') + 0.11).toFixed(1).replace(/[.]/g, ',')
     elements.OP1.innerHTML = (+elements.OP1.innerHTML.replace(/[,]/g, '.') + 0.11).toFixed(1).replace(/[.]/g, ',')
     elements.OP2.innerHTML = (+elements.OP2.innerHTML.replace(/[,]/g, '.') + 0.11).toFixed(1).replace(/[.]/g, ',')
@@ -316,7 +318,7 @@ export function hotT1() {
     }
   }, interval)
 
-  let t2 = setInterval(() => {
+  t2 = setInterval(() => {
     elements.VHOD.innerHTML = (+elements.VHOD.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
     elements.VIHOD.innerHTML = (+elements.VIHOD.innerHTML.replace(/[,]/g, '.') + 0.165).toFixed(1).replace(/[.]/g, ',')
     elements.HLSM.innerHTML = (+elements.HLSM.innerHTML.replace(/[,]/g, '.') + 0.1).toFixed(1).replace(/[.]/g, ',')
@@ -443,4 +445,24 @@ export function stopHOT2() {
   clearInterval(vVib4T)
   clearInterval(vVib5T)
   clearInterval(vVib6T)
+}
+
+export function warningSTOPdisplay() {
+  clearTimeout(tmbs)
+  clearTimeout(tVibTK)
+  clearTimeout(tVibCT)
+  clearInterval(vVib1T)
+  clearInterval(vVib2T)
+  clearInterval(vVib3T)
+  clearInterval(vVib4T)
+  clearInterval(vVib5T)
+  clearInterval(vVib6T)
+  clearInterval(t)
+  clearInterval(t1)
+  clearInterval(t2)
+  clearInterval(UP)
+  clearInterval(OP)
+  clearInterval(MBS)
+  clearInterval(VHOD)
+  clearInterval(VIHOD)
 }

@@ -306,3 +306,17 @@ export function stopCanlsHOT2() {
   clearInterval(vPgpN)
   clearInterval(vdPkonf)
 }
+
+export function warnigSTOPcanals() {
+  clearTimeout(intPms)
+  clearInterval(vPgDG)
+  clearInterval(vPmBC)
+  clearInterval(vPmTK)
+  clearInterval(vPmCT)
+  clearInterval(vPg13)
+  clearInterval(vPgN)
+  clearInterval(vPgpN)
+  clearInterval(vdPkonf)
+  clearInterval(vOSleft)
+  clearInterval(vOSright)
+}

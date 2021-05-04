@@ -29,7 +29,8 @@ let power_1On = false,
   power_8Off = true,
   power_1o2o = false,
   power_2o1o = false,
-  TanOK = false
+  TanOK = false,
+  power_3_8 = false
 
 let cliked = getCranes.bind(getCranes)
 
@@ -37,9 +38,10 @@ export function getPowers(e) {
   switch (e.target.id) {
     case 'switch_1':
       if (oilOK == true) {
+        getStatus('Ошибка', 'yellow')
         return (elements.switch1.checked = false)
       }
-      if (minT >= +elements.mbs.innerHTML.replace(/[,]/g, '.') && power_1On == true) {
+      if (minT >= +elements.mbs.innerHTML.replace(/[,]/g, '.') && power_1On == true && power_2On == true) {
         elements.switch1.checked = true
         return getStatus(`Темпер. в масла баках < ${minT}`, 'yellow')
       }
@@ -54,9 +56,10 @@ export function getPowers(e) {
 
     case 'switch_2':
       if (oilOK == true) {
+        getStatus('Ошибка', 'yellow')
         return (elements.switch2.checked = false)
       }
-      if (minT >= +elements.mbs.innerHTML.replace(/[,]/g, '.') && power_2On == true) {
+      if (minT >= +elements.mbs.innerHTML.replace(/[,]/g, '.') && power_2On == true && power_1On == true) {
         elements.switch2.checked = true
         return getStatus(`Темпер. в масла баках < ${minT}`, 'yellow')
       }
@@ -70,6 +73,11 @@ export function getPowers(e) {
       break
 
     case 'switch_3':
+      if (power_3_8 == true) {
+        elements.switch3.checked = true
+        return getStatus('Ошибка', 'yellow')
+      }
+
       if (elements.switch3.checked == true) {
         power_3On = true
         power_3Off = false
@@ -80,6 +88,11 @@ export function getPowers(e) {
       break
 
     case 'switch_4':
+      if (power_3_8 == true) {
+        elements.switch4.checked = true
+        return getStatus('Ошибка', 'yellow')
+      }
+
       if (elements.switch4.checked == true) {
         power_4On = true
         power_4Off = false
@@ -90,6 +103,11 @@ export function getPowers(e) {
       break
 
     case 'switch_5':
+      if (power_3_8 == true) {
+        elements.switch5.checked = true
+        return getStatus('Ошибка', 'yellow')
+      }
+
       if (elements.switch5.checked == true) {
         power_5On = true
         power_5Off = false
@@ -100,6 +118,11 @@ export function getPowers(e) {
       break
 
     case 'switch_6':
+      if (power_3_8 == true) {
+        elements.switch6.checked = true
+        return getStatus('Ошибка', 'yellow')
+      }
+
       if (elements.switch6.checked == true) {
         power_6On = true
         power_6Off = false
@@ -110,6 +133,11 @@ export function getPowers(e) {
       break
 
     case 'switch_7':
+      if (power_3_8 == true) {
+        elements.switch7.checked = true
+        return getStatus('Ошибка', 'yellow')
+      }
+
       if (elements.switch7.checked == true) {
         power_7On = true
       } else {
@@ -119,6 +147,11 @@ export function getPowers(e) {
       break
 
     case 'switch_8':
+      if (power_3_8 == true) {
+        elements.switch8.checked = true
+        return getStatus('Ошибка', 'yellow')
+      }
+
       if (elements.switch8.checked == true) {
         power_8On = true
         power_8Off = false
@@ -127,6 +160,10 @@ export function getPowers(e) {
         power_8On = false
       }
       break
+  }
+
+  if (power_3On == true && power_4On == true && power_5On == true && power_6On == true && power_7On == true && power_8On == true) {
+    power_3_8 = true
   }
 
   isPowers()

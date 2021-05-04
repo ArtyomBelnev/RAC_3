@@ -61,7 +61,7 @@ export function getHOLPRO(e) {
         if (b3 == false && g3 == true) {
           elements.B3.classList.add('color-green')
           b3 = true
-          getPgDG(2)
+          getPgDG(2.3)
         }
         if (b3 == false) {
           getStatus('Ошибка', 'yellow')
@@ -332,4 +332,8 @@ export function isStatusHolPRo() {
   }
   getStatus('Снятия питания АУП-10')
   holProOk = true
+}
+
+export function warnigSTOPholprok() {
+  clearTimeout(HpObort)
 }
