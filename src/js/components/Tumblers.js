@@ -5,7 +5,7 @@ import { arrowUP, arrowDN, arrowTK } from './Arrow'
 import { getStatus } from './Journal'
 import { diotsON, diotsOFF, diotsOK } from './Diots'
 import { getHOLPRO } from './HoloProk'
-import { getHOTPRO, G14, Fire } from './HotProk'
+import { getHOTPRO, G14, Fire, arrow3 } from './HotProk'
 import { getBtn, delBtn, PNSonPNUon, PNSon, PNUon } from './Btn'
 import { readyAPHP, readyOUTRING, JOBRING, readyLOADTRASS, OHLAJDEN } from './Mode'
 
@@ -53,7 +53,7 @@ export function getTumblers(e) {
       elements.tumImg2.style.transform = 'rotate(45deg)'
       setTimeout(() => (elements.tumImg2.style.transform = 'rotate(0deg)'), 400)
       if (PowerOk == true) {
-        if (arrowTK > 228 && arrowTK <= 258 && OHLAJDEN == true) {
+        if (arrowTK > 228 && arrowTK <= 258 && OHLAJDEN == true && arrow3 == true) {
           arrowDN()
         } else return getStatus('Ошибка', 'yellow')
       }

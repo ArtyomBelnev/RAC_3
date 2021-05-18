@@ -11,6 +11,7 @@ import { startVibTK, startVibCT, stopVibTK, stopVibCT, VVHH, getVib1T, getVib2T,
 
 export let normSTOP = false
 export let FIHISH = false
+export let arrow3 = false
 
 let hotProOk = false
 let tPlusTemp = ''
@@ -508,17 +509,19 @@ export function getHOTPRO(e) {
         if (g9 == true && g7 == true) {
           elements.G9.classList.remove('color-green')
           elements.R9.classList.add('color-red')
-          g9 = false
+          // g9 = false
 
           readyOHLAJDEN()
           getStatus('Охлаждение', false, true, 5, 0).then(() => {
-            g15 = true
+            // g15 = true
+            g9 = false
+            arrow3 = true
           })
         }
         if (g7 == false) getStatus('Ошибка', 'yellow')
         break
       case 'g11':
-        if (g11 == false && arrowTK == 228) {
+        if (g11 == false && g9 == false && arrowTK == 228) {
           elements.R11.classList.remove('color-red')
           elements.G11.classList.add('color-green')
           g11 = true
@@ -546,6 +549,7 @@ export function getHOTPRO(e) {
               arrowDN()
             } else {
               clearTimeout(Oborts)
+              g15 = true
               getStatus('ОГ-12 на упоре')
             }
           }, 1100)
