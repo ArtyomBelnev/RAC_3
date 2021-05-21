@@ -1,5 +1,7 @@
 export const elements = {
+  password: document.getElementById('password'),
   preloader: document.getElementById('page__preloader'),
+  checkPass: document.getElementById('checkPass'),
   info: document.querySelector('.display-t3__v14__wrap-active'),
   popup: document.querySelector('.popup'),
   popup__content: document.querySelector('.popup__content'),

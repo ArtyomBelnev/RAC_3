@@ -17,6 +17,20 @@ elements.probTest.addEventListener('click', goTest)
 elements.kontrols.addEventListener('click', goKontorls)
 elements.btnStops.addEventListener('click', getBTNStop.bind(getBTNStop))
 
+let isPass = function () {
+  if (elements.checkPass.value === '123450') {
+    elements.checkPass.removeEventListener('keydown', isPass)
+    elements.checkPass.removeEventListener('keyup', isPass)
+
+    elements.password.style.opacity = '0'
+    elements.password.style.visibility = 'hidden'
+    elements.password.style.transition = '1s all'
+  }
+}
+
+elements.checkPass.addEventListener('keydown', isPass)
+elements.checkPass.addEventListener('keyup', isPass)
+
 document.body.onload = function () {
   setTimeout(function () {
     elements.preloader.style.opacity = '0'
@@ -42,31 +56,31 @@ function goKontorls() {
   errorActive()
 }
 
-document.addEventListener('contextmenu', (event) => event.preventDefault())
+// document.addEventListener('contextmenu', (event) => event.preventDefault())
 
-document.onkeydown = function (e) {
-  // disable F12 key
-  if (e.keyCode == 123) {
-    return false
-  }
+// document.onkeydown = function (e) {
+//   // disable F12 key
+//   if (e.keyCode == 123) {
+//     return false
+//   }
 
-  // disable I key
-  if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
-    return false
-  }
+//   // disable I key
+//   if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+//     return false
+//   }
 
-  // disable J key
-  if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
-    return false
-  }
+//   // disable J key
+//   if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+//     return false
+//   }
 
-  // disable U key
-  if (e.ctrlKey && e.keyCode == 85) {
-    return false
-  }
+//   // disable U key
+//   if (e.ctrlKey && e.keyCode == 85) {
+//     return false
+//   }
 
-  // disable P key
-  if (e.ctrlKey && e.keyCode == 80) {
-    return false
-  }
-}
+//   // disable P key
+//   if (e.ctrlKey && e.keyCode == 80) {
+//     return false
+//   }
+// }
