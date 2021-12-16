@@ -18,7 +18,7 @@ elements.kontrols.addEventListener('click', goKontorls)
 elements.btnStops.addEventListener('click', getBTNStop.bind(getBTNStop))
 
 let isPass = function () {
-  if (elements.checkPass.value === '123450') {
+  if (elements.checkPass.value === '123452022') {
     elements.checkPass.removeEventListener('keydown', isPass)
     elements.checkPass.removeEventListener('keyup', isPass)
 
