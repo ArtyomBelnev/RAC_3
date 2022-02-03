@@ -15,6 +15,7 @@ export let arrow3 = false
 
 let hotProOk = false
 let tPlusTemp = ''
+let vlOhlagden = false
 
 let Oborts = ''
 let Oborts2 = ''
@@ -509,13 +510,15 @@ export function getHOTPRO(e) {
         if (g9 == true && g7 == true) {
           elements.G9.classList.remove('color-green')
           elements.R9.classList.add('color-red')
-          // g9 = false
+
+          g9 = false
+          arrow3 = true
 
           readyOHLAJDEN()
           getStatus('Охлаждение', false, true, 5, 0).then(() => {
-            // g15 = true
-            g9 = false
-            arrow3 = true
+            vlOhlagden = true
+
+            if (arrowTK > 228 || g11 == false || g15 == false) getStatus('Ошибка', 'yellow')
           })
         }
         if (g7 == false) getStatus('Ошибка', 'yellow')
@@ -558,7 +561,7 @@ export function getHOTPRO(e) {
         break
 
       case 'r3':
-        if (g3 == true && g15 == true) {
+        if (g3 == true && g15 == true && vlOhlagden == true) {
           elements.G3.classList.remove('color-green')
           elements.R3.classList.add('color-red')
           elements.R4.classList.remove('color-red')
@@ -566,6 +569,9 @@ export function getHOTPRO(e) {
           g3 = false
         }
         if (g15 == false) {
+          getStatus('Ошибка', 'yellow')
+        }
+        if (vlOhlagden == false) {
           getStatus('Ошибка', 'yellow')
         }
         break
