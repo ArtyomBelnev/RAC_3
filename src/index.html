@@ -12,9 +12,21 @@
     <div id="page__preloader" class="preloader" style="opacity: 1; visibility: visible">
       <div class="loader"></div>
     </div>
+
     <div id="password" style="opacity: 1; visibility: visible">
       <p><strong>Пароль:</strong> <input id="checkPass" type="password" maxlength="10" size="8" name="password" /></p>
     </div>
+
+    <div id="Fname" style="opacity: 0; visibility: hidden">
+      <div class="FnameCss">
+        <div title="Закрыть" class="FnameReset" onclick="window.location.reload();">&#215;</div>
+        <label for="ФИО">ФИО: </label>
+        <input type="text" id="textFname" name="name" required size="20" autocomplete="off" />
+        <p>Например: Иванов В.В.</p>
+        <div id="btmFname">Подтвердить</div>
+      </div>
+    </div>
+
     <div class="registr">
       <div class="registr__main">
         <div class="registr__main-header"><h1>АРМ тренажер САУ ГПА "КОМПАС-4"</h1></div>
@@ -31,7 +43,7 @@
           </div>
         </div>
       </div>
-      <div class="registr__footer">филиал «Несвижское УМГ» 2021 г.</div>
+      <div class="registr__footer">филиал «Несвижское УМГ»</div>
     </div>
     <header class="header content" style="height: 0">
       <div class="header__left"></div>

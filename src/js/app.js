@@ -15,10 +15,12 @@ elements.info.addEventListener('click', p_d)
 elements.information.addEventListener('click', p_dd)
 elements.probTest.addEventListener('click', goTest)
 elements.kontrols.addEventListener('click', goKontorls)
+elements.textfname.addEventListener('input', goFname)
+elements.btmfname.addEventListener('click', nextKontorls)
 elements.btnStops.addEventListener('click', getBTNStop.bind(getBTNStop))
 
 let isPass = function () {
-  if (elements.checkPass.value === '123452022') {
+  if (elements.checkPass.value === '123450') {
     elements.checkPass.removeEventListener('keydown', isPass)
     elements.checkPass.removeEventListener('keyup', isPass)
 
@@ -49,6 +51,10 @@ function goTest() {
 }
 
 function goKontorls() {
+  elements.fname.style.opacity = '1'
+  elements.fname.style.visibility = 'visible'
+  elements.registr.style.transition = '1s all'
+
   elements.registr.style.opacity = '0'
   elements.registr.style.visibility = 'hidden'
   elements.registr.style.transition = '1s all'
@@ -57,31 +63,54 @@ function goKontorls() {
   errorActive()
 }
 
-document.addEventListener('contextmenu', (event) => event.preventDefault())
+function goFname() {
+  let regExp = /^([A-Я]{1}[а-я]{1,23})\s[A-Я]{1}.[A-Я]{1}.$/
 
-document.onkeydown = function (e) {
-  // disable F12 key
-  if (e.keyCode == 123) {
-    return false
+  if (regExp.test(elements.textfname.value) === true) {
+    elements.btmfname.style.backgroundColor = '#31b93c'
+    elements.btmfname.style.cursor = 'pointer'
+    elements.btmfname.setAttribute('disabled', 'true')
   }
 
-  // disable I key
-  if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
-    return false
-  }
-
-  // disable J key
-  if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
-    return false
-  }
-
-  // disable U key
-  if (e.ctrlKey && e.keyCode == 85) {
-    return false
-  }
-
-  // disable P key
-  if (e.ctrlKey && e.keyCode == 80) {
-    return false
+  if (regExp.test(elements.textfname.value) === false) {
+    elements.btmfname.style.backgroundColor = null
+    elements.btmfname.style.cursor = null
+    elements.btmfname.removeAttribute('disabled')
   }
 }
+
+function nextKontorls() {
+  if (elements.btmfname.hasAttribute('disabled') === true) {
+    elements.fname.style.opacity = '0'
+    elements.fname.style.visibility = 'hidden'
+  }
+}
+
+// document.addEventListener('contextmenu', (event) => event.preventDefault())
+
+// document.onkeydown = function (e) {
+//   // disable F12 key
+//   if (e.keyCode == 123) {
+//     return false
+//   }
+
+//   // disable I key
+//   if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+//     return false
+//   }
+
+//   // disable J key
+//   if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+//     return false
+//   }
+
+//   // disable U key
+//   if (e.ctrlKey && e.keyCode == 85) {
+//     return false
+//   }
+
+//   // disable P key
+//   if (e.ctrlKey && e.keyCode == 80) {
+//     return false
+//   }
+// }
