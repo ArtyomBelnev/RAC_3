@@ -192,6 +192,29 @@ export function delBtn(e) {
     elements.rezultERROR.style.opacity = '1'
     elements.rezultERROR.style.visibility = 'visible'
     elements.rezultERROR.innerHTML = '<div class="rezult__finish__main"><div class="rezult__finish__main-name">ЭКЗАМЕН СДАН</div><a href="">Вернуться на главную страницу</a></div>'
+
+    let Data = new Date(),
+      Hour = Data.getHours(),
+      Minutes = Data.getMinutes(),
+      Year = Data.getFullYear(),
+      Month = Data.getMonth(),
+      Day = Data.getDate()
+
+    let arr = []
+    let person = []
+
+    if (JSON.parse(localStorage.getItem('GPA'))) {
+      arr = JSON.parse(localStorage.getItem('GPA'))
+      localStorage.removeItem('GPA')
+    } else arr = []
+
+    person.push(elements.textfname.value)
+    person.push(Hour + ':' + Minutes)
+    person.push(Day + '.' + Month + '.' + Year)
+
+    arr.push(person)
+
+    localStorage.setItem('GPA', JSON.stringify(arr))
   }
 }
 

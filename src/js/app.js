@@ -3,7 +3,7 @@ import '../styles/app.scss'
 import { elements } from './elements/Elements'
 import { getTumblers } from './components/Tumblers'
 import { getPowers } from './components/PowerUP'
-import { p_d, p_dd, pc_d } from './components/Popup'
+import { p_d, p_dd, p_ddd, pc_d } from './components/Popup'
 import { errorActive } from './components/Journal'
 import { getBTNStop } from './components/BtnStops'
 
@@ -13,6 +13,7 @@ elements.popup__close.addEventListener('click', pc_d.bind(pc_d))
 elements.popup.addEventListener('click', pc_d.bind(pc_d))
 elements.info.addEventListener('click', p_d)
 elements.information.addEventListener('click', p_dd)
+elements.listfname.addEventListener('click', p_ddd)
 elements.probTest.addEventListener('click', goTest)
 elements.kontrols.addEventListener('click', goKontorls)
 elements.textfname.addEventListener('input', goFname)
@@ -64,7 +65,7 @@ function goKontorls() {
 }
 
 function goFname() {
-  let regExp = /^([A-Я]{1}[а-я]{1,23})\s[A-Я]{1}.[A-Я]{1}.$/
+  let regExp = /^([A-Я]{1}[а-я]{1,23})\s[A-Я]{1}\.[A-Я]{1}\.$/
 
   if (regExp.test(elements.textfname.value) === true) {
     elements.btmfname.style.backgroundColor = '#31b93c'
@@ -86,31 +87,31 @@ function nextKontorls() {
   }
 }
 
-// document.addEventListener('contextmenu', (event) => event.preventDefault())
+document.addEventListener('contextmenu', (event) => event.preventDefault())
 
-// document.onkeydown = function (e) {
-//   // disable F12 key
-//   if (e.keyCode == 123) {
-//     return false
-//   }
+document.onkeydown = function (e) {
+  // disable F12 key
+  if (e.keyCode == 123) {
+    return false
+  }
 
-//   // disable I key
-//   if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
-//     return false
-//   }
+  // disable I key
+  if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+    return false
+  }
 
-//   // disable J key
-//   if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
-//     return false
-//   }
+  // disable J key
+  if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+    return false
+  }
 
-//   // disable U key
-//   if (e.ctrlKey && e.keyCode == 85) {
-//     return false
-//   }
+  // disable U key
+  if (e.ctrlKey && e.keyCode == 85) {
+    return false
+  }
 
-//   // disable P key
-//   if (e.ctrlKey && e.keyCode == 80) {
-//     return false
-//   }
-// }
+  // disable P key
+  if (e.ctrlKey && e.keyCode == 80) {
+    return false
+  }
+}
