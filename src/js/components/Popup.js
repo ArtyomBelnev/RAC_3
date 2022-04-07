@@ -1,5 +1,7 @@
 import { elements } from '../elements/Elements'
 
+let count = 1
+
 export function p_d() {
   elements.popup.style.opacity = '1'
   elements.popup.style.visibility = 'visible'
@@ -41,8 +43,9 @@ export function p_ddd() {
   elements.infoImg.forEach((el) => {
     if (el.classList.contains('info__img5')) {
       el.classList.add('active')
-      if (localStorage.getItem('GPA')) {
+      if (localStorage.getItem('GPA') && count === 1) {
         let arr = JSON.parse(localStorage.getItem('GPA'))
+        count++
 
         for (let i = 0; i < arr.length; i++) {
           for (let j = 0; j < 1; j++) {
